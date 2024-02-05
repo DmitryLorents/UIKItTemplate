@@ -6,17 +6,11 @@
 //
 
 import UIKit
-
+/// Class Controller
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
     }
-
-
-}
-
-#Preview {
-    ViewController()
 }

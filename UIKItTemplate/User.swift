@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/// Struct User
 struct User {
-    //Add some
+    // Add some
 }
