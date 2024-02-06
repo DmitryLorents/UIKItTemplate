@@ -120,11 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A0F7DF32B712B7B009D3A3C /* Build configuration list for PBXNativeTarget "UIKItTemplate" */;
 			buildPhases = (
+				0A3B2B892B71FD160038208F /* Swiftformat */,
 				0A0B7AEB2B71525700BBD13E /* SwiftlintScript */,
 				0A0F7DDB2B712B7A009D3A3C /* Sources */,
 				0A0F7DDC2B712B7A009D3A3C /* Frameworks */,
 				0A0F7DDD2B712B7A009D3A3C /* Resources */,
-				0A3B2B892B71FD160038208F /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -203,7 +203,7 @@
 			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		0A3B2B892B71FD160038208F /* Run Script */ = {
+		0A3B2B892B71FD160038208F /* Swiftformat */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -213,7 +213,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = Swiftformat;
 			outputFileListPaths = (
 			);
 			outputPaths = (
