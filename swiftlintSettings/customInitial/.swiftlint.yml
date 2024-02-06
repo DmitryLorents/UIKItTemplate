@@ -70,7 +70,7 @@ return_arrow_whitespace:
 
 #Будет ошибка при лишнем упоминании неиспользуемых объектов
 unused_optional_binding:
-  severity: error
+  error
 
 #Будет ошибка при указании уточненных типов массивов и словарей в устаревших форматах
 syntactic_sugar:
@@ -125,7 +125,7 @@ custom_rules:
 
   custom_boolean_redundant_condition:
     name: "Optional chaining для Bool запрещен"
-    regex: "\\?\\? (true|false)"
+    regex: "(?? true)|(?? false)"
     message: "Используй == true или == false"
     severity: error
 
