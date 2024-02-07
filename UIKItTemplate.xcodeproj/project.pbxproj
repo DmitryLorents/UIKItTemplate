@@ -120,8 +120,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A0F7DF32B712B7B009D3A3C /* Build configuration list for PBXNativeTarget "UIKItTemplate" */;
 			buildPhases = (
-				0A3B2B892B71FD160038208F /* Swiftformat */,
 				0A0B7AEB2B71525700BBD13E /* SwiftlintScript */,
+				0A3B2B892B71FD160038208F /* Swiftformat */,
 				0A0F7DDB2B712B7A009D3A3C /* Sources */,
 				0A0F7DDC2B712B7A009D3A3C /* Frameworks */,
 				0A0F7DDD2B712B7A009D3A3C /* Resources */,
@@ -220,7 +220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, download from #https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
