@@ -7,6 +7,8 @@ import UIKit
 class ViewController: UIViewController {
     // MARK: - Constants
 
+    let upperViewInset: CGFloat = 55
+
     // MARK: - Private Properties
 
     private var backgroundImageView: UIImageView {
@@ -47,6 +49,20 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var greetingLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: upperViewInset, width: UIScreen.main.bounds.width, height: 82))
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.backgroundColor = UIColor(named: "greetingLabelBackgroundColor")
+        label.textColor = .white
+        label.layer.borderColor = UIColor(white: 1, alpha: 0.8).cgColor
+        label.layer.borderWidth = 3
+        label.text = "Test\ntext"
+
+        return label
+    }()
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -63,6 +79,7 @@ class ViewController: UIViewController {
         view.addSubview(backgroundImageView)
         view.addSubview(guessNumberButton)
         view.addSubview(calculatorButton)
+        view.addSubview(greetingLabel)
     }
 
     @objc private func guessButtonAction() {
