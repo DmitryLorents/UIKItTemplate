@@ -16,15 +16,34 @@ class ViewController: UIViewController {
     }
 
     private lazy var guessNumberButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 10, y: 10, width: 150, height: 150))
+        let button = UIButton(frame: CGRect(x: 82, y: 264, width: 150, height: 150))
         button.isUserInteractionEnabled = true
-        button.setTitle("Угадай число", for: .normal)
+        button.setTitle("Угадай\nчисло", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .purple // UIColor(red: 155, green: 127, blue: 181, alpha: 1)
-        button.layer.borderColor = UIColor.black.cgColor // UIColor(red: 76, green: 36, blue: 115, alpha: 1).cgColor
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.textAlignment = .center
+        button.backgroundColor = UIColor(named: "customPurpleColor")
+        button.layer.borderColor = UIColor(named: "purpleBorderColor")?.cgColor
         button.layer.borderWidth = 3
-        // button.addTarget(self, action: #selector(guessButtonAction), for: .touchUpInside)
-        print("Button created")
+        button.layer.cornerRadius = 30
+        button.addTarget(self, action: #selector(guessButtonAction), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var calculatorButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 132, y: 470, width: 200, height: 200))
+        button.isUserInteractionEnabled = true
+        button.setTitle("Калькулятор", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.textAlignment = .center
+        button.backgroundColor = UIColor(named: "customGreenColor")
+        button.layer.borderColor = UIColor(named: "greetingLabelBackgroundColor")?.cgColor
+        button.layer.borderWidth = 3
+        button.layer.cornerRadius = 30
+        button.addTarget(self, action: #selector(calculatorButtonAction), for: .touchUpInside)
         return button
     }()
 
@@ -42,10 +61,15 @@ class ViewController: UIViewController {
     private func setViews() {
         view.backgroundColor = .systemBackground
         view.addSubview(backgroundImageView)
-        backgroundImageView.addSubview(guessNumberButton)
+        view.addSubview(guessNumberButton)
+        view.addSubview(calculatorButton)
     }
 
     @objc private func guessButtonAction() {
+        print(#function)
+    }
+
+    @objc private func calculatorButtonAction() {
         print(#function)
     }
 }
