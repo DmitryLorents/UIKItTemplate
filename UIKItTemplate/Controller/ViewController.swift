@@ -12,6 +12,14 @@ class ViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private var guessNumber = 0 {
+        didSet {
+            evaluateResult(guessNumber)
+        }
+    }
+
+    private var desiredNumber = 0
+
     private lazy var imageViewBackground: UIImageView = {
         let imageView = UIImageView(frame: UIScreen.main.bounds)
         imageView.image = UIImage(named: "backgroundImage")
@@ -108,14 +116,6 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    @objc private func guessButtonAction() {
-        print(#function)
-    }
-
-    @objc private func calculatorButtonAction() {
-        startCalculatorGame()
-    }
-
     private func updateAppearance(_ nameText: String) {
         UIView.animate(withDuration: 0.3) {
             self.imageViewBackground.frame.origin.y = self.upperViewInset + self.labelHeight
@@ -125,6 +125,12 @@ class ViewController: UIViewController {
                 self.greetingLabel.text = "Приветствую,\n\(nameText.uppercased())"
             }
         }
+    }
+
+    // MARK: - Calculator game
+
+    @objc private func calculatorButtonAction() {
+        startCalculatorGame()
     }
 
     private func startCalculatorGame() {
@@ -185,5 +191,49 @@ class ViewController: UIViewController {
         resultAlert.addAction(cancelAction)
         resultAlert.addAction(okAction)
         present(resultAlert, animated: true)
+    }
+
+    // MARK: - Guess number game
+
+    @objc private func guessButtonAction() {
+        startGuessNumberGame()
+    }
+
+    private func startGuessNumberGame() {
+        desiredNumber = Int.random(in: 1 ... 10)
+        showUniversalAlert(title: "Угадай число от 1 до 10", message: nil)
+    }
+
+    private func showUniversalAlert(title: String, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Введите число"
+        }
+        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+            self.guessNumber = Int(alert.textFields?.first?.text ?? "0") ?? 0
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+
+    private func showSuccessAlert() {
+        let successAlert = UIAlertController(title: "Поздравляю!", message: "Вы угадали", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel)
+        successAlert.addAction(okAction)
+        present(successAlert, animated: true)
+    }
+
+    private func evaluateResult(_ result: Int) {
+        switch result {
+        case desiredNumber:
+            showSuccessAlert()
+        case ..<desiredNumber:
+            showUniversalAlert(title: "Попробуйте еще раз", message: "Вы ввели слишком маленькое число")
+        case desiredNumber...:
+            showUniversalAlert(title: "Попробуйте еще раз", message: "Вы ввели слишком большое число")
+        default: break
+        }
     }
 }
