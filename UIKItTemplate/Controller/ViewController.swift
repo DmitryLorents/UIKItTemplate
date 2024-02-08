@@ -113,7 +113,7 @@ class ViewController: UIViewController {
     }
 
     @objc private func calculatorButtonAction() {
-        print(#function)
+        startCalculatorGame()
     }
 
     private func updateAppearance(_ nameText: String) {
@@ -125,5 +125,65 @@ class ViewController: UIViewController {
                 self.greetingLabel.text = "Приветствую,\n\(nameText.uppercased())"
             }
         }
+    }
+
+    private func startCalculatorGame() {
+        let numberAlert = UIAlertController(title: "Введите ваши числа", message: nil, preferredStyle: .alert)
+        numberAlert.addTextField { textField in
+            textField.placeholder = "Число 1"
+        }
+        numberAlert.addTextField { textField in
+            textField.placeholder = "Число 2"
+        }
+        let chooseOperationAction = UIAlertAction(title: "Выбрать операцию", style: .default) { _ in
+            let number1 = Double(numberAlert.textFields?[0].text ?? "0") ?? 0.0
+            let number2 = Double(numberAlert.textFields?[1].text ?? "0") ?? 0.0
+            self.chooseMathOperation(number1, number2)
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        numberAlert.addAction(chooseOperationAction)
+        numberAlert.addAction(cancelAction)
+        present(numberAlert, animated: true)
+    }
+
+    private func chooseMathOperation(_ number1: Double, _ number2: Double) {
+        var result = 0.0
+        let mathOperationAlert = UIAlertController(
+            title: "Выберите математическую операцию",
+            message: nil,
+            preferredStyle: .alert
+        )
+        let plusAction = UIAlertAction(title: "Сложить", style: .default) { _ in
+            result = number1 + number2
+            self.showResult(result: result)
+        }
+        let minusAction = UIAlertAction(title: "Вычесть", style: .default) { _ in
+            result = number1 - number2
+            self.showResult(result: result)
+        }
+        let multiplyAction = UIAlertAction(title: "Умножить", style: .default) { _ in
+            result = number1 * number2
+            self.showResult(result: result)
+        }
+        let devideAction = UIAlertAction(title: "Разделить", style: .default) { _ in
+            result = number1 / number2
+            self.showResult(result: result)
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        mathOperationAlert.addAction(plusAction)
+        mathOperationAlert.addAction(minusAction)
+        mathOperationAlert.addAction(multiplyAction)
+        mathOperationAlert.addAction(devideAction)
+        mathOperationAlert.addAction(cancelAction)
+        present(mathOperationAlert, animated: true)
+    }
+
+    private func showResult(result: Double) {
+        let resultAlert = UIAlertController(title: "Ваш результат", message: "\(result)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        resultAlert.addAction(cancelAction)
+        resultAlert.addAction(okAction)
+        present(resultAlert, animated: true)
     }
 }
