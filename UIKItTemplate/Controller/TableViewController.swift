@@ -1,29 +1,22 @@
-//
-//  TableViewController.swift
-//  UIKItTemplate
-//
-//  Created by Dmitry on 08.02.2024.
-//
+// TableViewController.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 class TableViewController: UIViewController {
+    // MARK: - Constants
 
+    // MARK: - IBOutlets
+
+    // MARK: - Public Properties
+
+    // MARK: - Private Properties
+
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
+    // MARK: - Public Methods
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // MARK: - Private Methods
 }
