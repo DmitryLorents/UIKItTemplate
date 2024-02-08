@@ -74,7 +74,7 @@ final class ViewController: UIViewController {
         label.isHidden = true
         return label
     }
-    
+
     private func showAllLabels(inputText: String) {
         let animationDuration: CGFloat = 0.5
         UIView.animate(withDuration: animationDuration) {
