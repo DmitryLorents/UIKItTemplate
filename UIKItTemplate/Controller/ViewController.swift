@@ -4,7 +4,7 @@
 import UIKit
 
 /// Class Controller
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     // MARK: - Constants
 
     let upperViewInset: CGFloat = 55
