@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white // .systemBackground
         view.addSubview(startButton)
     }
 
