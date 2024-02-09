@@ -4,7 +4,7 @@
 import UIKit
 
 /// Authorisation screen
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet var loginTextField: UITextField!
@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonAction(_ sender: UIButton) {}
 }
+
 // MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
