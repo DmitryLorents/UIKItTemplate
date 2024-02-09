@@ -13,9 +13,11 @@ class TableViewController: UIViewController {
     // MARK: - Private Properties
 
     // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     // MARK: - Public Methods
 
     // MARK: - Private Methods

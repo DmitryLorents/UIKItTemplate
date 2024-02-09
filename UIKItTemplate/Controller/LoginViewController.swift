@@ -5,7 +5,6 @@ import UIKit
 
 /// Authorisation screen
 class LoginViewController: UIViewController {
-
     // MARK: - Constants
 
     // MARK: - IBOutlets
@@ -15,12 +14,12 @@ class LoginViewController: UIViewController {
     // MARK: - Private Properties
 
     // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     // MARK: - Public Methods
 
     // MARK: - Private Methods
-
-    
 }
