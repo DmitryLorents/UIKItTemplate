@@ -9,6 +9,10 @@ class LoginViewController: UIViewController {
 
     // MARK: - IBOutlets
 
+    @IBOutlet var loginTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var loginButton: UIButton!
+
     // MARK: - Public Properties
 
     // MARK: - Private Properties
@@ -17,9 +21,14 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setViews()
     }
 
-    // MARK: - Public Methods
-
     // MARK: - Private Methods
+
+    private func setViews() {
+        loginButton.layer.cornerRadius = 12
+    }
+
+    @IBAction func loginButtonAction(_ sender: UIButton) {}
 }
