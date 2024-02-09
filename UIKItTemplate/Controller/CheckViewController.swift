@@ -2,17 +2,12 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
-
-class CheckViewController: UIViewController {
-    // MARK: - Constants
-
+/// Checkout screen
+final class CheckViewController: UIViewController {
+    
     // MARK: - IBOutlets
 
     @IBOutlet var totalButton: UIButton!
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
 
     // MARK: - Life Cycle
 
@@ -26,6 +21,4 @@ class CheckViewController: UIViewController {
     private func setViews() {
         totalButton.layer.cornerRadius = 12
     }
-
-    // MARK: - Private Methods
 }

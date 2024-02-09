@@ -5,17 +5,11 @@ import UIKit
 
 /// Authorisation screen
 class LoginViewController: UIViewController {
-    // MARK: - Constants
-
     // MARK: - IBOutlets
 
     @IBOutlet var loginTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
 
     // MARK: - Life Cycle
 
@@ -33,9 +27,6 @@ class LoginViewController: UIViewController {
 
     private func setViews() {
         loginButton.layer.cornerRadius = 12
-        loginButton.setTitleColor(.white, for: .disabled)
-        loginButton.alpha = 0.5
-        loginButton.isEnabled = false
         loginTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -50,9 +41,11 @@ class LoginViewController: UIViewController {
         loginTextField.text = ""
         passwordTextField.text = ""
     }
-
+    // MARK: - IBActions
+    
     @IBAction func loginButtonAction(_ sender: UIButton) {}
 }
+// MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
     func textField(

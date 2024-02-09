@@ -2,15 +2,12 @@
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
-
-class TableDetailViewController: UIViewController {
+/// Table details screen
+final class TableDetailViewController: UIViewController {
+    
     // MARK: - IBOutlets
 
     @IBOutlet var checkoutButton: UIButton!
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
 
     // MARK: - Life Cycle
 
