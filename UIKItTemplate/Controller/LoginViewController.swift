@@ -41,11 +41,29 @@ class LoginViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Verdana-bold", size: 16)
         button.addTarget(nil, action: #selector(moveToBirthdayVC), for: .touchUpInside)
+        button.isEnabled = false
+        button.alpha = 0.5
         return button
     }()
 
     private let emailTextField: UITextField = .createCustomTextField(placeholder: "Typing email", yPosition: 347)
     private let passwordTextField: UITextField = .createCustomTextField(placeholder: "Typing password", yPosition: 422)
+    private lazy var faceIDLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 86, y: 544, width: 0, height: 0))
+        label.text = "Use FaceID"
+        label.font = UIFont(name: "Verdana-bold", size: 16)
+        label.sizeToFit()
+        return label
+    }()
+
+    private lazy var secureImageView: UIImageView = {
+        let imageView = UIImageView(frame: CGRect(x: 352, y: 423, width: 22, height: 19))
+        imageView.image = UIImage(systemName: "eye.slash")
+        imageView.tintColor = .gray
+        return imageView
+    }()
+
+    private let faceIDSwitch = UISwitch(frame: CGRect(x: 238, y: 536, width: 0, height: 0))
 
     // MARK: - Life Cycle
 
@@ -66,7 +84,10 @@ class LoginViewController: UIViewController {
             passwordLabel,
             loginButton,
             emailTextField,
-            passwordTextField
+            passwordTextField,
+            faceIDLabel,
+            faceIDSwitch,
+            secureImageView
         )
     }
 
