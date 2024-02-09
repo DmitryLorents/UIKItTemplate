@@ -16,6 +16,9 @@
 		0A3B2B942B7267070038208F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B2B932B7267070038208F /* README.md */; };
 		0A7B62A82B7690E20020B7B0 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62A72B7690E20020B7B0 /* UIView + Extension.swift */; };
 		0A7B62AB2B7693750020B7B0 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AA2B7693750020B7B0 /* UILabel + Extension.swift */; };
+		0A7B62AD2B769EC80020B7B0 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */; };
+		0A7B62AF2B76A02D0020B7B0 /* PersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */; };
+		0A7B62B12B76A5B90020B7B0 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		0A3B2B932B7267070038208F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A7B62A72B7690E20020B7B0 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		0A7B62AA2B7693750020B7B0 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
+		0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsViewController.swift; sourceTree = "<group>"; };
+		0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				0A0F7DE62B712B7A009D3A3C /* LoginViewController.swift */,
+				0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */,
+				0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -120,6 +128,7 @@
 			children = (
 				0A7B62A72B7690E20020B7B0 /* UIView + Extension.swift */,
 				0A7B62AA2B7693750020B7B0 /* UILabel + Extension.swift */,
+				0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,12 +249,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7B62AF2B76A02D0020B7B0 /* PersonDetailsViewController.swift in Sources */,
 				0A7B62AB2B7693750020B7B0 /* UILabel + Extension.swift in Sources */,
 				0A0F7DE72B712B7A009D3A3C /* LoginViewController.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
 				0A0F7DE52B712B7A009D3A3C /* SceneDelegate.swift in Sources */,
 				0A7B62A82B7690E20020B7B0 /* UIView + Extension.swift in Sources */,
 				0A3B2B902B72084B0038208F /* Model.swift in Sources */,
+				0A7B62AD2B769EC80020B7B0 /* BirthdayViewController.swift in Sources */,
+				0A7B62B12B76A5B90020B7B0 /* UITextField + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
