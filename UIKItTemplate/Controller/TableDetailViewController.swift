@@ -4,9 +4,9 @@
 import UIKit
 
 class TableDetailViewController: UIViewController {
-    // MARK: - Constants
-
     // MARK: - IBOutlets
+
+    @IBOutlet var checkoutButton: UIButton!
 
     // MARK: - Public Properties
 
@@ -22,8 +22,9 @@ class TableDetailViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setViews() {
-        // loginButton.layer.cornerRadius = 12
+        checkoutButton.layer.cornerRadius = 12
     }
+
     // MARK: - IBActions
 
     @IBAction func checkoutButtonAction(_ sender: UIButton) {

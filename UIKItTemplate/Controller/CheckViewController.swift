@@ -8,6 +8,8 @@ class CheckViewController: UIViewController {
 
     // MARK: - IBOutlets
 
+    @IBOutlet var totalButton: UIButton!
+
     // MARK: - Public Properties
 
     // MARK: - Private Properties
@@ -16,9 +18,14 @@ class CheckViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setViews()
     }
 
-    // MARK: - Public Methods
+    // MARK: - Private Methods
+
+    private func setViews() {
+        totalButton.layer.cornerRadius = 12
+    }
 
     // MARK: - Private Methods
 }
