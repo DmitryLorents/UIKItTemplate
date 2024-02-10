@@ -21,6 +21,11 @@ class PersonDetailsViewController: UIViewController {
 
     // MARK: - Life Cycle
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .yellow
+    }
+
     // MARK: - Public Methods
 
     // MARK: - IBAction
