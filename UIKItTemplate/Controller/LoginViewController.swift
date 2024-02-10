@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     private let emailLabel: UILabel = .createRedLabel(size: 16, text: "Email", yPosition: 318)
     private let passwordLabel: UILabel = .createRedLabel(size: 16, text: "Password", yPosition: 393)
     private lazy var loginButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 20, y: 671, width: UIScreen.main.bounds.width - 40, height: 44))
+        let button = UIButton(frame: CGRect(x: 20, y: 750, width: UIScreen.main.bounds.width - 40, height: 44))
         button.backgroundColor = UIColor(named: "customRedColor")
         button.layer.cornerRadius = 12
         button.setTitle("Login", for: .normal)
@@ -72,10 +72,17 @@ class LoginViewController: UIViewController {
         setUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setAppearance()
+    }
+
     // MARK: - Private Methods
 
     private func setUI() {
         view.backgroundColor = .systemBackground
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         view.addSubViews(
             birthdayImageView,
             birthdayLabel,
@@ -91,8 +98,53 @@ class LoginViewController: UIViewController {
         )
     }
 
+    private func setAppearance() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
+        disableViews()
+    }
+
+    private func enableViews() {
+        loginButton.isEnabled = true
+        loginButton.alpha = 1
+        faceIDLabel.isHidden = false
+        faceIDSwitch.isHidden = false
+    }
+
+    private func disableViews() {
+        loginButton.isEnabled = false
+        loginButton.alpha = 0.5
+        faceIDLabel.isHidden = true
+        faceIDSwitch.isHidden = true
+    }
+
     @objc private func moveToBirthdayVC() {
         let birthdayVC = BirthdayViewController()
         navigationController?.pushViewController(birthdayVC, animated: true)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    // Check password length and email length and show/hide corresponding UI
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        let additionalValue = (string.isEmpty) ? -1 : 1
+        var emailLength = emailTextField.text?.count ?? 0
+        var passwordLength = passwordTextField.text?.count ?? 0
+        if textField == emailTextField {
+            emailLength += additionalValue
+        } else {
+            passwordLength += additionalValue
+        }
+
+        guard emailLength > 0, passwordLength > 0 else {
+            disableViews()
+            return true
+        }
+        enableViews()
+        return true
     }
 }
