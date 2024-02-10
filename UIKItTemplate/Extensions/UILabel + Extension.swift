@@ -13,4 +13,14 @@ extension UILabel {
         label.sizeToFit()
         return label
     }
+
+    static func createBlackVerdana16Label(text: String, origin: CGPoint) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .left
+        label.font = UIFont(name: "Verdana-bold", size: 16)
+        label.sizeToFit()
+        label.frame.origin = origin
+        return label
+    }
 }
