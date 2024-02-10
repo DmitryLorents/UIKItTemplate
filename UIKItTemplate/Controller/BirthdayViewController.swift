@@ -7,6 +7,21 @@ import UIKit
 final class BirthdayViewController: UIViewController {
     // MARK: - Private Properties
 
+    private let firstPersonView = PersonDataView(
+        imagename: "person1",
+        name: "Helena Link",
+        daysRemaing: 0,
+        subText: "10.03 - turns 25!",
+        position: 0
+    )
+    private let secondPersonView = PersonDataView(
+        imagename: "person2",
+        name: "Verona Tusk",
+        daysRemaing: 10,
+        subText: "20.03 - turns 39",
+        position: 1
+    )
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -18,6 +33,7 @@ final class BirthdayViewController: UIViewController {
 
     private func setUI() {
         title = "Birthday Reminder"
-        view.backgroundColor = .green
+        view.backgroundColor = .systemBackground
+        view.addSubViews(firstPersonView, secondPersonView)
     }
 }

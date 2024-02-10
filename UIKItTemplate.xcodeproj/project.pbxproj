@@ -19,6 +19,7 @@
 		0A7B62AD2B769EC80020B7B0 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */; };
 		0A7B62AF2B76A02D0020B7B0 /* PersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */; };
 		0A7B62B12B76A5B90020B7B0 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */; };
+		0A7B62B32B7747970020B7B0 /* PersonDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62B22B7747970020B7B0 /* PersonDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
 		0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsViewController.swift; sourceTree = "<group>"; };
 		0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		0A7B62B22B7747970020B7B0 /* PersonDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		0A3B2B8D2B7208340038208F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0A7B62B22B7747970020B7B0 /* PersonDataView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A7B62AF2B76A02D0020B7B0 /* PersonDetailsViewController.swift in Sources */,
+				0A7B62B32B7747970020B7B0 /* PersonDataView.swift in Sources */,
 				0A7B62AB2B7693750020B7B0 /* UILabel + Extension.swift in Sources */,
 				0A0F7DE72B712B7A009D3A3C /* LoginViewController.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
