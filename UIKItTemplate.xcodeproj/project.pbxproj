@@ -12,14 +12,14 @@
 		0A0F7DE72B712B7A009D3A3C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7DE62B712B7A009D3A3C /* LoginViewController.swift */; };
 		0A0F7DEC2B712B7B009D3A3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DEB2B712B7B009D3A3C /* Assets.xcassets */; };
 		0A0F7DEF2B712B7B009D3A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DED2B712B7B009D3A3C /* LaunchScreen.storyboard */; };
-		0A3B2B902B72084B0038208F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B2B8F2B72084B0038208F /* Model.swift */; };
 		0A3B2B942B7267070038208F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B2B932B7267070038208F /* README.md */; };
 		0A7B62A82B7690E20020B7B0 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62A72B7690E20020B7B0 /* UIView + Extension.swift */; };
 		0A7B62AB2B7693750020B7B0 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AA2B7693750020B7B0 /* UILabel + Extension.swift */; };
-		0A7B62AD2B769EC80020B7B0 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */; };
+		0A7B62AD2B769EC80020B7B0 /* BirthdayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AC2B769EC80020B7B0 /* BirthdayListViewController.swift */; };
 		0A7B62AF2B76A02D0020B7B0 /* PersonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */; };
 		0A7B62B12B76A5B90020B7B0 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */; };
 		0A7B62B32B7747970020B7B0 /* PersonDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7B62B22B7747970020B7B0 /* PersonDataView.swift */; };
+		0AC39F3B2B77F159009DDD9C /* PersonDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC39F3A2B77F159009DDD9C /* PersonDetailsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,14 +30,14 @@
 		0A0F7DEB2B712B7B009D3A3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0F7DEE2B712B7B009D3A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0F7DF02B712B7B009D3A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A3B2B8F2B72084B0038208F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0A3B2B932B7267070038208F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0A7B62A72B7690E20020B7B0 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		0A7B62AA2B7693750020B7B0 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
-		0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
+		0A7B62AC2B769EC80020B7B0 /* BirthdayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayListViewController.swift; sourceTree = "<group>"; };
 		0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsViewController.swift; sourceTree = "<group>"; };
 		0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		0A7B62B22B7747970020B7B0 /* PersonDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDataView.swift; sourceTree = "<group>"; };
+		0AC39F3A2B77F159009DDD9C /* PersonDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				0A3B2B8A2B7201BC0038208F /* App */,
-				0A3B2B8E2B72083E0038208F /* Model */,
-				0A3B2B8D2B7208340038208F /* View */,
-				0A3B2B8C2B7208210038208F /* Controller */,
+				0AC39F332B77F086009DDD9C /* Modules */,
 				0A3B2B8B2B7201E10038208F /* SupportingFiles */,
 				0A7B62A92B7690E80020B7B0 /* Extensions */,
 			);
@@ -100,32 +98,6 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		0A3B2B8C2B7208210038208F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0A0F7DE62B712B7A009D3A3C /* LoginViewController.swift */,
-				0A7B62AC2B769EC80020B7B0 /* BirthdayViewController.swift */,
-				0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0A3B2B8D2B7208340038208F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0A7B62B22B7747970020B7B0 /* PersonDataView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0A3B2B8E2B72083E0038208F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0A3B2B8F2B72084B0038208F /* Model.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		0A7B62A92B7690E80020B7B0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +106,82 @@
 				0A7B62B02B76A5B90020B7B0 /* UITextField + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0AC39F332B77F086009DDD9C /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F362B77F0E6009DDD9C /* PersonDetailsModule */,
+				0AC39F352B77F0C8009DDD9C /* BirthdayListModule */,
+				0AC39F342B77F09A009DDD9C /* LoginModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		0AC39F342B77F09A009DDD9C /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F3D2B77F23C009DDD9C /* Controller */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		0AC39F352B77F0C8009DDD9C /* BirthdayListModule */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F3C2B77F22B009DDD9C /* Controller */,
+			);
+			path = BirthdayListModule;
+			sourceTree = "<group>";
+		};
+		0AC39F362B77F0E6009DDD9C /* PersonDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F392B77F126009DDD9C /* Model */,
+				0AC39F382B77F110009DDD9C /* Controller */,
+				0AC39F372B77F103009DDD9C /* View */,
+			);
+			path = PersonDetailsModule;
+			sourceTree = "<group>";
+		};
+		0AC39F372B77F103009DDD9C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A7B62B22B7747970020B7B0 /* PersonDataView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0AC39F382B77F110009DDD9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0A7B62AE2B76A02D0020B7B0 /* PersonDetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0AC39F392B77F126009DDD9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F3A2B77F159009DDD9C /* PersonDetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0AC39F3C2B77F22B009DDD9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0A7B62AC2B769EC80020B7B0 /* BirthdayListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0AC39F3D2B77F23C009DDD9C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0A0F7DE62B712B7A009D3A3C /* LoginViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +306,9 @@
 				0A0F7DE72B712B7A009D3A3C /* LoginViewController.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
 				0A0F7DE52B712B7A009D3A3C /* SceneDelegate.swift in Sources */,
+				0AC39F3B2B77F159009DDD9C /* PersonDetailsModel.swift in Sources */,
 				0A7B62A82B7690E20020B7B0 /* UIView + Extension.swift in Sources */,
-				0A3B2B902B72084B0038208F /* Model.swift in Sources */,
-				0A7B62AD2B769EC80020B7B0 /* BirthdayViewController.swift in Sources */,
+				0A7B62AD2B769EC80020B7B0 /* BirthdayListViewController.swift in Sources */,
 				0A7B62B12B76A5B90020B7B0 /* UITextField + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -102,6 +102,7 @@ class LoginViewController: UIViewController {
         emailTextField.text = ""
         passwordTextField.text = ""
         disableViews()
+        emailLabel.becomeFirstResponder()
     }
 
     private func enableViews() {
@@ -119,7 +120,7 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func moveToBirthdayVC() {
-        let birthdayVC = BirthdayViewController()
+        let birthdayVC = BirthdayListViewController()
         navigationController?.pushViewController(birthdayVC, animated: true)
     }
 }

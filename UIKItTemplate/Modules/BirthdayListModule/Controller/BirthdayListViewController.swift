@@ -1,10 +1,10 @@
-// BirthdayViewController.swift
+// BirthdayListViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// List of persons with birthday date
-final class BirthdayViewController: UIViewController {
+final class BirthdayListViewController: UIViewController {
     // MARK: - Private Properties
 
     private let firstPersonView = PersonDataView(
