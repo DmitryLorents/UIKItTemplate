@@ -7,7 +7,8 @@ import UIKit
 class PersonDetailsViewController: UIViewController {
     // MARK: - Constants
 
-    let leftInset: CGFloat = 20
+    private let leftInset: CGFloat = 20
+    private let model = PersonDetailsModel()
 
     // MARK: - Private Properties
 
@@ -16,6 +17,7 @@ class PersonDetailsViewController: UIViewController {
         button.setTitle("Cancel", for: .normal)
         button.sizeToFit()
         button.frame.origin = CGPoint(x: 20, y: 15)
+        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         return button
     }()
 
@@ -24,6 +26,7 @@ class PersonDetailsViewController: UIViewController {
         button.setTitle("Add", for: .normal)
         button.sizeToFit()
         button.frame.origin = CGPoint(x: 344, y: 15)
+        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         return button
     }()
 
@@ -81,12 +84,35 @@ class PersonDetailsViewController: UIViewController {
         placeholder: "Typing telegram",
         yPosition: 566
     )
+    private lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let okButton = UIBarButtonItem(title: "Ok", style: .done, target: self, action: #selector(hideToolbar))
+        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
+        toolbar.setItems([flexibleSpace, okButton], animated: true)
+        return toolbar
+    }()
+
+    private lazy var agePickerView: UIPickerView = {
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
+
+    private lazy var genderPickerView: UIPickerView = {
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setTextFieldsInputViews()
     }
 
     // MARK: - Private Methods
@@ -109,5 +135,82 @@ class PersonDetailsViewController: UIViewController {
             telegramLabel,
             telegramTextField
         )
+    }
+
+    private func setTextFieldsInputViews() {
+        telegramTextField.addTarget(self, action: #selector(telegramTFAction), for: .touchDown)
+        ageTextField.inputAccessoryView = toolbar
+        ageTextField.inputView = agePickerView
+        genderTextField.inputAccessoryView = toolbar
+        genderTextField.inputView = genderPickerView
+    }
+
+    @objc private func hideToolbar() {
+        view.endEditing(true)
+    }
+
+    @objc func closeScreen() {
+        dismiss(animated: true)
+    }
+
+    @objc private func telegramTFAction() {
+        print(#function)
+        let alert = UIAlertController(title: "Please enter Telegram", message: nil, preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Typing Telegram"
+        }
+        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+            let text = alert.textFields?.first?.text ?? ""
+            self.telegramTextField.text = text
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}
+
+// MARK: - UIPickerViewDataSource
+
+extension PersonDetailsViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView {
+        case agePickerView:
+            return model.ageStorage.count
+        case genderPickerView:
+            return model.genders.count
+        default:
+            return 0
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case agePickerView:
+            return String(model.ageStorage[row])
+        case genderPickerView:
+            return model.genders[row]
+        default:
+            return nil
+        }
+    }
+}
+
+// MARK: - UIPickerViewDataSource
+
+extension PersonDetailsViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView {
+        case agePickerView:
+            ageTextField.text = String(model.ageStorage[row])
+        case genderPickerView:
+            genderTextField.text = model.genders[row]
+        default:
+            break
+        }
     }
 }

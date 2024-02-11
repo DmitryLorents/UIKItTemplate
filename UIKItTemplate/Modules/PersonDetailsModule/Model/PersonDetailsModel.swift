@@ -4,4 +4,7 @@
 import Foundation
 
 /// Struct to storage all data source for PersonDetalViewController
-struct PersonDetailsModel {}
+struct PersonDetailsModel {
+    let genders = ["Male", "Female"]
+    let ageStorage = Array(1 ... 100)
+}
