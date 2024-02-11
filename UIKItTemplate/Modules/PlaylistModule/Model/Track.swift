@@ -1,7 +1,8 @@
-// Model.swift
+// Track.swift
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
+
 /// Track information
 struct Track {
     let image: String

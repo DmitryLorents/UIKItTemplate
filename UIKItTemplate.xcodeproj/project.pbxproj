@@ -20,7 +20,7 @@
 		0AC39F472B793DBA009DDD9C /* Track1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F442B793DBA009DDD9C /* Track1.mp3 */; };
 		0AC39F4C2B793E4C009DDD9C /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC39F492B793E4C009DDD9C /* UILabel + Extension.swift */; };
 		0AC39F4D2B793E4C009DDD9C /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC39F4A2B793E4C009DDD9C /* UIView + Extension.swift */; };
-		0AC39F502B793E85009DDD9C /* PersonDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC39F4F2B793E85009DDD9C /* PersonDataView.swift */; };
+		0AC39F502B793E85009DDD9C /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC39F4F2B793E85009DDD9C /* TrackView.swift */; };
 		0AC39F522B794050009DDD9C /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC39F512B794050009DDD9C /* Playlist.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +40,7 @@
 		0AC39F442B793DBA009DDD9C /* Track1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track1.mp3; sourceTree = "<group>"; };
 		0AC39F492B793E4C009DDD9C /* UILabel + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		0AC39F4A2B793E4C009DDD9C /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
-		0AC39F4F2B793E85009DDD9C /* PersonDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDataView.swift; sourceTree = "<group>"; };
+		0AC39F4F2B793E85009DDD9C /* TrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
 		0AC39F512B794050009DDD9C /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +114,7 @@
 		0A3B2B8D2B7208340038208F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AC39F4F2B793E85009DDD9C /* PersonDataView.swift */,
+				0AC39F4F2B793E85009DDD9C /* TrackView.swift */,
 				0A0F7DE82B712B7A009D3A3C /* Main.storyboard */,
 			);
 			path = View;
@@ -299,7 +299,7 @@
 				0AC39F4D2B793E4C009DDD9C /* UIView + Extension.swift in Sources */,
 				0AC39F522B794050009DDD9C /* Playlist.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
-				0AC39F502B793E85009DDD9C /* PersonDataView.swift in Sources */,
+				0AC39F502B793E85009DDD9C /* TrackView.swift in Sources */,
 				0A0F7DE52B712B7A009D3A3C /* SceneDelegate.swift in Sources */,
 				0A3B2B902B72084B0038208F /* Track.swift in Sources */,
 			);
