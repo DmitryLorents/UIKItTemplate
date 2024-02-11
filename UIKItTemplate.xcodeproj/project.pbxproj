@@ -15,6 +15,9 @@
 		0A0F7DEF2B712B7B009D3A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DED2B712B7B009D3A3C /* LaunchScreen.storyboard */; };
 		0A3B2B902B72084B0038208F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B2B8F2B72084B0038208F /* Model.swift */; };
 		0A3B2B942B7267070038208F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B2B932B7267070038208F /* README.md */; };
+		0AC39F452B793DBA009DDD9C /* Track3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F422B793DB9009DDD9C /* Track3.mp3 */; };
+		0AC39F462B793DBA009DDD9C /* Track2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F432B793DB9009DDD9C /* Track2.mp3 */; };
+		0AC39F472B793DBA009DDD9C /* Track1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F442B793DBA009DDD9C /* Track1.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		0A0F7DF02B712B7B009D3A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3B2B8F2B72084B0038208F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0A3B2B932B7267070038208F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0AC39F422B793DB9009DDD9C /* Track3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track3.mp3; sourceTree = "<group>"; };
+		0AC39F432B793DB9009DDD9C /* Track2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track2.mp3; sourceTree = "<group>"; };
+		0AC39F442B793DBA009DDD9C /* Track1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track1.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				0A3B2B932B7267070038208F /* README.md */,
+				0A3B2B8A2B7201BC0038208F /* App */,
 				0A0F7DE12B712B7A009D3A3C /* UIKItTemplate */,
 				0A0F7DE02B712B7A009D3A3C /* Products */,
 			);
@@ -61,10 +68,7 @@
 		0A0F7DE12B712B7A009D3A3C /* UIKItTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				0A3B2B8A2B7201BC0038208F /* App */,
-				0A3B2B8E2B72083E0038208F /* Model */,
-				0A3B2B8D2B7208340038208F /* View */,
-				0A3B2B8C2B7208210038208F /* Controller */,
+				0AC39F3E2B793B7F009DDD9C /* Modules */,
 				0A3B2B8B2B7201E10038208F /* SupportingFiles */,
 			);
 			path = UIKItTemplate;
@@ -82,6 +86,7 @@
 		0A3B2B8B2B7201E10038208F /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				0AC39F412B793D79009DDD9C /* Tracks */,
 				0A0F7DEB2B712B7B009D3A3C /* Assets.xcassets */,
 				0A0F7DED2B712B7B009D3A3C /* LaunchScreen.storyboard */,
 				0A0F7DF02B712B7B009D3A3C /* Info.plist */,
@@ -111,6 +116,42 @@
 				0A3B2B8F2B72084B0038208F /* Model.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0AC39F3E2B793B7F009DDD9C /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F3F2B793B8D009DDD9C /* PlaylistModule */,
+				0AC39F402B793B9A009DDD9C /* PlayerModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		0AC39F3F2B793B8D009DDD9C /* PlaylistModule */ = {
+			isa = PBXGroup;
+			children = (
+				0A3B2B8E2B72083E0038208F /* Model */,
+				0A3B2B8C2B7208210038208F /* Controller */,
+				0A3B2B8D2B7208340038208F /* View */,
+			);
+			path = PlaylistModule;
+			sourceTree = "<group>";
+		};
+		0AC39F402B793B9A009DDD9C /* PlayerModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PlayerModule;
+			sourceTree = "<group>";
+		};
+		0AC39F412B793D79009DDD9C /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				0AC39F442B793DBA009DDD9C /* Track1.mp3 */,
+				0AC39F432B793DB9009DDD9C /* Track2.mp3 */,
+				0AC39F422B793DB9009DDD9C /* Track3.mp3 */,
+			);
+			path = Tracks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +214,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC39F472B793DBA009DDD9C /* Track1.mp3 in Resources */,
+				0AC39F452B793DBA009DDD9C /* Track3.mp3 in Resources */,
+				0AC39F462B793DBA009DDD9C /* Track2.mp3 in Resources */,
 				0A0F7DEF2B712B7B009D3A3C /* LaunchScreen.storyboard in Resources */,
 				0A0F7DEC2B712B7B009D3A3C /* Assets.xcassets in Resources */,
 				0A3B2B942B7267070038208F /* README.md in Resources */,
