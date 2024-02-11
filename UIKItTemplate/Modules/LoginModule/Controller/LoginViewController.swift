@@ -5,9 +5,6 @@ import UIKit
 
 /// Authorisation screen
 class LoginViewController: UIViewController {
-    // MARK: - Constants
-
-    // MARK: - Public Properties
 
     // MARK: - Private Properties
 
@@ -101,22 +98,15 @@ class LoginViewController: UIViewController {
     private func setAppearance() {
         emailTextField.text = ""
         passwordTextField.text = ""
-        disableViews()
+        shouldEnableViews(false)
         emailLabel.becomeFirstResponder()
     }
-
-    private func enableViews() {
-        loginButton.isEnabled = true
-        loginButton.alpha = 1
-        faceIDLabel.isHidden = false
-        faceIDSwitch.isHidden = false
-    }
-
-    private func disableViews() {
-        loginButton.isEnabled = false
-        loginButton.alpha = 0.5
-        faceIDLabel.isHidden = true
-        faceIDSwitch.isHidden = true
+    
+    private func shouldEnableViews(_ enabled: Bool) {
+        loginButton.isEnabled = enabled
+        loginButton.alpha = enabled ? 1 : 0.5
+        faceIDLabel.isHidden = !enabled
+        faceIDSwitch.isHidden = !enabled
     }
 
     @objc private func moveToBirthdayVC() {
@@ -142,10 +132,10 @@ extension LoginViewController: UITextFieldDelegate {
         }
 
         guard emailLength > 0, passwordLength > 0 else {
-            disableViews()
+            shouldEnableViews(false)
             return true
         }
-        enableViews()
+        shouldEnableViews(true)
         return true
     }
 }

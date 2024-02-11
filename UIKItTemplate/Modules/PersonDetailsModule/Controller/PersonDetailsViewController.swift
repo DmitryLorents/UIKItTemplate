@@ -96,7 +96,7 @@ class PersonDetailsViewController: UIViewController {
     private lazy var toolbarForDate: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(hideToolbar))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(formatDate))
         let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
         return toolbar
@@ -168,7 +168,12 @@ class PersonDetailsViewController: UIViewController {
     }
 
     @objc private func formatDate() {
-        let formatter = Formatter()
+        print(datePickerView.date)
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        birthdayTextField.text = formatter.string(from: datePickerView.date)
+        view.endEditing(true)
     }
 
     @objc func closeScreen() {
