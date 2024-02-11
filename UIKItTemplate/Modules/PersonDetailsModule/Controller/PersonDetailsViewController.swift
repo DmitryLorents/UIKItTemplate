@@ -93,6 +93,15 @@ class PersonDetailsViewController: UIViewController {
         return toolbar
     }()
 
+    private lazy var toolbarForDate: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(hideToolbar))
+        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
+        toolbar.setItems([flexibleSpace, doneButton], animated: true)
+        return toolbar
+    }()
+
     private lazy var agePickerView: UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self
@@ -104,6 +113,13 @@ class PersonDetailsViewController: UIViewController {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
+        return picker
+    }()
+
+    private lazy var datePickerView: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .wheels
         return picker
     }()
 
@@ -143,10 +159,16 @@ class PersonDetailsViewController: UIViewController {
         ageTextField.inputView = agePickerView
         genderTextField.inputAccessoryView = toolbar
         genderTextField.inputView = genderPickerView
+        birthdayTextField.inputAccessoryView = toolbarForDate
+        birthdayTextField.inputView = datePickerView
     }
 
     @objc private func hideToolbar() {
         view.endEditing(true)
+    }
+
+    @objc private func formatDate() {
+        let formatter = Formatter()
     }
 
     @objc func closeScreen() {
