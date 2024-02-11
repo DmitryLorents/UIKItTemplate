@@ -111,9 +111,9 @@
 		0AC39F332B77F086009DDD9C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				0AC39F362B77F0E6009DDD9C /* PersonDetailsModule */,
-				0AC39F352B77F0C8009DDD9C /* BirthdayListModule */,
 				0AC39F342B77F09A009DDD9C /* LoginModule */,
+				0AC39F352B77F0C8009DDD9C /* BirthdayListModule */,
+				0AC39F362B77F0E6009DDD9C /* PersonDetailsModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
