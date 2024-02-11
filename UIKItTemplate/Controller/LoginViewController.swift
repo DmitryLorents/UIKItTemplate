@@ -7,9 +7,9 @@ import UIKit
 final class LoginViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet var loginTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var loginButton: UIButton!
+    @IBOutlet private var loginTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var loginButton: UIButton!
 
     // MARK: - Life Cycle
 
@@ -43,7 +43,7 @@ final class LoginViewController: UIViewController {
     }
     // MARK: - IBActions
     
-    @IBAction func loginButtonAction(_ sender: UIButton) {}
+    @IBAction private func loginButtonAction(_ sender: UIButton) {}
 }
 
 // MARK: - UITextFieldDelegate

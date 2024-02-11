@@ -7,7 +7,7 @@ final class CheckViewController: UIViewController {
     
     // MARK: - IBOutlets
 
-    @IBOutlet var totalButton: UIButton!
+    @IBOutlet private var totalButton: UIButton!
 
     // MARK: - Life Cycle
 

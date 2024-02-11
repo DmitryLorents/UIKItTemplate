@@ -7,7 +7,7 @@ final class TableDetailViewController: UIViewController {
     
     // MARK: - IBOutlets
 
-    @IBOutlet var checkoutButton: UIButton!
+    @IBOutlet private var checkoutButton: UIButton!
 
     // MARK: - Life Cycle
 
