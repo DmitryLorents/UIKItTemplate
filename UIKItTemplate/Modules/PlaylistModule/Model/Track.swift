@@ -1,0 +1,12 @@
+// Model.swift
+// Copyright © RoadMap. All rights reserved.
+
+import Foundation
+/// Track information
+struct Track {
+    let image: String
+    let artist: String
+    let name: String
+    let duration: String
+    let path: String?
+}
