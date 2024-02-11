@@ -16,8 +16,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?
             .rootViewController =
-            UINavigationController(rootViewController: LoginViewController())
-        //  PersonDetailsViewController()
+        // UINavigationController(rootViewController: LoginViewController())
+            PersonDetailsViewController()
         window?.makeKeyAndVisible()
     }
 }
