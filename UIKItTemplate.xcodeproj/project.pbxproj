@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7DE22B712B7A009D3A3C /* AppDelegate.swift */; };
 		0A0F7DE52B712B7A009D3A3C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7DE42B712B7A009D3A3C /* SceneDelegate.swift */; };
-		0A0F7DE72B712B7A009D3A3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7DE62B712B7A009D3A3C /* ViewController.swift */; };
+		0A0F7DE72B712B7A009D3A3C /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F7DE62B712B7A009D3A3C /* PlaylistViewController.swift */; };
 		0A0F7DEA2B712B7A009D3A3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DE82B712B7A009D3A3C /* Main.storyboard */; };
 		0A0F7DEC2B712B7B009D3A3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DEB2B712B7B009D3A3C /* Assets.xcassets */; };
 		0A0F7DEF2B712B7B009D3A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DED2B712B7B009D3A3C /* LaunchScreen.storyboard */; };
 		0A3B2B902B72084B0038208F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B2B8F2B72084B0038208F /* Track.swift */; };
 		0A3B2B942B7267070038208F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B2B932B7267070038208F /* README.md */; };
+		0ABF2CFD2B79535C009F8C94 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF2CFC2B79535C009F8C94 /* PlayerViewController.swift */; };
 		0AC39F452B793DBA009DDD9C /* Track3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F422B793DB9009DDD9C /* Track3.mp3 */; };
 		0AC39F462B793DBA009DDD9C /* Track2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F432B793DB9009DDD9C /* Track2.mp3 */; };
 		0AC39F472B793DBA009DDD9C /* Track1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F442B793DBA009DDD9C /* Track1.mp3 */; };
@@ -28,13 +29,14 @@
 		0A0F7DDF2B712B7A009D3A3C /* UIKItTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKItTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A0F7DE22B712B7A009D3A3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A0F7DE42B712B7A009D3A3C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0A0F7DE62B712B7A009D3A3C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A0F7DE62B712B7A009D3A3C /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		0A0F7DE92B712B7A009D3A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A0F7DEB2B712B7B009D3A3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A0F7DEE2B712B7B009D3A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A0F7DF02B712B7B009D3A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3B2B8F2B72084B0038208F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		0A3B2B932B7267070038208F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0ABF2CFC2B79535C009F8C94 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		0AC39F422B793DB9009DDD9C /* Track3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track3.mp3; sourceTree = "<group>"; };
 		0AC39F432B793DB9009DDD9C /* Track2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track2.mp3; sourceTree = "<group>"; };
 		0AC39F442B793DBA009DDD9C /* Track1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track1.mp3; sourceTree = "<group>"; };
@@ -106,7 +108,7 @@
 		0A3B2B8C2B7208210038208F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0A0F7DE62B712B7A009D3A3C /* ViewController.swift */,
+				0A0F7DE62B712B7A009D3A3C /* PlaylistViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -127,6 +129,14 @@
 				0AC39F512B794050009DDD9C /* Playlist.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0ABF2CFB2B795343009F8C94 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0ABF2CFC2B79535C009F8C94 /* PlayerViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		0AC39F3E2B793B7F009DDD9C /* Modules */ = {
@@ -151,6 +161,7 @@
 		0AC39F402B793B9A009DDD9C /* PlayerModule */ = {
 			isa = PBXGroup;
 			children = (
+				0ABF2CFB2B795343009F8C94 /* Controller */,
 			);
 			path = PlayerModule;
 			sourceTree = "<group>";
@@ -294,11 +305,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A0F7DE72B712B7A009D3A3C /* ViewController.swift in Sources */,
+				0A0F7DE72B712B7A009D3A3C /* PlaylistViewController.swift in Sources */,
 				0AC39F4C2B793E4C009DDD9C /* UILabel + Extension.swift in Sources */,
 				0AC39F4D2B793E4C009DDD9C /* UIView + Extension.swift in Sources */,
 				0AC39F522B794050009DDD9C /* Playlist.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
+				0ABF2CFD2B79535C009F8C94 /* PlayerViewController.swift in Sources */,
 				0AC39F502B793E85009DDD9C /* TrackView.swift in Sources */,
 				0A0F7DE52B712B7A009D3A3C /* SceneDelegate.swift in Sources */,
 				0A3B2B902B72084B0038208F /* Track.swift in Sources */,

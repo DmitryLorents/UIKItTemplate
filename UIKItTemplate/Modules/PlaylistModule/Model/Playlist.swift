@@ -3,6 +3,7 @@
 
 import Foundation
 
+/// Playlist data
 struct Playlist {
     var tracks: [Track]
 
