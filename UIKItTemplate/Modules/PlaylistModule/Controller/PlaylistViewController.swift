@@ -27,7 +27,7 @@ class PlaylistViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setUI()
     }
 
     // MARK: - Public Methods
@@ -36,7 +36,14 @@ class PlaylistViewController: UIViewController {
 
     // MARK: - Private Methods
 
-    private func setupUI() {
+    private func setUI() {
+        imageView1.layer.cornerRadius = 12
+        imageView2.layer.cornerRadius = 12
+        imageView3.layer.cornerRadius = 12
+        setupImageViewsActions()
+    }
+
+    private func setupImageViewsActions() {
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(openTrack(sender:)))
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openTrack(sender:)))
         let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(openTrack(sender:)))
@@ -50,6 +57,7 @@ class PlaylistViewController: UIViewController {
         switch view.tag {
         case 1:
             print("1")
+            performSegue(withIdentifier: "PlaylistToPlayer", sender: nil)
         case 2:
             print("2")
         case 3:
