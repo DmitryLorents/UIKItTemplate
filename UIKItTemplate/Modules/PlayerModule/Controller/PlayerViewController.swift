@@ -4,7 +4,7 @@
 import UIKit
 
 /// Screen to play tracks
-class PlayerViewController: UIViewController {
+final class PlayerViewController: UIViewController {
     // MARK: - Types
 
     // MARK: - Constants
@@ -21,11 +21,20 @@ class PlayerViewController: UIViewController {
 
     // MARK: - Public Properties
 
-    var track: Track?
+    var track: Track? {
+        didSet {
+            if !view.bounds.isEmpty {
+                stopPlayer()
+                setOutlets()
+                startTimer()
+            }
+        }
+    }
 
     // MARK: - Private Properties
 
     private let player = Player.shared
+    private let playlist = Playlist()
     private var timer: Timer?
 
     // MARK: - Initializers
@@ -39,31 +48,25 @@ class PlayerViewController: UIViewController {
         startTimer()
     }
 
-    // MARK: - Public Methods
-
     // MARK: - IBAction
 
-    @IBAction func closeButtonAction(_ sender: UIButton) {
+    @IBAction private func closeButtonAction(_ sender: UIButton) {
         dismiss(animated: true)
     }
 
-    @IBAction func shareButtonAction(_ sender: UIButton) {
+    @IBAction private func shareButtonAction(_ sender: UIButton) {
         print(#function)
     }
 
-    @IBAction func volumeSliderAction(_ sender: UISlider) {
+    @IBAction private func volumeSliderAction(_ sender: UISlider) {
         print(#function)
     }
 
-    @IBAction func durationSliderAction(_ sender: UISlider) {
-        print(#function)
+    @IBAction private func durationSliderAction(_ sender: UISlider) {
+        player.setTiming(durationSlider.value)
     }
 
-    @IBAction func backwardButtonAction(_ sender: Any) {
-        player.previousTrack()
-    }
-
-    @IBAction func playPauseButtonAction(_ sender: Any) {
+    @IBAction private func playPauseButtonAction(_ sender: Any) {
         let isPaying = player.playPause()
         let replaceImageName = isPaying ? "play" : "pause"
         playPauseButton.setImage(UIImage(named: replaceImageName), for: .normal)
@@ -72,8 +75,24 @@ class PlayerViewController: UIViewController {
         } else { timer?.invalidate() }
     }
 
-    @IBAction func forwardButtonAction(_ sender: Any) {
-        player.previousTrack()
+    @IBAction private func backwardButtonAction(_ sender: Any) {
+        guard let track else { return }
+        if track.number == 1 {
+            self.track = playlist.tracks[2]
+        } else {
+            let previousNumber = track.number - 2
+            self.track = playlist.tracks[previousNumber]
+        }
+    }
+
+    @IBAction private func forwardButtonAction(_ sender: Any) {
+        guard let track else { return }
+        if track.number == 3 {
+            self.track = playlist.tracks[0]
+        } else {
+            let previousNumber = track.number
+            self.track = playlist.tracks[previousNumber]
+        }
     }
 
     // MARK: - Private Methods

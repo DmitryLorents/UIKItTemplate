@@ -5,7 +5,7 @@ import AVFoundation
 import UIKit
 
 /// Сlass for controlling music playback
-class Player {
+final class Player {
     // MARK: - Constants
 
     // MARK: - Public Properties
@@ -43,18 +43,22 @@ class Player {
         return (sliderValue, remainingTime)
     }
 
+    public func setTiming(_ time: Float) {
+        player.currentTime = Double(time)
+    }
+
     public func playPause() -> Bool {
         let _: Any = (player.isPlaying) ? player.pause() : player.play()
         return player.isPlaying
     }
 
-    public func nextTrack() {
-        print(#function)
-    }
-
-    public func previousTrack() {
-        print(#function)
-    }
+//    public func nextTrack() {
+//        print(#function)
+//    }
+//
+//    public func previousTrack() {
+//        print(#function)
+//    }
 
     // MARK: - Private Methods
 

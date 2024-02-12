@@ -10,4 +10,5 @@ struct Track {
     let name: String
     let duration: String
     let path: String?
+    let number: Int
 }

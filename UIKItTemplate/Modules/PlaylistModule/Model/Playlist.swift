@@ -16,15 +16,24 @@ struct Playlist {
             artist: "Год змеи",
             name: "Секс и рок-н-ролл",
             duration: "3:02",
-            path: path1
+            path: path1,
+            number: 1
         )
-        let track2 = Track(image: "cover3.jpg", artist: "Король и Шут", name: "Лесник", duration: "3:12", path: path2)
+        let track2 = Track(
+            image: "cover3.jpg",
+            artist: "Король и Шут",
+            name: "Лесник",
+            duration: "3:12",
+            path: path2,
+            number: 2
+        )
         let track3 = Track(
             image: "cover2.jpg",
             artist: "Коктейл Шаляпина",
             name: "Метро",
             duration: "3:17",
-            path: path3
+            path: path3,
+            number: 3
         )
 
         tracks = [track1, track2, track3]

@@ -4,7 +4,7 @@
 import UIKit
 
 /// Playlist screen
-class PlaylistViewController: UIViewController {
+final class PlaylistViewController: UIViewController {
     // MARK: - IBOutlets
 
     @IBOutlet var coverImageView1: UIImageView!
@@ -39,7 +39,7 @@ class PlaylistViewController: UIViewController {
         guard segue.identifier == "PlaylistToPlayer" else { return }
         guard let destination = segue.destination as? PlayerViewController else { return }
         guard let sender = sender as? UIButton else { return }
-        var track = playlist.tracks[sender.tag - 1]
+        let track = playlist.tracks[sender.tag - 1]
         destination.track = track
     }
 
