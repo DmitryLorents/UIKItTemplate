@@ -25,6 +25,7 @@ class PlayerViewController: UIViewController {
     // MARK: - Private Properties
 
     private let player = Player()
+    private var timer: Timer?
 
     // MARK: - Initializers
 
@@ -33,6 +34,7 @@ class PlayerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setOutlets()
+        startTimer()
     }
 
     // MARK: - Public Methods
@@ -77,5 +79,22 @@ class PlayerViewController: UIViewController {
         artistLabel.text = track.artist
         durationLabel.text = "-\(track.duration)"
         durationSlider.value = 0
+        durationSlider.maximumValue = player.playTrack(track.path)
+    }
+
+    private func startTimer() {
+        Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateUI),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    @objc private func updateUI() {
+        let (sliderValue, remainingValue) = player.getDurationData()
+        durationSlider.value = sliderValue
+        durationLabel.text = remainingValue
     }
 }

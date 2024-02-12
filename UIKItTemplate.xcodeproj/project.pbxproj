@@ -15,7 +15,7 @@
 		0A0F7DEF2B712B7B009D3A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A0F7DED2B712B7B009D3A3C /* LaunchScreen.storyboard */; };
 		0A3B2B902B72084B0038208F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B2B8F2B72084B0038208F /* Track.swift */; };
 		0A3B2B942B7267070038208F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B2B932B7267070038208F /* README.md */; };
-		0A7C464E2B7A0BF400ACE8A3 /* Playerl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C464D2B7A0BF400ACE8A3 /* Playerl.swift */; };
+		0A7C464E2B7A0BF400ACE8A3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7C464D2B7A0BF400ACE8A3 /* Player.swift */; };
 		0ABF2CFD2B79535C009F8C94 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF2CFC2B79535C009F8C94 /* PlayerViewController.swift */; };
 		0AC39F452B793DBA009DDD9C /* Track3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F422B793DB9009DDD9C /* Track3.mp3 */; };
 		0AC39F462B793DBA009DDD9C /* Track2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC39F432B793DB9009DDD9C /* Track2.mp3 */; };
@@ -36,7 +36,7 @@
 		0A0F7DF02B712B7B009D3A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3B2B8F2B72084B0038208F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		0A3B2B932B7267070038208F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0A7C464D2B7A0BF400ACE8A3 /* Playerl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playerl.swift; sourceTree = "<group>"; };
+		0A7C464D2B7A0BF400ACE8A3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0ABF2CFC2B79535C009F8C94 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		0AC39F422B793DB9009DDD9C /* Track3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track3.mp3; sourceTree = "<group>"; };
 		0AC39F432B793DB9009DDD9C /* Track2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Track2.mp3; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		0A7C464C2B7A0BDD00ACE8A3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0A7C464D2B7A0BF400ACE8A3 /* Playerl.swift */,
+				0A7C464D2B7A0BF400ACE8A3 /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,7 +316,7 @@
 				0A0F7DE72B712B7A009D3A3C /* PlaylistViewController.swift in Sources */,
 				0AC39F4C2B793E4C009DDD9C /* UILabel + Extension.swift in Sources */,
 				0AC39F4D2B793E4C009DDD9C /* UIView + Extension.swift in Sources */,
-				0A7C464E2B7A0BF400ACE8A3 /* Playerl.swift in Sources */,
+				0A7C464E2B7A0BF400ACE8A3 /* Player.swift in Sources */,
 				0AC39F522B794050009DDD9C /* Playlist.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
 				0ABF2CFD2B79535C009F8C94 /* PlayerViewController.swift in Sources */,

@@ -11,7 +11,6 @@ struct Playlist {
         let path1 = Bundle.main.path(forResource: "Track1", ofType: "mp3")
         let path2 = Bundle.main.path(forResource: "Track2", ofType: "mp3")
         let path3 = Bundle.main.path(forResource: "Track3", ofType: "mp3")
-
         let track1 = Track(
             image: "cover1",
             artist: "Год змеи",
