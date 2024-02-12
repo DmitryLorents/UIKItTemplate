@@ -11,9 +11,9 @@ class PlaylistViewController: UIViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet var imageView1: UIImageView!
-    @IBOutlet var imageView2: UIImageView!
-    @IBOutlet var imageView3: UIImageView!
+    @IBOutlet var coverImageView1: UIImageView!
+    @IBOutlet var coverImageView2: UIImageView!
+    @IBOutlet var coverImageView3: UIImageView!
 
     // MARK: - Visual Components
 
@@ -34,36 +34,16 @@ class PlaylistViewController: UIViewController {
 
     // MARK: - IBAction
 
+    @IBAction private func playTrack(_ sender: UIButton) {
+        print(sender.tag)
+        performSegue(withIdentifier: "PlaylistToPlayer", sender: nil)
+    }
+
     // MARK: - Private Methods
 
     private func setUI() {
-        imageView1.layer.cornerRadius = 12
-        imageView2.layer.cornerRadius = 12
-        imageView3.layer.cornerRadius = 12
-        setupImageViewsActions()
-    }
-
-    private func setupImageViewsActions() {
-        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(openTrack(sender:)))
-        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(openTrack(sender:)))
-        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(openTrack(sender:)))
-        imageView1.addGestureRecognizer(tapGesture1)
-        imageView2.addGestureRecognizer(tapGesture2)
-        imageView3.addGestureRecognizer(tapGesture3)
-    }
-
-    @objc func openTrack(sender: UITapGestureRecognizer) {
-        guard let view = sender.view else { return }
-        switch view.tag {
-        case 1:
-            print("1")
-            performSegue(withIdentifier: "PlaylistToPlayer", sender: nil)
-        case 2:
-            print("2")
-        case 3:
-            print("3")
-        default:
-            break
-        }
+        coverImageView1.layer.cornerRadius = 12
+        coverImageView2.layer.cornerRadius = 12
+        coverImageView3.layer.cornerRadius = 12
     }
 }

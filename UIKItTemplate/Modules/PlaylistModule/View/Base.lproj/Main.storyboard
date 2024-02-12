@@ -23,14 +23,38 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover1" translatesAutoresizingMaskIntoConstraints="NO" id="fa6-Mt-PrO">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IWE-LE-5gW" userLabel="cell1">
+                                <rect key="frame" x="0.0" y="96" width="393" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="purpleCustomColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled"/>
+                                <connections>
+                                    <action selector="playTrack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RYN-X9-ITX"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover1" translatesAutoresizingMaskIntoConstraints="NO" id="fa6-Mt-PrO">
                                 <rect key="frame" x="20" y="100" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Год змеи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBo-5F-6lb">
+                                <rect key="frame" x="103" y="111" width="83" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Секс и рок-н-ролл" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8Y-mR-uhF">
                                 <rect key="frame" x="103" y="139" width="154" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3:02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsd-ef-4wC">
+                                <rect key="frame" x="336" y="128" width="41" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,6 +65,16 @@
                                 <buttonConfiguration key="configuration" style="filled">
                                     <color key="baseBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-hT-I3Y" userLabel="cell2">
+                                <rect key="frame" x="0.0" y="198" width="393" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="purpleCustomColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled"/>
+                                <connections>
+                                    <action selector="playTrack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HcE-rM-yfT"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover3" translatesAutoresizingMaskIntoConstraints="NO" id="H87-Ls-Pmi">
                                 <rect key="frame" x="18" y="202" width="75" height="75"/>
@@ -75,13 +109,16 @@
                                     <color key="baseBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3:02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsd-ef-4wC">
-                                <rect key="frame" x="336" y="128" width="41" height="20"/>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vOz-u5-QZI" userLabel="cell3">
+                                <rect key="frame" x="0.0" y="310" width="393" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="tintColor" name="purpleCustomColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled"/>
+                                <connections>
+                                    <action selector="playTrack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2K4-Nf-yeT"/>
+                                </connections>
+                            </button>
                             <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover2" translatesAutoresizingMaskIntoConstraints="NO" id="G4f-rQ-td4">
                                 <rect key="frame" x="20" y="310" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -115,21 +152,14 @@
                                     <color key="baseBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Год змеи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBo-5F-6lb">
-                                <rect key="frame" x="103" y="111" width="83" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="purpleCustomColor"/>
                     </view>
                     <connections>
-                        <outlet property="imageView1" destination="fa6-Mt-PrO" id="yp4-3s-Mgk"/>
-                        <outlet property="imageView2" destination="H87-Ls-Pmi" id="c3z-1N-jnw"/>
-                        <outlet property="imageView3" destination="G4f-rQ-td4" id="fIM-Z8-vmZ"/>
+                        <outlet property="coverImageView1" destination="fa6-Mt-PrO" id="6s2-eC-U4b"/>
+                        <outlet property="coverImageView2" destination="H87-Ls-Pmi" id="Ya3-rv-3Jc"/>
+                        <outlet property="coverImageView3" destination="G4f-rQ-td4" id="siE-5W-5ak"/>
                         <segue destination="3rT-X2-Skf" kind="show" identifier="PlaylistToPlayer" id="orC-cn-oV2"/>
                     </connections>
                 </viewController>
@@ -158,39 +188,104 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaG-Re-asV">
-                                        <rect key="frame" x="103" y="26" width="267" height="20"/>
+                                        <rect key="frame" x="103" y="26" width="267" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="24"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTj-2p-M16">
-                                        <rect key="frame" x="103" y="54" width="44" height="20"/>
+                                        <rect key="frame" x="103" y="58" width="267" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3:17" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYk-yp-ZgQ">
-                                        <rect key="frame" x="332" y="113" width="38" height="20"/>
+                                        <rect key="frame" x="318" y="111" width="52" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="utg-sj-AzI">
-                                        <rect key="frame" x="20" y="108" width="265" height="30"/>
+                                        <rect key="frame" x="20" y="108" width="260" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="maximumTrackTintColor" name="lightWhiteCustomColor"/>
+                                        <connections>
+                                            <action selector="durationSliderAction:" destination="3rT-X2-Skf" eventType="valueChanged" id="fub-m1-Bop"/>
+                                        </connections>
                                     </slider>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDV-dz-gfN">
+                                        <rect key="frame" x="173" y="175" width="46" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="play"/>
+                                        <connections>
+                                            <action selector="playPauseButtonAction:" destination="3rT-X2-Skf" eventType="touchUpInside" id="dhO-Wg-uGf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xng-Sn-cdt">
+                                        <rect key="frame" x="126" y="186" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="backward"/>
+                                        <connections>
+                                            <action selector="backwardButtonAction:" destination="3rT-X2-Skf" eventType="touchUpInside" id="NeE-4F-rXO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DmK-Gf-trs">
+                                        <rect key="frame" x="241" y="186" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="forward"/>
+                                        <connections>
+                                            <action selector="forwardButtonAction:" destination="3rT-X2-Skf" eventType="touchUpInside" id="nWs-Pd-yEV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="lightPurpleColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-Bj-vAp">
+                                <rect key="frame" x="25" y="43" width="14" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="close"/>
+                                <connections>
+                                    <action selector="closeButtonAction:" destination="3rT-X2-Skf" eventType="touchUpInside" id="QGa-HQ-UnQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8q-kJ-sea">
+                                <rect key="frame" x="350" y="44" width="21" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="share"/>
+                                <connections>
+                                    <action selector="shareButtonAction:" destination="3rT-X2-Skf" eventType="touchUpInside" id="kBj-aN-5BJ"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wnK-U4-b1W">
+                                <rect key="frame" x="-27" y="387" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="maximumTrackTintColor" name="lightWhiteCustomColor"/>
+                                <connections>
+                                    <action selector="volumeSliderAction:" destination="3rT-X2-Skf" eventType="valueChanged" id="f0o-aW-396"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="E5R-dz-U2u"/>
                     </view>
                     <navigationItem key="navigationItem" id="rO2-gL-go5"/>
+                    <connections>
+                        <outlet property="artistLabel" destination="VTj-2p-M16" id="wL1-IK-cRE"/>
+                        <outlet property="coverImageView" destination="aok-WY-R52" id="lTW-kZ-s3A"/>
+                        <outlet property="durationLabel" destination="kYk-yp-ZgQ" id="Bka-XU-dch"/>
+                        <outlet property="durationSlider" destination="utg-sj-AzI" id="ren-Uo-c7K"/>
+                        <outlet property="trackNameLabel" destination="oaG-Re-asV" id="yFe-KO-nWm"/>
+                        <outlet property="volumeSlider" destination="wnK-U4-b1W" id="jtI-ha-7Fz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ti-NM-l0U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -199,11 +294,19 @@
     </scenes>
     <resources>
         <image name="backgroundImage" width="375" height="763"/>
+        <image name="backward" width="24" height="24"/>
+        <image name="close" width="14" height="14"/>
         <image name="cover1" width="500" height="500"/>
         <image name="cover2" width="1000" height="1000"/>
         <image name="cover3" width="1000" height="1000"/>
+        <image name="forward" width="24" height="24"/>
+        <image name="play" width="45" height="45"/>
+        <image name="share" width="21" height="18"/>
         <namedColor name="lightPurpleColor">
             <color red="0.40784313725490196" green="0.20000000000000001" blue="0.78823529411764703" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightWhiteCustomColor">
+            <color red="1" green="0.99215686274509807" blue="0.99215686274509807" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="purpleCustomColor">
             <color red="0.28235294117647058" green="0.22352941176470589" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
