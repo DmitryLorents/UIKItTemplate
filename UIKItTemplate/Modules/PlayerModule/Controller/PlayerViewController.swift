@@ -23,8 +23,7 @@ final class PlayerViewController: UIViewController {
 
     var track: Track? {
         didSet {
-            if !view.bounds.isEmpty {
-                stopPlayer()
+            if view.bounds.height > 0 {
                 setOutlets()
                 startTimer()
             }
@@ -37,17 +36,6 @@ final class PlayerViewController: UIViewController {
     private let playlist = Playlist()
     private var timer: Timer?
 
-    // MARK: - Initializers
-
-    // MARK: - Life Cycle
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        stopPlayer()
-        setOutlets()
-        startTimer()
-    }
-
     // MARK: - IBAction
 
     @IBAction private func closeButtonAction(_ sender: UIButton) {
@@ -59,7 +47,7 @@ final class PlayerViewController: UIViewController {
     }
 
     @IBAction private func volumeSliderAction(_ sender: UISlider) {
-        print(#function)
+        player.setVolume(sender.value)
     }
 
     @IBAction private func durationSliderAction(_ sender: UISlider) {
@@ -83,6 +71,7 @@ final class PlayerViewController: UIViewController {
             let previousNumber = track.number - 2
             self.track = playlist.tracks[previousNumber]
         }
+        playPauseButton.setImage(UIImage(named: "play"), for: .normal)
     }
 
     @IBAction private func forwardButtonAction(_ sender: Any) {
@@ -93,6 +82,7 @@ final class PlayerViewController: UIViewController {
             let previousNumber = track.number
             self.track = playlist.tracks[previousNumber]
         }
+        playPauseButton.setImage(UIImage(named: "play"), for: .normal)
     }
 
     // MARK: - Private Methods
@@ -106,6 +96,8 @@ final class PlayerViewController: UIViewController {
         durationLabel.text = "-\(track.duration)"
         durationSlider.value = 0
         durationSlider.maximumValue = player.playTrack(track.path)
+        volumeSlider.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        volumeSlider.value = player.volume
     }
 
     private func startTimer() {

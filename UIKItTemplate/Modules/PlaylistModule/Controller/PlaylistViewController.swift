@@ -29,7 +29,6 @@ final class PlaylistViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction private func playTrack(_ sender: UIButton) {
-        print(sender.tag)
         performSegue(withIdentifier: "PlaylistToPlayer", sender: sender)
     }
 
