@@ -10,10 +10,16 @@ class Player {
 
     // MARK: - Public Properties
 
+    static let shared = Player()
+
     // MARK: - Private Properties
 
     private var isPlaying: Bool = false
     private var player = AVAudioPlayer()
+
+    // MARK: - Initializers
+
+    private init() {}
 
     // MARK: - Public Methods
 
@@ -27,14 +33,19 @@ class Player {
         return Float(player.duration)
     }
 
+    public func stop() {
+        player.stop()
+    }
+
     public func getDurationData() -> (sliderValue: Float, remainingTime: String) {
         let sliderValue = Float(player.currentTime)
         let remainingTime = getRemainingTime()
         return (sliderValue, remainingTime)
     }
 
-    public func playPause() {
-        print(#function)
+    public func playPause() -> Bool {
+        let _: Any = (player.isPlaying) ? player.pause() : player.play()
+        return player.isPlaying
     }
 
     public func nextTrack() {

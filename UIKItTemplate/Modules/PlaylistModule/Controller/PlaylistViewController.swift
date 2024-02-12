@@ -5,25 +5,17 @@ import UIKit
 
 /// Playlist screen
 class PlaylistViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
     // MARK: - IBOutlets
 
     @IBOutlet var coverImageView1: UIImageView!
     @IBOutlet var coverImageView2: UIImageView!
     @IBOutlet var coverImageView3: UIImageView!
 
-    // MARK: - Visual Components
-
     // MARK: - Public Properties
 
     // MARK: - Private Properties
 
     private var playlist = Playlist()
-
-    // MARK: - Initializers
 
     // MARK: - Life Cycle
 

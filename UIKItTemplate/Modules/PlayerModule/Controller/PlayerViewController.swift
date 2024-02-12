@@ -17,14 +17,15 @@ class PlayerViewController: UIViewController {
     @IBOutlet var artistLabel: UILabel!
     @IBOutlet var durationLabel: UILabel!
     @IBOutlet var durationSlider: UISlider!
+    @IBOutlet var playPauseButton: UIButton!
 
     // MARK: - Public Properties
 
-    var track: Track? = Playlist().tracks[0]
+    var track: Track?
 
     // MARK: - Private Properties
 
-    private let player = Player()
+    private let player = Player.shared
     private var timer: Timer?
 
     // MARK: - Initializers
@@ -33,6 +34,7 @@ class PlayerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        stopPlayer()
         setOutlets()
         startTimer()
     }
@@ -62,7 +64,12 @@ class PlayerViewController: UIViewController {
     }
 
     @IBAction func playPauseButtonAction(_ sender: Any) {
-        player.playPause()
+        let isPaying = player.playPause()
+        let replaceImageName = isPaying ? "play" : "pause"
+        playPauseButton.setImage(UIImage(named: replaceImageName), for: .normal)
+        if isPaying {
+            startTimer()
+        } else { timer?.invalidate() }
     }
 
     @IBAction func forwardButtonAction(_ sender: Any) {
@@ -96,5 +103,10 @@ class PlayerViewController: UIViewController {
         let (sliderValue, remainingValue) = player.getDurationData()
         durationSlider.value = sliderValue
         durationLabel.text = remainingValue
+    }
+
+    private func stopPlayer() {
+        player.stop()
+        timer?.invalidate()
     }
 }

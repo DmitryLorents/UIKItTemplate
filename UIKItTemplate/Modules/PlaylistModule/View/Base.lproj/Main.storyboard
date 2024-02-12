@@ -283,6 +283,7 @@
                         <outlet property="coverImageView" destination="aok-WY-R52" id="lTW-kZ-s3A"/>
                         <outlet property="durationLabel" destination="kYk-yp-ZgQ" id="Bka-XU-dch"/>
                         <outlet property="durationSlider" destination="utg-sj-AzI" id="ren-Uo-c7K"/>
+                        <outlet property="playPauseButton" destination="NDV-dz-gfN" id="NhR-bu-BC9"/>
                         <outlet property="trackNameLabel" destination="oaG-Re-asV" id="yFe-KO-nWm"/>
                         <outlet property="volumeSlider" destination="wnK-U4-b1W" id="jtI-ha-7Fz"/>
                     </connections>
@@ -303,10 +304,10 @@
         <image name="play" width="45" height="45"/>
         <image name="share" width="21" height="18"/>
         <namedColor name="lightPurpleColor">
-            <color red="0.40784313725490196" green="0.20000000000000001" blue="0.78823529411764703" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.40784313725490196" green="0.20000000000000001" blue="0.78823529411764703" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightWhiteCustomColor">
-            <color red="1" green="0.99215686274509807" blue="0.99215686274509807" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.99215686274509807" blue="0.99215686274509807" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="purpleCustomColor">
             <color red="0.28235294117647058" green="0.22352941176470589" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
