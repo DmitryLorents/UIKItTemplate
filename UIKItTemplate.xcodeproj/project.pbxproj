@@ -217,8 +217,7 @@
 			children = (
 				0AC878BC2B7CEFCF00A5AAC3 /* CatalogView.swift */,
 			);
-			name = View;
-			path = ../../../../../../../View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		0AC878BD2B7CEFCF00A5AAC3 /* Controller */ = {
