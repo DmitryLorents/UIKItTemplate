@@ -10,10 +10,15 @@ final class CatalogViewController: UIViewController {
     private enum Constants {
         static let categoryQuantity = 2
         static let categoryImageRatio: CGFloat = 120.0 / 160.0
+        static let categoryViewHeight: CGFloat = 80
+
         enum Text {
             static let title = "Каталог"
             static let newItems = "Новинки"
             static let sale = "Распродажа"
+            static let brands = "Бренды"
+            static let shoes = "Обувь"
+            static let bags = "Сумки"
         }
 
         enum Fonts {
@@ -24,9 +29,24 @@ final class CatalogViewController: UIViewController {
             static let newItemsWoman = "newItemsWoman"
             static let saleWoman = "saleWoman"
             static let newItemsMan = "newItemsMan"
-            static let saleMan = "salesMan"
+            static let saleMan = "saleMan"
             static let newItemsChild = "newItemsChild"
             static let saleChild = "saleChild"
+            static let brands = "brands"
+            static let bagChild = "bagChild"
+            static let bagMan = "bagMan"
+            static let bagWoman = "bagWoman"
+            static let basketBuy = "basketBuy"
+            static let camera = "camera"
+            static let qr = "qr"
+            static let shoes1 = "shoes#1"
+            static let shoes2 = "shoes#2"
+            static let shoes3 = "shoes#3"
+            static let shoes4 = "shoes#4"
+            static let shoes5 = "shoes#5"
+            static let shoesChild = "shoesChild"
+            static let shoesMan = "shoesMan"
+            static let shoesWoman = "shoesWoman"
         }
 
         enum BuyerType: String, CaseIterable {
@@ -87,6 +107,10 @@ final class CatalogViewController: UIViewController {
         return label
     }()
 
+    private lazy var brandView = CategoryView(title: Constants.Text.brands, imageName: Constants.ImageName.brands)
+    private lazy var shoesView = CategoryView(title: Constants.Text.shoes, imageName: Constants.ImageName.shoesWoman)
+    private lazy var bagView = CategoryView(title: Constants.Text.bags, imageName: Constants.ImageName.bagWoman)
+
     // MARK: - Public Properties
 
     // MARK: - Private Properties
@@ -101,15 +125,20 @@ final class CatalogViewController: UIViewController {
         setConstraints()
     }
 
-    // MARK: - Public Methods
-
-    // MARK: - IBAction
-
     // MARK: - Private Methods
 
     private func setUI() {
         title = Constants.Text.title
-        view.addSubviews(buyerTypeSegmentedControl, newItemsImageView, newItemLabel, salesImageView, salesLabel)
+        view.addSubviews(
+            buyerTypeSegmentedControl,
+            newItemsImageView,
+            newItemLabel,
+            salesImageView,
+            salesLabel,
+            brandView,
+            shoesView,
+            bagView
+        )
         view.disableTARMIC()
     }
 }
@@ -144,6 +173,21 @@ private extension CatalogViewController {
 
             salesLabel.bottomAnchor.constraint(equalTo: salesImageView.bottomAnchor),
             salesLabel.centerXAnchor.constraint(equalTo: salesImageView.centerXAnchor),
+
+            brandView.topAnchor.constraint(equalTo: newItemsImageView.bottomAnchor, constant: inset),
+            brandView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            brandView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            brandView.heightAnchor.constraint(equalToConstant: Constants.categoryViewHeight),
+
+            shoesView.topAnchor.constraint(equalTo: brandView.bottomAnchor, constant: inset),
+            shoesView.leadingAnchor.constraint(equalTo: brandView.leadingAnchor),
+            shoesView.trailingAnchor.constraint(equalTo: brandView.trailingAnchor),
+            shoesView.heightAnchor.constraint(equalTo: brandView.heightAnchor),
+
+            bagView.topAnchor.constraint(equalTo: shoesView.bottomAnchor, constant: inset),
+            bagView.leadingAnchor.constraint(equalTo: brandView.leadingAnchor),
+            bagView.trailingAnchor.constraint(equalTo: brandView.trailingAnchor),
+            bagView.heightAnchor.constraint(equalTo: brandView.heightAnchor)
 
         ])
     }

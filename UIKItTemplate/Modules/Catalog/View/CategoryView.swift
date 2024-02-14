@@ -49,6 +49,7 @@ final class CategoryView: UIView {
 
     private func setUI() {
         backgroundColor = .lightGrayApp
+        layer.cornerRadius = 12
         addSubviews(categoryLabel, categoryImageView)
         disableTARMIC()
         setConstraints()
