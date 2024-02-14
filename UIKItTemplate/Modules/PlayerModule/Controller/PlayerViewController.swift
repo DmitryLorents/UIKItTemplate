@@ -5,19 +5,15 @@ import UIKit
 
 /// Screen to play tracks
 final class PlayerViewController: UIViewController {
-    // MARK: - Types
-
-    // MARK: - Constants
-
     // MARK: - IBOutlets
 
-    @IBOutlet var volumeSlider: UISlider!
-    @IBOutlet var coverImageView: UIImageView!
-    @IBOutlet var trackNameLabel: UILabel!
-    @IBOutlet var artistLabel: UILabel!
-    @IBOutlet var durationLabel: UILabel!
-    @IBOutlet var durationSlider: UISlider!
-    @IBOutlet var playPauseButton: UIButton!
+    @IBOutlet private var volumeSlider: UISlider!
+    @IBOutlet private var coverImageView: UIImageView!
+    @IBOutlet private var trackNameLabel: UILabel!
+    @IBOutlet private var artistLabel: UILabel!
+    @IBOutlet private var durationLabel: UILabel!
+    @IBOutlet private var durationSlider: UISlider!
+    @IBOutlet private var playPauseButton: UIButton!
 
     // MARK: - Public Properties
 

@@ -5,7 +5,11 @@ import Foundation
 
 /// Playlist data
 struct Playlist {
+    // MARK: - Public properties
+
     var tracks: [Track]
+
+    // MARK: - Initialization
 
     init() {
         let path1 = Bundle.main.path(forResource: "Track1", ofType: "mp3")

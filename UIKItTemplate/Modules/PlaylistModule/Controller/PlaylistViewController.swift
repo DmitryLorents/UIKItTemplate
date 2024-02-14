@@ -7,11 +7,9 @@ import UIKit
 final class PlaylistViewController: UIViewController {
     // MARK: - IBOutlets
 
-    @IBOutlet var coverImageView1: UIImageView!
-    @IBOutlet var coverImageView2: UIImageView!
-    @IBOutlet var coverImageView3: UIImageView!
-
-    // MARK: - Public Properties
+    @IBOutlet private var coverImageView1: UIImageView!
+    @IBOutlet private var coverImageView2: UIImageView!
+    @IBOutlet private var coverImageView3: UIImageView!
 
     // MARK: - Private Properties
 
@@ -23,8 +21,6 @@ final class PlaylistViewController: UIViewController {
         super.viewDidLoad()
         setUI()
     }
-
-    // MARK: - Public Methods
 
     // MARK: - IBAction
 

@@ -6,8 +6,6 @@ import UIKit
 
 /// Сlass for controlling music playback
 final class Player {
-    // MARK: - Constants
-
     // MARK: - Public Properties
 
     static let shared = Player()
