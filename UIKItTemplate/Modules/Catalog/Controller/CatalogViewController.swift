@@ -4,7 +4,7 @@
 import UIKit
 
 /// Class Controller
-class CatalogViewController: UIViewController {
+final class CatalogViewController: UIViewController {
     // MARK: - Constants
 
     private enum Constants {
@@ -112,11 +112,12 @@ class CatalogViewController: UIViewController {
         view.addSubviews(buyerTypeSegmentedControl, newItemsImageView, newItemLabel, salesImageView, salesLabel)
         view.disableTARMIC()
     }
+}
 
-    private func setConstraints() {
+// Set constraints
+private extension CatalogViewController {
+    func setConstraints() {
         let inset = Constants.Size.generalInset
-//        let imageViewWidth: CGFloat = CGFloat)(view.frame.width / Constants.categoryQuantity) -
-//            (inset * (Constants.categoryQuantity + 1)))
         NSLayoutConstraint.activate([
             buyerTypeSegmentedControl.heightAnchor.constraint(equalToConstant: Constants.Size.segmentedControlHeight),
             buyerTypeSegmentedControl.topAnchor.constraint(
@@ -128,16 +129,21 @@ class CatalogViewController: UIViewController {
 
             newItemsImageView.topAnchor.constraint(equalTo: buyerTypeSegmentedControl.bottomAnchor, constant: inset),
             newItemsImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-//            newItemsImageView.widthAnchor.constraint(equalToConstant: imageViewWidth),
             newItemsImageView.heightAnchor.constraint(
                 equalTo: newItemsImageView.widthAnchor,
                 multiplier: Constants.categoryImageRatio
             ),
+
             salesImageView.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
             salesImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             salesImageView.leadingAnchor.constraint(equalTo: newItemsImageView.trailingAnchor, constant: inset),
-//            newItemsImageView.widthAnchor.constraint(equalToConstant: imageViewWidth),
-            salesImageView.heightAnchor.constraint(equalTo: newItemsImageView.heightAnchor)
+            salesImageView.heightAnchor.constraint(equalTo: newItemsImageView.heightAnchor),
+
+            newItemLabel.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
+            newItemLabel.centerXAnchor.constraint(equalTo: newItemsImageView.centerXAnchor),
+
+            salesLabel.bottomAnchor.constraint(equalTo: salesImageView.bottomAnchor),
+            salesLabel.centerXAnchor.constraint(equalTo: salesImageView.centerXAnchor),
 
         ])
     }
