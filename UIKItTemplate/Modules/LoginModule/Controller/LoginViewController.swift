@@ -4,7 +4,7 @@
 import UIKit
 
 /// Authorisation screen
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
     // MARK: - Private Properties
 

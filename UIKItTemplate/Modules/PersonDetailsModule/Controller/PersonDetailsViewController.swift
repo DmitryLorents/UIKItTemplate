@@ -4,7 +4,7 @@
 import UIKit
 
 /// Screen with person detailed information
-class PersonDetailsViewController: UIViewController {
+final class PersonDetailsViewController: UIViewController {
     // MARK: - Constants
 
     private let leftInset: CGFloat = 20
