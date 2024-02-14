@@ -4,7 +4,7 @@
 import UIKit
 
 /// Class Controller
-class CartViewController: UIViewController {
+class BasketViewController: UIViewController {
     // MARK: - Types
     
     // MARK: - Constants
