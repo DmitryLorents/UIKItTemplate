@@ -16,27 +16,21 @@ final class ProductDetailedViewController: UIViewController {
         enum Text {
             static let title = "Обувь"
         }
-
-        enum ImageName {
-            static let shoes1 = "shoes#1"
-            static let shoes2 = "shoes#2"
-            static let shoes3 = "shoes#3"
-            static let shoes4 = "shoes#4"
-            static let shoes5 = "shoes#5"
-        }
     }
 
     // MARK: - Visual Components
 
-    private lazy var productView1 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
-    private lazy var productView2 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
-    private lazy var productView3 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
-    private lazy var productView4 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
-    private lazy var productView5 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
+    private lazy var productView1 = ProductDetailedView(product: storage.products[0])
+    private lazy var productView2 = ProductDetailedView(product: storage.products[1])
+    private lazy var productView3 = ProductDetailedView(product: storage.products[2])
+    private lazy var productView4 = ProductDetailedView(product: storage.products[3])
+    private lazy var productView5 = ProductDetailedView(product: storage.products[4])
 
     // MARK: - Public Properties
 
     // MARK: - Private Properties
+
+    private let storage = ProductStorage.shared
 
     // MARK: - Initializers
 
@@ -56,6 +50,14 @@ final class ProductDetailedViewController: UIViewController {
             productView1, productView2, productView3, productView4, productView5
         )
         view.disableTARMIC()
+        setDelegates()
+    }
+
+    private func setDelegates() {
+        view.subviews.forEach {
+            guard let subView = $0 as? ProductDetailedView else { return }
+            subView.delegate = self
+        }
     }
 }
 
@@ -94,5 +96,13 @@ private extension ProductDetailedViewController {
             productView5.leadingAnchor.constraint(equalTo: productView1.leadingAnchor)
 
         ])
+    }
+}
+
+extension ProductDetailedViewController: ProductDetailedViewDelegate {
+    func chooseSizeFor(product: Product) {
+        print(#function)
+        let sizeChoosingVC = SizeChoosingViewController(product: product)
+        present(sizeChoosingVC, animated: true)
     }
 }

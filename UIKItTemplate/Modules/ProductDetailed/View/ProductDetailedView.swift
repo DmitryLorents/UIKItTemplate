@@ -3,6 +3,10 @@
 
 import UIKit
 
+protocol ProductDetailedViewDelegate: AnyObject{
+    func chooseSizeFor(product: Product)
+}
+
 /// View to show product with price
 final class ProductDetailedView: UIView {
     // MARK: - Constants
@@ -22,7 +26,7 @@ final class ProductDetailedView: UIView {
 
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "\(price)\(Constants.currency)"
+        label.text = "\(product.price)\(Constants.currency)"
         label.textAlignment = .right
         label.font = UIFont.makeVerdanaBold10()
         label.sizeToFit()
@@ -30,7 +34,7 @@ final class ProductDetailedView: UIView {
     }()
 
     private lazy var productImageView: UIImageView = {
-        let image = UIImage(named: imageName)
+        let image = UIImage(named: product.imageName)
         let imageView = UIImageView(image: image)
         return imageView
     }()
@@ -38,19 +42,24 @@ final class ProductDetailedView: UIView {
     private lazy var basketImageView: UIImageView = {
         let imageName = Constants.Image.basketGray
         let imageView = UIImageView(image: UIImage(named: imageName))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(getSize))
+        imageView.addGestureRecognizer(tapGesture)
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
 
+    // MARK: - Public Properties
+
+    weak var delegate: ProductDetailedViewDelegate?
+
     // MARK: - Private Properties
 
-    private let price: Int
-    private let imageName: String
+    private let product: Product
 
     // MARK: - Initializers
 
-    init(price: Int, imageName: String) {
-        self.price = price
-        self.imageName = imageName
+    init(product: Product) {
+        self.product = product
         super.init(frame: .zero)
         setUI()
     }
@@ -68,6 +77,12 @@ final class ProductDetailedView: UIView {
         addSubviews(priceLabel, productImageView, basketImageView)
         disableTARMIC()
         setConstraints()
+    }
+
+    @objc private func getSize() {
+        print(#function)
+        basketImageView.image = UIImage(named: Constants.Image.basketTinted)
+        delegate?.chooseSizeFor(product: product)
     }
 }
 

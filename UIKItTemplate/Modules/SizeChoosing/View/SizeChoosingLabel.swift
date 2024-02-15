@@ -8,32 +8,9 @@ final class SizeChoosingLabel: UILabel {
 
     private let euroSize = " EU"
 
-    // MARK: - Visual Components
-
-//    private lazy var sizeLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "\(size)\(Constants.euroSize)"
-//        label.textAlignment = .left
-//        label.font = UIFont.makeVerdanaBold10()
-//        label.sizeToFit()
-//        return label
-//    }()
-//
-//    private lazy var productImageView: UIImageView = {
-//        let image = UIImage(named: imageName)
-//        let imageView = UIImageView(image: image)
-//        return imageView
-//    }()
-//
-//    private lazy var basketImageView: UIImageView = {
-//        let imageName = Constants.Image.basketGray
-//        let imageView = UIImageView(image: UIImage(named: imageName))
-//        return imageView
-//    }()
-
     // MARK: - Private Properties
 
-    private let size: Int
+    let size: Int
 
     // MARK: - Initializers
 
