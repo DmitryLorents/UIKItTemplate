@@ -173,7 +173,9 @@ final class CatalogViewController: UIViewController {
     }
 
     @objc private func takePicture() {
-        print(#function)
+        let cameraVC = UIImagePickerController()
+        cameraVC.sourceType = .camera
+        present(cameraVC, animated: true)
     }
 
     @objc private func scanQR() {
