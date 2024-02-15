@@ -12,4 +12,8 @@ public extension UIFont {
     static func makeVerdanaBold10() -> UIFont? {
         UIFont(name: "Verdana-bold", size: 10)
     }
+
+    static func makeVerdana16() -> UIFont? {
+        UIFont(name: "Verdana", size: 16)
+    }
 }

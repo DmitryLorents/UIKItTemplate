@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// View to show product with price
 final class ProductDetailedView: UIView {
     // MARK: - Constants
 
