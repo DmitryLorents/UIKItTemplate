@@ -61,6 +61,7 @@ final class CatalogViewController: UIViewController {
         let types = Array(Constants.BuyerType.allCases).map(\.rawValue)
         let view = UISegmentedControl(items: types)
         view.selectedSegmentIndex = 0
+        view.addTarget(self, action: #selector(updateState(sender:)), for: .valueChanged)
         return view
     }()
 
@@ -108,6 +109,12 @@ final class CatalogViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private var state: Constants.BuyerType = .woman {
+        didSet {
+            updateUIAccording(state: state)
+        }
+    }
+
     // MARK: - Initializers
 
     // MARK: - Life Cycle
@@ -115,6 +122,7 @@ final class CatalogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        configureBackButton()
         addBarButtons()
         setConstraints()
     }
@@ -160,15 +168,28 @@ final class CatalogViewController: UIViewController {
         navigationItem.setRightBarButtonItems([qrButton, cameraButton], animated: true)
     }
 
+    private func configureBackButton() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+
     @objc private func takePicture() {
         print(#function)
     }
 
-    @objc private func scanQR() {}
+    @objc private func scanQR() {
+        print(#function)
+    }
 
     @objc func openProductDetailedVC() {
         let productDetailedVC = ProductDetailedViewController()
         navigationController?.pushViewController(productDetailedVC, animated: true)
+    }
+
+    @objc private func updateState(sender: UISegmentedControl) {
+        let segmentIndex = sender.selectedSegmentIndex
+        guard let newState = Constants.BuyerType(rawValue: sender.titleForSegment(at: segmentIndex) ?? "")
+        else { return }
+        state = newState
     }
 }
 
@@ -219,5 +240,37 @@ private extension CatalogViewController {
             bagView.heightAnchor.constraint(equalTo: brandView.heightAnchor)
 
         ])
+    }
+}
+
+// MARK: - Update UI components depending on view state
+
+extension CatalogViewController {
+    private func updateUIAccording(state: Constants.BuyerType) {
+        let newItems: String
+        let sale: String
+        let shoes: String
+        let bag: String
+        switch state {
+        case .child:
+            newItems = Constants.ImageName.newItemsChild
+            sale = Constants.ImageName.saleChild
+            shoes = Constants.ImageName.shoesChild
+            bag = Constants.ImageName.bagChild
+        case .man:
+            newItems = Constants.ImageName.newItemsMan
+            sale = Constants.ImageName.saleMan
+            shoes = Constants.ImageName.shoesMan
+            bag = Constants.ImageName.bagMan
+        case .woman:
+            newItems = Constants.ImageName.newItemsWoman
+            sale = Constants.ImageName.saleWoman
+            shoes = Constants.ImageName.shoesWoman
+            bag = Constants.ImageName.bagWoman
+        }
+        newItemsImageView.image = UIImage(named: newItems)
+        salesImageView.image = UIImage(named: sale)
+        shoesView.setImage(image: shoes)
+        bagView.setImage(image: bag)
     }
 }

@@ -45,6 +45,12 @@ final class CategoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public Methods
+
+    func setImage(image name: String) {
+        categoryImageView.image = UIImage(named: name)
+    }
+
     // MARK: - Private Methods
 
     private func setUI() {
