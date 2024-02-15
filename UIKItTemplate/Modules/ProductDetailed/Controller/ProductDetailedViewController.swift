@@ -9,7 +9,7 @@ final class ProductDetailedViewController: UIViewController {
 
     private enum Constants {
         enum Inset {
-            static let topInset = 33
+            static let topInset: CGFloat = 33
             static let generalInset: CGFloat = 20
         }
 
@@ -18,7 +18,6 @@ final class ProductDetailedViewController: UIViewController {
         }
 
         enum ImageName {
-            static let basketBuy = "basketBuy"
             static let shoes1 = "shoes#1"
             static let shoes2 = "shoes#2"
             static let shoes3 = "shoes#3"
@@ -28,6 +27,12 @@ final class ProductDetailedViewController: UIViewController {
     }
 
     // MARK: - Visual Components
+
+    private lazy var productView1 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
+    private lazy var productView2 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
+    private lazy var productView3 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
+    private lazy var productView4 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
+    private lazy var productView5 = ProductDetailedView(price: 2250, imageName: Constants.ImageName.shoes1)
 
     // MARK: - Public Properties
 
@@ -48,6 +53,7 @@ final class ProductDetailedViewController: UIViewController {
     private func setUI() {
         title = Constants.Text.title
         view.addSubviews(
+            productView1, productView2, productView3, productView4, productView5
         )
         view.disableTARMIC()
     }
@@ -56,48 +62,36 @@ final class ProductDetailedViewController: UIViewController {
 // Set constraints
 private extension ProductDetailedViewController {
     func setConstraints() {
-//        let inset = Constants.Inset.generalInset
+        let inset = Constants.Inset.generalInset
         NSLayoutConstraint.activate([
-            //            buyerTypeSegmentedControl.heightAnchor.constraint(equalToConstant: Constants.Size.segmentedControlHeight),
-//            buyerTypeSegmentedControl.topAnchor.constraint(
-//                equalTo: view.safeAreaLayoutGuide.topAnchor,
-//                constant: Constants.Size.topInset
-//            ),
-//            buyerTypeSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-//            buyerTypeSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-//
-//            newItemsImageView.topAnchor.constraint(equalTo: buyerTypeSegmentedControl.bottomAnchor, constant: inset),
-//            newItemsImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-//            newItemsImageView.heightAnchor.constraint(
-//                equalTo: newItemsImageView.widthAnchor,
-//                multiplier: Constants.categoryImageRatio
-//            ),
-//
-//            salesImageView.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
-//            salesImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-//            salesImageView.leadingAnchor.constraint(equalTo: newItemsImageView.trailingAnchor, constant: inset),
-//            salesImageView.heightAnchor.constraint(equalTo: newItemsImageView.heightAnchor),
-//
-//            newItemLabel.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
-//            newItemLabel.centerXAnchor.constraint(equalTo: newItemsImageView.centerXAnchor),
-//
-//            salesLabel.bottomAnchor.constraint(equalTo: salesImageView.bottomAnchor),
-//            salesLabel.centerXAnchor.constraint(equalTo: salesImageView.centerXAnchor),
-//
-//            brandView.topAnchor.constraint(equalTo: newItemsImageView.bottomAnchor, constant: inset),
-//            brandView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-//            brandView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-//            brandView.heightAnchor.constraint(equalToConstant: Constants.categoryViewHeight),
-//
-//            shoesView.topAnchor.constraint(equalTo: brandView.bottomAnchor, constant: inset),
-//            shoesView.leadingAnchor.constraint(equalTo: brandView.leadingAnchor),
-//            shoesView.trailingAnchor.constraint(equalTo: brandView.trailingAnchor),
-//            shoesView.heightAnchor.constraint(equalTo: brandView.heightAnchor),
-//
-//            bagView.topAnchor.constraint(equalTo: shoesView.bottomAnchor, constant: inset),
-//            bagView.leadingAnchor.constraint(equalTo: brandView.leadingAnchor),
-//            bagView.trailingAnchor.constraint(equalTo: brandView.trailingAnchor),
-//            bagView.heightAnchor.constraint(equalTo: brandView.heightAnchor)
+            productView1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            productView1.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: Constants.Inset.topInset
+            ),
+            productView1.heightAnchor.constraint(equalTo: productView1.widthAnchor, multiplier: 1),
+
+            productView2.topAnchor.constraint(equalTo: productView1.topAnchor),
+            productView2.heightAnchor.constraint(equalTo: productView2.widthAnchor, multiplier: 1),
+            productView2.heightAnchor.constraint(equalTo: productView1.heightAnchor, multiplier: 1),
+            productView2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            productView2.leadingAnchor.constraint(equalTo: productView1.trailingAnchor, constant: inset),
+
+            productView3.topAnchor.constraint(equalTo: productView1.bottomAnchor, constant: inset),
+            productView3.heightAnchor.constraint(equalTo: productView3.widthAnchor, multiplier: 1),
+            productView3.heightAnchor.constraint(equalTo: productView1.heightAnchor, multiplier: 1),
+            productView3.leadingAnchor.constraint(equalTo: productView1.leadingAnchor),
+
+            productView4.topAnchor.constraint(equalTo: productView3.topAnchor),
+            productView4.heightAnchor.constraint(equalTo: productView4.widthAnchor, multiplier: 1),
+            productView4.heightAnchor.constraint(equalTo: productView1.heightAnchor, multiplier: 1),
+            productView4.trailingAnchor.constraint(equalTo: productView2.trailingAnchor),
+            productView4.leadingAnchor.constraint(equalTo: productView1.trailingAnchor, constant: inset),
+
+            productView5.topAnchor.constraint(equalTo: productView3.bottomAnchor, constant: inset),
+            productView5.heightAnchor.constraint(equalTo: productView5.widthAnchor, multiplier: 1),
+            productView5.heightAnchor.constraint(equalTo: productView1.heightAnchor, multiplier: 1),
+            productView5.leadingAnchor.constraint(equalTo: productView1.leadingAnchor)
 
         ])
     }
