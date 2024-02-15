@@ -3,7 +3,7 @@
 
 import UIKit
 
-protocol ProductDetailedViewDelegate: AnyObject{
+protocol ProductDetailedViewDelegate: AnyObject {
     func chooseSizeFor(product: Product)
 }
 
@@ -80,7 +80,6 @@ final class ProductDetailedView: UIView {
     }
 
     @objc private func getSize() {
-        print(#function)
         basketImageView.image = UIImage(named: Constants.Image.basketTinted)
         delegate?.chooseSizeFor(product: product)
     }

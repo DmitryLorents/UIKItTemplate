@@ -9,18 +9,40 @@ final class SizeChoosingViewController: UIViewController {
 
     private enum Constants {
         enum Inset {
-            static let topInset: CGFloat = 33
+            static let topInset: CGFloat = 77
             static let generalInset: CGFloat = 20
+            static let topTitle: CGFloat = 21
+            static let leftButton: CGFloat = 15
+            static let topButton: CGFloat = 21
+            static let buttonSize: CGFloat = 24
         }
 
         enum Text {
             static let title = "Выберите размер"
         }
+
+        enum Image {
+            static let close = "close"
+        }
     }
 
     // MARK: - Visual Components
 
-    // MARK: - Public Properties
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constants.Text.title
+        label.textAlignment = .center
+        label.font = UIFont.makeVerdanaBold16()
+        label.sizeToFit()
+        return label
+    }()
+
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: Constants.Image.close), for: .normal)
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
+        return button
+    }()
 
     // MARK: - Private Properties
 
@@ -42,8 +64,9 @@ final class SizeChoosingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setAppearance()
+        setLabels()
         setUI()
+        setConstraints()
     }
 
     override func viewDidLayoutSubviews() {
@@ -53,7 +76,7 @@ final class SizeChoosingViewController: UIViewController {
 
     // MARK: - Private Methods
 
-    private func setAppearance() {
+    private func setLabels() {
         var topInset = Constants.Inset.topInset
         let inset = Constants.Inset.generalInset
         for size in ProductStorage.sizes {
@@ -71,12 +94,16 @@ final class SizeChoosingViewController: UIViewController {
     private func setUI() {
         title = Constants.Text.title
         view.backgroundColor = .systemBackground
+        view.addSubviews(titleLabel, closeButton)
         view.disableTARMIC()
         setGestureRecognizerForSubviews()
     }
 
     private func setViewsUnderlined() {
-        view.subviews.forEach { $0.underlined() }
+        view.subviews.forEach {
+            guard let sizeLabel = $0 as? SizeChoosingLabel else { return }
+            sizeLabel.underlined()
+        }
     }
 
     private func setGestureRecognizerForSubviews() {
@@ -88,10 +115,28 @@ final class SizeChoosingViewController: UIViewController {
     }
 
     @objc private func setSize(sender: UITapGestureRecognizer) {
-        print(#function)
         guard let label = sender.view as? SizeChoosingLabel else { return }
         product.size = label.size
-        print("New size: \(product.size)")
         dismiss(animated: true)
+    }
+
+    @objc private func close() {
+        dismiss(animated: true)
+    }
+}
+
+// MARK: - Constraints
+
+extension SizeChoosingViewController {
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.Inset.topTitle),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.Inset.topButton),
+            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Inset.leftButton),
+            closeButton.heightAnchor.constraint(equalToConstant: Constants.Inset.buttonSize),
+            closeButton.widthAnchor.constraint(equalToConstant: Constants.Inset.buttonSize)
+        ])
     }
 }

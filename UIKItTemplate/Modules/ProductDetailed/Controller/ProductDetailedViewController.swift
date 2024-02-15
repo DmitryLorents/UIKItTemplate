@@ -101,7 +101,6 @@ private extension ProductDetailedViewController {
 
 extension ProductDetailedViewController: ProductDetailedViewDelegate {
     func chooseSizeFor(product: Product) {
-        print(#function)
         let sizeChoosingVC = SizeChoosingViewController(product: product)
         present(sizeChoosingVC, animated: true)
     }
