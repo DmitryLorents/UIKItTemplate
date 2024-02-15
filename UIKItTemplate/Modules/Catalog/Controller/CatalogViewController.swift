@@ -8,10 +8,6 @@ final class CatalogViewController: UIViewController {
     // MARK: - Constants
 
     private enum Constants {
-        static let categoryQuantity = 2
-        static let categoryImageRatio: CGFloat = 120.0 / 160.0
-        static let categoryViewHeight: CGFloat = 80
-
         enum Text {
             static let title = "Каталог"
             static let newItems = "Новинки"
@@ -39,11 +35,6 @@ final class CatalogViewController: UIViewController {
             static let basketBuy = "basketBuy"
             static let camera = "camera"
             static let qr = "qr"
-            static let shoes1 = "shoes#1"
-            static let shoes2 = "shoes#2"
-            static let shoes3 = "shoes#3"
-            static let shoes4 = "shoes#4"
-            static let shoes5 = "shoes#5"
             static let shoesChild = "shoesChild"
             static let shoesMan = "shoesMan"
             static let shoesWoman = "shoesWoman"
@@ -59,6 +50,8 @@ final class CatalogViewController: UIViewController {
             static let generalInset: CGFloat = 20
             static let topInset: CGFloat = 25
             static var segmentedControlHeight: CGFloat = 44
+            static let categoryImageRatio: CGFloat = 120.0 / 160.0
+            static let categoryViewHeight: CGFloat = 80
         }
     }
 
@@ -122,6 +115,7 @@ final class CatalogViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        addBarButtons()
         setConstraints()
     }
 
@@ -129,6 +123,7 @@ final class CatalogViewController: UIViewController {
 
     private func setUI() {
         title = Constants.Text.title
+        navigationController?.view.tintColor = .black
         view.addSubviews(
             buyerTypeSegmentedControl,
             newItemsImageView,
@@ -140,6 +135,40 @@ final class CatalogViewController: UIViewController {
             bagView
         )
         view.disableTARMIC()
+        setBagViewAction()
+    }
+
+    private func setBagViewAction() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openProductDetailedVC))
+        bagView.addGestureRecognizer(tapGesture)
+        bagView.isUserInteractionEnabled = true
+    }
+
+    private func addBarButtons() {
+        let cameraImage = UIImage(named: Constants.ImageName.camera)
+        let cameraButton = UIBarButtonItem(
+            image: cameraImage,
+            style: .plain, target: self,
+            action: #selector(takePicture)
+        )
+        let qrImage = UIImage(named: Constants.ImageName.qr)
+        let qrButton = UIBarButtonItem(
+            image: qrImage,
+            style: .plain, target: self,
+            action: #selector(scanQR)
+        )
+        navigationItem.setRightBarButtonItems([qrButton, cameraButton], animated: true)
+    }
+
+    @objc private func takePicture() {
+        print(#function)
+    }
+
+    @objc private func scanQR() {}
+
+    @objc func openProductDetailedVC() {
+        let productDetailedVC = ProductDetailedViewController()
+        navigationController?.pushViewController(productDetailedVC, animated: true)
     }
 }
 
@@ -160,7 +189,7 @@ private extension CatalogViewController {
             newItemsImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             newItemsImageView.heightAnchor.constraint(
                 equalTo: newItemsImageView.widthAnchor,
-                multiplier: Constants.categoryImageRatio
+                multiplier: Constants.Size.categoryImageRatio
             ),
 
             salesImageView.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
@@ -177,7 +206,7 @@ private extension CatalogViewController {
             brandView.topAnchor.constraint(equalTo: newItemsImageView.bottomAnchor, constant: inset),
             brandView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             brandView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            brandView.heightAnchor.constraint(equalToConstant: Constants.categoryViewHeight),
+            brandView.heightAnchor.constraint(equalToConstant: Constants.Size.categoryViewHeight),
 
             shoesView.topAnchor.constraint(equalTo: brandView.bottomAnchor, constant: inset),
             shoesView.leadingAnchor.constraint(equalTo: brandView.leadingAnchor),
