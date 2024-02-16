@@ -24,15 +24,13 @@ final class BasketViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private var productView: ProductDetailedView?
-    private var basketView: BasketView?
+    private lazy var productView = ProductDetailedView(product: defaultProduct)
+    private lazy var basketView = BasketView(product: defaultProduct)
     private lazy var emptyBasketLabel: UILabel = {
         let label = UILabel()
         label.text = "Ваша корзина пуста"
         label.textAlignment = .center
         label.font = Constants.Font.verdanaBold16
-        // label.sizeToFit()
-        label.center = view.center
         return label
     }()
 
@@ -41,6 +39,9 @@ final class BasketViewController: UIViewController {
     // MARK: - Private Properties
 
     private let storage = ProductStorage.shared
+    private var defaultProduct: Product {
+        storage.products[0]
+    }
 
     // MARK: - Life Cycle
 
@@ -59,32 +60,33 @@ final class BasketViewController: UIViewController {
 
     private func setUI() {
         title = Constants.Text.title
-        view.addSubviews(emptyBasketLabel)
-        updateOrderedProducts()
+        view.addSubviews(emptyBasketLabel, basketView, productView)
+//        updateOrderedProducts()
         view.disableTARMIC()
         setDelegates()
     }
 
     private func updateOrderedProducts() {
-        guard let product = storage.products.first else {
+        print(#function)
+        guard let product = storage.getOrderedProducts().first else {
             updateUIState(basketIsEmpty: true)
             return
         }
+        productView.removeFromSuperview()
+        basketView.removeFromSuperview()
         productView = ProductDetailedView(product: product)
         basketView = BasketView(product: product)
+        view.addSubviews(productView, basketView)
+        view.disableTARMIC()
+        setConstraints()
         updateUIState(basketIsEmpty: false)
+        setDelegates()
     }
 
     private func updateUIState(basketIsEmpty: Bool) {
-        if basketIsEmpty {
-            productView?.removeFromSuperview()
-            basketView?.removeFromSuperview()
-        } else {
-            if let basketView, let productView {
-                view.addSubviews(productView, basketView)
-            }
-            emptyBasketLabel.isHidden = !basketIsEmpty
-        }
+        productView.isHidden = basketIsEmpty
+        basketView.isHidden = basketIsEmpty
+        emptyBasketLabel.isHidden = !basketIsEmpty
     }
 
     private func setDelegates() {
@@ -99,28 +101,29 @@ final class BasketViewController: UIViewController {
 private extension BasketViewController {
     func setConstraints() {
         let inset = Constants.Inset.generalInset
-        if let productView, let basketView {
-            NSLayoutConstraint.activate([
-                productView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-                productView.topAnchor.constraint(
-                    equalTo: view.safeAreaLayoutGuide.topAnchor,
-                    constant: Constants.Inset.topInset
-                ),
-                productView.heightAnchor.constraint(equalTo: productView.widthAnchor, multiplier: 1),
+        NSLayoutConstraint.activate([
+            productView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            productView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor,
+                constant: Constants.Inset.topInset
+            ),
+            productView.heightAnchor.constraint(equalTo: productView.widthAnchor, multiplier: 1),
 
-                basketView.leadingAnchor.constraint(equalTo: productView.trailingAnchor, constant: inset),
-                basketView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-                basketView.topAnchor.constraint(equalTo: productView.topAnchor),
-                basketView.heightAnchor.constraint(equalTo: productView.heightAnchor, multiplier: 1),
-                basketView.heightAnchor.constraint(equalTo: basketView.widthAnchor)
-            ])
-        }
+            basketView.leadingAnchor.constraint(equalTo: productView.trailingAnchor, constant: inset),
+            basketView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            basketView.topAnchor.constraint(equalTo: productView.topAnchor),
+            basketView.heightAnchor.constraint(equalTo: productView.heightAnchor, multiplier: 1),
+            basketView.heightAnchor.constraint(equalTo: basketView.widthAnchor),
+
+            emptyBasketLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyBasketLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }
 
 extension BasketViewController: ProductDetailedViewDelegate {
     func chooseSizeFor(product: Product) {
-        let sizeChoosingVC = SizeChoosingViewController(product: product)
-        present(sizeChoosingVC, animated: true)
+        product.isAddedToBasket = false
+        updateOrderedProducts()
     }
 }
