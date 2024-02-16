@@ -20,11 +20,11 @@ final class ProductDetailedViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private lazy var productView1 = ProductDetailedView(product: storage.products[0])
-    private lazy var productView2 = ProductDetailedView(product: storage.products[1])
-    private lazy var productView3 = ProductDetailedView(product: storage.products[2])
-    private lazy var productView4 = ProductDetailedView(product: storage.products[3])
-    private lazy var productView5 = ProductDetailedView(product: storage.products[4])
+    private lazy var productView1 = ProductDetailedView(product: storage.products[0], isPreceHidden: false)
+    private lazy var productView2 = ProductDetailedView(product: storage.products[1], isPreceHidden: false)
+    private lazy var productView3 = ProductDetailedView(product: storage.products[2], isPreceHidden: false)
+    private lazy var productView4 = ProductDetailedView(product: storage.products[3], isPreceHidden: false)
+    private lazy var productView5 = ProductDetailedView(product: storage.products[4], isPreceHidden: false)
 
     // MARK: - Public Properties
 

@@ -38,6 +38,8 @@ final class BasketView: UIView {
 
     // MARK: - Visual Components
 
+    private lazy var productDetailedView = ProductDetailedView(product: product, isPreceHidden: true)
+    private let viewForCostraints = UIView()
     private lazy var nameLabel = UIView.makeBasketViewLabel(text: product.name)
     private lazy var quantityLabe = UIView.makeBasketViewLabel(text: Constants.Text.quantity)
     private lazy var sizeLabel = UIView.makeBasketViewLabel(text: Constants.Text.size)
@@ -77,8 +79,9 @@ final class BasketView: UIView {
     // MARK: - Private Methods
 
     private func setUI() {
-        backgroundColor = .lightGrayApp
-        addSubviews(nameLabel, quantityLabe, sizeLabel, priceLabel, priceValueLabel)
+        addSubviews(productDetailedView, viewForCostraints)
+        viewForCostraints.addSubviews(nameLabel, quantityLabe, sizeLabel, priceLabel, priceValueLabel)
+        viewForCostraints.disableTARMIC()
         disableTARMIC()
         setConstraints()
     }
@@ -90,11 +93,23 @@ private extension BasketView {
     func setConstraints() {
         let inset = Constants.Inset.generalInset
         NSLayoutConstraint.activate([
-            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            productDetailedView.topAnchor.constraint(equalTo: topAnchor),
+            productDetailedView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            productDetailedView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+            productDetailedView.heightAnchor.constraint(equalTo: productDetailedView.widthAnchor),
 
-            priceValueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            priceValueLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            viewForCostraints.topAnchor.constraint(equalTo: topAnchor),
+            viewForCostraints.bottomAnchor.constraint(equalTo: bottomAnchor),
+            viewForCostraints.leadingAnchor.constraint(equalTo: productDetailedView.trailingAnchor, constant: inset),
+            viewForCostraints.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+            viewForCostraints.heightAnchor.constraint(equalTo: viewForCostraints.widthAnchor),
+            viewForCostraints.heightAnchor.constraint(equalTo: productDetailedView.heightAnchor),
+
+            priceLabel.leadingAnchor.constraint(equalTo: viewForCostraints.leadingAnchor),
+            priceLabel.bottomAnchor.constraint(equalTo: viewForCostraints.bottomAnchor),
+
+            priceValueLabel.trailingAnchor.constraint(equalTo: viewForCostraints.trailingAnchor),
+            priceValueLabel.bottomAnchor.constraint(equalTo: viewForCostraints.bottomAnchor),
 
             sizeLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
             // TODO: - Set correct constraint

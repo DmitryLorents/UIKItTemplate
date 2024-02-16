@@ -24,7 +24,7 @@ final class BasketViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private lazy var productView = ProductDetailedView(product: defaultProduct)
+//    private lazy var productView = ProductDetailedView(product: defaultProduct)
     private lazy var basketView = BasketView(product: defaultProduct)
     private lazy var emptyBasketLabel: UILabel = {
         let label = UILabel()
@@ -60,7 +60,7 @@ final class BasketViewController: UIViewController {
 
     private func setUI() {
         title = Constants.Text.title
-        view.addSubviews(emptyBasketLabel, basketView, productView)
+        view.addSubviews(emptyBasketLabel, basketView)
 //        updateOrderedProducts()
         view.disableTARMIC()
         setDelegates()
@@ -72,11 +72,9 @@ final class BasketViewController: UIViewController {
             updateUIState(basketIsEmpty: true)
             return
         }
-        productView.removeFromSuperview()
         basketView.removeFromSuperview()
-        productView = ProductDetailedView(product: product)
         basketView = BasketView(product: product)
-        view.addSubviews(productView, basketView)
+        view.addSubview(basketView)
         view.disableTARMIC()
         setConstraints()
         updateUIState(basketIsEmpty: false)
@@ -84,7 +82,6 @@ final class BasketViewController: UIViewController {
     }
 
     private func updateUIState(basketIsEmpty: Bool) {
-        productView.isHidden = basketIsEmpty
         basketView.isHidden = basketIsEmpty
         emptyBasketLabel.isHidden = !basketIsEmpty
     }
@@ -102,18 +99,9 @@ private extension BasketViewController {
     func setConstraints() {
         let inset = Constants.Inset.generalInset
         NSLayoutConstraint.activate([
-            productView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-            productView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor,
-                constant: Constants.Inset.topInset
-            ),
-            productView.heightAnchor.constraint(equalTo: productView.widthAnchor, multiplier: 1),
-
-            basketView.leadingAnchor.constraint(equalTo: productView.trailingAnchor, constant: inset),
+            basketView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: inset),
+            basketView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
             basketView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-            basketView.topAnchor.constraint(equalTo: productView.topAnchor),
-            basketView.heightAnchor.constraint(equalTo: productView.heightAnchor, multiplier: 1),
-            basketView.heightAnchor.constraint(equalTo: basketView.widthAnchor),
 
             emptyBasketLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyBasketLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)

@@ -31,6 +31,7 @@ final class ProductDetailedView: UIView {
         label.textAlignment = .right
         label.font = Constants.font
         label.sizeToFit()
+        label.isHidden = isPriceHidden
         return label
     }()
 
@@ -56,11 +57,13 @@ final class ProductDetailedView: UIView {
     // MARK: - Private Properties
 
     private let product: Product
+    private let isPriceHidden: Bool
 
     // MARK: - Initializers
 
-    init(product: Product) {
+    init(product: Product, isPreceHidden: Bool) {
         self.product = product
+        self.isPriceHidden = isPreceHidden
         super.init(frame: .zero)
         setUI()
     }
