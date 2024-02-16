@@ -63,7 +63,7 @@ final class ProductDetailedView: UIView {
 
     init(product: Product, isPreceHidden: Bool) {
         self.product = product
-        self.isPriceHidden = isPreceHidden
+        isPriceHidden = isPreceHidden
         super.init(frame: .zero)
         setUI()
     }

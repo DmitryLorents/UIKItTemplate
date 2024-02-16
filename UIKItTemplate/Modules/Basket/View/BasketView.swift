@@ -12,9 +12,15 @@ final class BasketView: UIView {
     // MARK: - Constants
 
     private enum Constants {
-        enum Inset {
-            static let buttonSideInset: CGFloat = 4
+        enum Size {
+            static let basketButtonSideInset: CGFloat = 4
             static let generalInset: CGFloat = 12
+            static let cornerRadius: CGFloat = 7
+            static let smallButtonSize: CGFloat = 15
+            static let bigButtonHeight: CGFloat = 17
+            static let maxProductlQuantity = 9
+            static let sizeButtonLeadingInset: CGFloat = 7
+            static let interButtonInset: CGFloat = 4
         }
 
         enum Image {
@@ -27,6 +33,8 @@ final class BasketView: UIView {
             static let size = "Размер"
             static let price = "Цена"
             static let currency = " ₽"
+            static let minus = "-"
+            static let plus = "+"
         }
 
         enum Font {
@@ -41,7 +49,8 @@ final class BasketView: UIView {
     private lazy var productDetailedView = ProductDetailedView(product: product, isPreceHidden: true)
     private let viewForCostraints = UIView()
     private lazy var nameLabel = UIView.makeBasketViewLabel(text: product.name)
-    private lazy var quantityLabe = UIView.makeBasketViewLabel(text: Constants.Text.quantity)
+    private lazy var quantityLabel = UIView.makeBasketViewLabel(text: Constants.Text.quantity)
+    private lazy var quantityValueLabel = UIView.makeBasketViewLabel(text: " \(productQuantity) ")
     private lazy var sizeLabel = UIView.makeBasketViewLabel(text: Constants.Text.size)
     private lazy var priceLabel = UIView.makeBasketViewLabel(text: Constants.Text.price)
     private lazy var priceValueLabel: UILabel = {
@@ -53,7 +62,9 @@ final class BasketView: UIView {
         return label
     }()
 
-//    private lazy var size
+    private lazy var minusButton = makelightPinkCapsuledButton(title: Constants.Text.minus)
+    private lazy var plusButton = makelightPinkCapsuledButton(title: Constants.Text.plus)
+    private let sizeButtonsView = UIView()
 
     // MARK: - Public Properties
 
@@ -62,6 +73,7 @@ final class BasketView: UIView {
     // MARK: - Private Properties
 
     private let product: Product
+    private var productQuantity = 1
 
     // MARK: - Initializers
 
@@ -79,11 +91,48 @@ final class BasketView: UIView {
     // MARK: - Private Methods
 
     private func setUI() {
+        sizeButtonsView.backgroundColor = .systemMint
         addSubviews(productDetailedView, viewForCostraints)
-        viewForCostraints.addSubviews(nameLabel, quantityLabe, sizeLabel, priceLabel, priceValueLabel)
+        viewForCostraints.addSubviews(
+            nameLabel,
+            quantityLabel,
+            sizeLabel,
+            priceLabel,
+            priceValueLabel,
+            minusButton,
+            plusButton,
+            quantityValueLabel,
+            sizeButtonsView
+        )
         viewForCostraints.disableTARMIC()
+
         disableTARMIC()
         setConstraints()
+        setButtonsAction()
+    }
+
+    private func setButtonsAction() {
+        plusButton.addTarget(self, action: #selector(changeQuantity(sender:)), for: .touchUpInside)
+        minusButton.addTarget(self, action: #selector(changeQuantity(sender:)), for: .touchUpInside)
+    }
+
+    @objc func changeQuantity(sender: UIButton) {
+        print(#function)
+        switch sender.currentTitle {
+        case Constants.Text.minus:
+            productQuantity -= 1
+        case Constants.Text.plus:
+            productQuantity += 1
+        default:
+            break
+        }
+        if productQuantity == 0 {
+            productQuantity = 1
+        }
+        if productQuantity > Constants.Size.maxProductlQuantity {
+            productQuantity = Constants.Size.maxProductlQuantity
+        }
+        quantityValueLabel.text = " \(productQuantity) "
     }
 }
 
@@ -91,7 +140,7 @@ final class BasketView: UIView {
 
 private extension BasketView {
     func setConstraints() {
-        let inset = Constants.Inset.generalInset
+        let inset = Constants.Size.generalInset
         NSLayoutConstraint.activate([
             productDetailedView.topAnchor.constraint(equalTo: topAnchor),
             productDetailedView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -115,12 +164,43 @@ private extension BasketView {
             // TODO: - Set correct constraint
             sizeLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -inset * 3),
 
-            quantityLabe.bottomAnchor.constraint(equalTo: sizeLabel.topAnchor, constant: -inset),
-            quantityLabe.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
+            quantityLabel.bottomAnchor.constraint(equalTo: sizeLabel.topAnchor, constant: -inset),
+            quantityLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
 
-            nameLabel.bottomAnchor.constraint(equalTo: quantityLabe.topAnchor, constant: -inset),
+            nameLabel.bottomAnchor.constraint(equalTo: quantityLabel.topAnchor, constant: -inset),
             nameLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
 
+            plusButton.trailingAnchor.constraint(equalTo: viewForCostraints.trailingAnchor, constant: -inset),
+            plusButton.centerYAnchor.constraint(equalTo: quantityLabel.centerYAnchor),
+            plusButton.heightAnchor.constraint(equalToConstant: Constants.Size.smallButtonSize),
+            plusButton.widthAnchor.constraint(equalToConstant: Constants.Size.smallButtonSize),
+
+            quantityValueLabel.bottomAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
+            quantityValueLabel.trailingAnchor.constraint(equalTo: plusButton.leadingAnchor),
+
+            minusButton.trailingAnchor.constraint(equalTo: quantityValueLabel.leadingAnchor),
+            minusButton.centerYAnchor.constraint(equalTo: quantityLabel.centerYAnchor),
+            minusButton.heightAnchor.constraint(equalToConstant: Constants.Size.smallButtonSize),
+            minusButton.widthAnchor.constraint(equalToConstant: Constants.Size.smallButtonSize),
+
+            sizeButtonsView.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
+            sizeButtonsView.trailingAnchor.constraint(equalTo: viewForCostraints.trailingAnchor),
+            sizeButtonsView.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: inset),
+            sizeButtonsView.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -inset)
+
         ])
+    }
+}
+
+// Make capsuled button with lightPinkColor
+extension BasketView {
+    private func makelightPinkCapsuledButton(title: String) -> UIButton {
+        let button = UIButton()
+        button.backgroundColor = .lightPinkApp
+        button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = UIFont.makeVerdanaRegular(10)
+        button.setTitle(title, for: .normal)
+        button.layer.cornerRadius = Constants.Size.cornerRadius
+        return button
     }
 }

@@ -24,7 +24,7 @@ public extension UIView {
         layer.addSublayer(bottomLayer)
     }
 
-    // Create label with desired parameters
+    // Make label with desired parameters
     static func makeBasketViewLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text

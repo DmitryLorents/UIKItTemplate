@@ -48,11 +48,12 @@ final class ProductStorage {
     // MARK: - Public functions
 
     func getOrderedProducts() -> [Product] {
-        for product in products where product.isAddedToBasket {
-            // TODO: - Create correct choosing
-            return [product]
-        }
-        return []
+//        for product in products where product.isAddedToBasket {
+//            // TODO: - Create correct choosing
+//                return [product]
+//        }
+//        return []
+        [products[0]]
     }
 
     // MARK: - Private Methods
