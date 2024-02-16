@@ -12,9 +12,10 @@ final class BasketView: UIView {
     // MARK: - Constants
 
     private enum Constants {
-        static let imageEdgeInset: CGFloat = 28
-        static let generalInset: CGFloat = 12
-        static let labelRightInset: CGFloat = 9
+        enum Inset {
+            static let buttonSideInset: CGFloat = 4
+            static let generalInset: CGFloat = 12
+        }
 
         enum Image {
             static let basketGray = "basketGray"
@@ -43,12 +44,14 @@ final class BasketView: UIView {
     private lazy var priceLabel = UIView.makeBasketViewLabel(text: Constants.Text.price)
     private lazy var priceValueLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.Text.price
+        label.text = "\(product.price)\(Constants.Text.currency)"
         label.textAlignment = .right
         label.font = Constants.Font.verdanaBold10
         label.sizeToFit()
         return label
     }()
+
+//    private lazy var size
 
     // MARK: - Public Properties
 
@@ -75,16 +78,9 @@ final class BasketView: UIView {
 
     private func setUI() {
         backgroundColor = .lightGrayApp
-        layer.cornerRadius = 20
-        addSubviews(priceLabel, productImageView, basketImageView)
+        addSubviews(nameLabel, quantityLabe, sizeLabel, priceLabel, priceValueLabel)
         disableTARMIC()
         setConstraints()
-    }
-
-    @objc private func getSize() {
-        basketImageView.image = UIImage(named: Constants.Image.basketTinted)
-        product.isAddedToBasket = true
-        delegate?.chooseSizeFor(product: product)
     }
 }
 
@@ -92,19 +88,23 @@ final class BasketView: UIView {
 
 private extension BasketView {
     func setConstraints() {
+        let inset = Constants.Inset.generalInset
         NSLayoutConstraint.activate([
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.generalInset),
-            priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.labelRightInset),
+            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            productImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.imageEdgeInset),
-            productImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.imageEdgeInset),
-            productImageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.imageEdgeInset),
-            productImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constants.imageEdgeInset),
+            priceValueLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            priceValueLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            basketImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.generalInset),
-            basketImageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.generalInset),
-            basketImageView.heightAnchor.constraint(equalToConstant: Constants.generalInset),
-            basketImageView.widthAnchor.constraint(equalToConstant: Constants.generalInset)
+            sizeLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
+            // TODO: - Set correct constraint
+            sizeLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -inset * 3),
+
+            quantityLabe.bottomAnchor.constraint(equalTo: sizeLabel.topAnchor, constant: -inset),
+            quantityLabe.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
+
+            nameLabel.bottomAnchor.constraint(equalTo: quantityLabe.topAnchor, constant: -inset),
+            nameLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
 
         ])
     }

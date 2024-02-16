@@ -45,7 +45,15 @@ final class ProductStorage {
 
     private init() {}
 
-    // MARK: - IBAction
+    // MARK: - Public functions
+
+    func getOrderedProducts() -> [Product] {
+        for product in products where product.isAddedToBasket {
+            // TODO: - Create correct choosing
+            return [product]
+        }
+        return []
+    }
 
     // MARK: - Private Methods
 }
