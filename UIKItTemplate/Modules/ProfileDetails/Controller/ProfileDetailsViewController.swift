@@ -1,29 +1,34 @@
-// ViewController.swift
+// ProfileDetailsViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Class Controller
 class ProfileDetailsViewController: UIViewController {
-    // MARK: - Types
-    
     // MARK: - Constants
-    
-    // MARK: - IBOutlets
-    
+
     // MARK: - Visual Components
-    
-    // MARK: - Public Properties
-    
+
     // MARK: - Private Properties
-    
-    // MARK: - Initializers
-    
+
     // MARK: - Life Cycle
-    
-    // MARK: - Public Methods
-    
-    // MARK: - IBAction
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupSubviews()
+        configureSubviews()
+    }
+
     // MARK: - Private Methods
+
+    private func setupSubviews() {
+        view.backgroundColor = .white
+        view.addSubViews(
+        )
+    }
+
+    private func configureSubviews() {
+        NSLayoutConstraint.activate([
+        ])
+    }
 }

@@ -1,8 +1,4 @@
-//
-//  CatalogView.swift
-//  UIKItTemplate
-//
-//  Created by Dmitry on 14.02.2024.
-//
+// CatalogView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import Foundation
