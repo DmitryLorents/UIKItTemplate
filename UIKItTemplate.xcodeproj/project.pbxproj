@@ -27,7 +27,7 @@
 		0AC878DA2B7CF12600A5AAC3 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878D52B7CF12600A5AAC3 /* ProfileModel.swift */; };
 		0AC878DB2B7CF12600A5AAC3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878D72B7CF12600A5AAC3 /* ProfileViewController.swift */; };
 		0AC878DC2B7CF12600A5AAC3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878D92B7CF12600A5AAC3 /* CardView.swift */; };
-		0AC878E32B7CF16300A5AAC3 /* ProfileDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878DE2B7CF16300A5AAC3 /* ProfileDetailsView.swift */; };
+		0AC878E32B7CF16300A5AAC3 /* InfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878DE2B7CF16300A5AAC3 /* InfoTextField.swift */; };
 		0AC878E42B7CF16300A5AAC3 /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E02B7CF16300A5AAC3 /* ProfileDetailsViewController.swift */; };
 		0AC878E52B7CF16300A5AAC3 /* ProfileDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E22B7CF16300A5AAC3 /* ProfileDetailsModel.swift */; };
 		0AC878EC2B7CF19A00A5AAC3 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E72B7CF19900A5AAC3 /* BasketViewController.swift */; };
@@ -59,7 +59,7 @@
 		0AC878D52B7CF12600A5AAC3 /* ProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		0AC878D72B7CF12600A5AAC3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0AC878D92B7CF12600A5AAC3 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		0AC878DE2B7CF16300A5AAC3 /* ProfileDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsView.swift; sourceTree = "<group>"; };
+		0AC878DE2B7CF16300A5AAC3 /* InfoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTextField.swift; sourceTree = "<group>"; };
 		0AC878E02B7CF16300A5AAC3 /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
 		0AC878E22B7CF16300A5AAC3 /* ProfileDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsModel.swift; sourceTree = "<group>"; };
 		0AC878E72B7CF19900A5AAC3 /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 		0AC878DD2B7CF16300A5AAC3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AC878DE2B7CF16300A5AAC3 /* ProfileDetailsView.swift */,
+				0AC878DE2B7CF16300A5AAC3 /* InfoTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -483,7 +483,7 @@
 				0AC878F12B7CF46D00A5AAC3 /* UIView+Extension.swift in Sources */,
 				0AC878DB2B7CF12600A5AAC3 /* ProfileViewController.swift in Sources */,
 				0AC878C92B7CF00C00A5AAC3 /* ProductDetailedViewController.swift in Sources */,
-				0AC878E32B7CF16300A5AAC3 /* ProfileDetailsView.swift in Sources */,
+				0AC878E32B7CF16300A5AAC3 /* InfoTextField.swift in Sources */,
 				0AC878EC2B7CF19A00A5AAC3 /* BasketViewController.swift in Sources */,
 				0AC878E52B7CF16300A5AAC3 /* ProfileDetailsModel.swift in Sources */,
 				0AC878D22B7CF0E800A5AAC3 /* SizeChoosingViewController.swift in Sources */,
