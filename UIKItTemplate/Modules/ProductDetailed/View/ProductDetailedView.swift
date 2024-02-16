@@ -4,7 +4,7 @@
 import UIKit
 
 protocol ProductDetailedViewDelegate: AnyObject {
-    func chooseSizeFor(product: Product)
+    func didTapBasketButton(product: Product)
 }
 
 /// View to show product with price
@@ -86,7 +86,7 @@ final class ProductDetailedView: UIView {
     @objc private func getSize() {
         basketImageView.image = UIImage(named: Constants.Image.basketTinted)
         product.isAddedToBasket = true
-        delegate?.chooseSizeFor(product: product)
+        delegate?.didTapBasketButton(product: product)
     }
 }
 

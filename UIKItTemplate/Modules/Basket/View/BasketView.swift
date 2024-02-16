@@ -3,9 +3,9 @@
 
 import UIKit
 
-// protocol ProductDetailedViewDelegate: AnyObject {
-//    func chooseSizeFor(product: Product)
-// }
+protocol BasketViewDelegate: AnyObject {
+    func didChangeProductAmount(product: Product)
+}
 
 /// View to show product with price
 final class BasketView: UIView {
@@ -15,6 +15,7 @@ final class BasketView: UIView {
         enum Size {
             static let basketButtonSideInset: CGFloat = 4
             static let generalInset: CGFloat = 12
+            static let interViewsInset: CGFloat = 16
             static let cornerRadius: CGFloat = 7
             static let smallButtonSize: CGFloat = 15
             static let bigButtonHeight: CGFloat = 17
@@ -69,7 +70,7 @@ final class BasketView: UIView {
 
     // MARK: - Public Properties
 
-    weak var delegate: ProductDetailedViewDelegate?
+    weak var delegate: BasketViewDelegate?
 
     // MARK: - Private Properties
 
@@ -92,7 +93,6 @@ final class BasketView: UIView {
     // MARK: - Private Methods
 
     private func setUI() {
-        sizeButtonsView.backgroundColor = .systemMint
         addSubviews(productDetailedView, viewForCostraints)
         disableTARMIC()
         viewForCostraints.addSubviews(
@@ -108,6 +108,7 @@ final class BasketView: UIView {
         )
         viewForCostraints.disableTARMIC()
         makeSizeButtons()
+        highliteSizeButton()
         setConstraints()
         setStepperButtonsAction()
     }
@@ -152,12 +153,28 @@ final class BasketView: UIView {
         }
     }
 
+    private func removeAllBorderForSizeButtons() {
+        sizeButtonsView.subviews.forEach { $0.layer.borderWidth = 0 }
+    }
+
+    private func highliteSizeButton() {
+        for subview in sizeButtonsView.subviews {
+            guard let button = subview as? UIButton else { return }
+            if button.currentTitle == String(product.size) {
+                button.layer.borderWidth = 1
+            }
+        }
+    }
+
     @objc func changeProductSize(sender: UIButton) {
-        print(#function)
+        if let title = sender.currentTitle {
+            product.size = Int(title) ?? ProductStorage.sizes[0]
+        }
+        removeAllBorderForSizeButtons()
+        sender.layer.borderWidth = 1
     }
 
     @objc func changeQuantity(sender: UIButton) {
-        print(#function)
         switch sender.currentTitle {
         case Constants.Text.minus:
             productQuantity -= 1
@@ -173,6 +190,8 @@ final class BasketView: UIView {
             productQuantity = Constants.Size.maxProductlQuantity
         }
         quantityValueLabel.text = " \(productQuantity) "
+        product.amount = productQuantity
+        delegate?.didChangeProductAmount(product: product)
     }
 }
 
@@ -181,6 +200,7 @@ final class BasketView: UIView {
 private extension BasketView {
     func setConstraints() {
         let inset = Constants.Size.generalInset
+        let interViewsInset = Constants.Size.interViewsInset
         NSLayoutConstraint.activate([
             productDetailedView.topAnchor.constraint(equalTo: topAnchor),
             productDetailedView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -189,7 +209,10 @@ private extension BasketView {
 
             viewForCostraints.topAnchor.constraint(equalTo: topAnchor),
             viewForCostraints.bottomAnchor.constraint(equalTo: bottomAnchor),
-            viewForCostraints.leadingAnchor.constraint(equalTo: productDetailedView.trailingAnchor, constant: inset),
+            viewForCostraints.leadingAnchor.constraint(
+                equalTo: productDetailedView.trailingAnchor,
+                constant: interViewsInset
+            ),
             viewForCostraints.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
             viewForCostraints.heightAnchor.constraint(equalTo: viewForCostraints.widthAnchor),
             viewForCostraints.heightAnchor.constraint(equalTo: productDetailedView.heightAnchor),
@@ -239,6 +262,7 @@ extension BasketView {
         button.titleLabel?.font = UIFont.makeVerdanaRegular(10)
         button.setTitle(title, for: .normal)
         button.layer.cornerRadius = Constants.Size.cornerRadius
+        button.layer.borderColor = UIColor.magentaApp.cgColor
         return button
     }
 }

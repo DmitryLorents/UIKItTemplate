@@ -12,6 +12,7 @@ final class Product {
     var price: Int
     var size: Int
     var isAddedToBasket: Bool = false
+    var amount = 1
 
     // MARK: - Initialization
 
