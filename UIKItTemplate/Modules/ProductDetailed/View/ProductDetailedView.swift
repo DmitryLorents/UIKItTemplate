@@ -40,7 +40,7 @@ final class ProductDetailedView: UIView {
     }()
 
     private lazy var basketImageView: UIImageView = {
-        let imageName = Constants.Image.basketGray
+        let imageName = product.isAddedToBasket ? Constants.Image.basketTinted : Constants.Image.basketGray
         let imageView = UIImageView(image: UIImage(named: imageName))
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(getSize))
         imageView.addGestureRecognizer(tapGesture)
@@ -81,6 +81,7 @@ final class ProductDetailedView: UIView {
 
     @objc private func getSize() {
         basketImageView.image = UIImage(named: Constants.Image.basketTinted)
+        product.isAddedToBasket = true
         delegate?.chooseSizeFor(product: product)
     }
 }
