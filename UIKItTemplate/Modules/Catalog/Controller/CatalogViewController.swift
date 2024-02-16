@@ -18,7 +18,7 @@ final class CatalogViewController: UIViewController {
         }
 
         enum Fonts {
-            static let verdanaBold14 = UIFont.makeVerdanaBold14()
+            static let verdanaBold14 = UIFont.makeVerdanaBold(14)
         }
 
         enum ImageName {

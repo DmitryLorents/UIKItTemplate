@@ -13,18 +13,29 @@ final class ProductStorage {
     // MARK: - Private Properties
 
     private let womanBlackShoes = Product(
+        name: "Женские ботинки",
         imageName: "womanBlackShoes",
         cost: 2250,
         size: ProductStorage.sizes.first ?? 0
     )
-    private let manBlackShoes = Product(imageName: "manBlackShoes", cost: 4250, size: ProductStorage.sizes[0])
-    private let runningShoes = Product(imageName: "runningShoes", cost: 5750, size: ProductStorage.sizes[0])
+    private let manBlackShoes = Product(
+        name: "Мужские ботинки",
+        imageName: "manBlackShoes",
+        cost: 4250,
+        size: ProductStorage.sizes[0]
+    )
+    private let runningShoes = Product(
+        name: "Кроссовки",
+        imageName: "runningShoes",
+        cost: 5750,
+        size: ProductStorage.sizes[0]
+    )
     private let womanYellowShoes = Product(
-        imageName: "womanYellowShoes",
+        name: "Женские туфли", imageName: "womanYellowShoes",
         cost: 3500,
         size: ProductStorage.sizes[0]
     )
-    private let sneakers = Product(imageName: "sneakers", cost: 5750, size: ProductStorage.sizes[0])
+    private let sneakers = Product(name: "Кеды", imageName: "sneakers", cost: 5750, size: ProductStorage.sizes[0])
 
     var products: [Product] {
         [womanBlackShoes, manBlackShoes, runningShoes, womanYellowShoes, sneakers]

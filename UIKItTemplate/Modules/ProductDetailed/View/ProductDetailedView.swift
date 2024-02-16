@@ -16,6 +16,7 @@ final class ProductDetailedView: UIView {
         static let generalInset: CGFloat = 12
         static let labelRightInset: CGFloat = 9
         static let currency = " ₽"
+        static let font = UIFont.makeVerdanaBold(10)
         enum Image {
             static let basketGray = "basketGray"
             static let basketTinted = "basketTinted"
@@ -28,7 +29,7 @@ final class ProductDetailedView: UIView {
         let label = UILabel()
         label.text = "\(product.price)\(Constants.currency)"
         label.textAlignment = .right
-        label.font = UIFont.makeVerdanaBold10()
+        label.font = Constants.font
         label.sizeToFit()
         return label
     }()

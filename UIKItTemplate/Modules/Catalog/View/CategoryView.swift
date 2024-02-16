@@ -6,7 +6,10 @@ import UIKit
 final class CategoryView: UIView {
     // MARK: - Constants
 
-    let leftInset: CGFloat = 20
+    private enum Constants {
+        static let leftInset: CGFloat = 20
+        static let fontSize: CGFloat = 14
+    }
 
     // MARK: - Visual Components
 
@@ -14,7 +17,7 @@ final class CategoryView: UIView {
         let label = UILabel()
         label.text = title
         label.textAlignment = .left
-        label.font = UIFont.makeVerdanaBold14()
+        label.font = UIFont.makeVerdanaBold(Constants.fontSize)
         label.sizeToFit()
         label.frame.origin = .zero
         return label
@@ -65,7 +68,7 @@ final class CategoryView: UIView {
 private extension CategoryView {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leftInset),
+            categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.leftInset),
             categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
 
             categoryImageView.trailingAnchor.constraint(equalTo: trailingAnchor),

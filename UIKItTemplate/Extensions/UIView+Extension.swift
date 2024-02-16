@@ -23,4 +23,14 @@ public extension UIView {
         bottomLayer.backgroundColor = UIColor.separatorApp.cgColor
         layer.addSublayer(bottomLayer)
     }
+
+    // Create label with desired parameters
+    static func makeBasketViewLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .left
+        label.font = UIFont.makeVerdanaRegular(12)
+        label.sizeToFit()
+        return label
+    }
 }

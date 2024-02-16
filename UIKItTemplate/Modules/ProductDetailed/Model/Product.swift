@@ -7,6 +7,7 @@ import Foundation
 final class Product {
     // MARK: - Public parameters
 
+    let name: String
     let imageName: String
     var price: Int
     var size: Int
@@ -14,7 +15,8 @@ final class Product {
 
     // MARK: - Initialization
 
-    init(imageName: String, cost: Int, size: Int) {
+    init(name: String, imageName: String, cost: Int, size: Int) {
+        self.name = name
         self.imageName = imageName
         price = cost
         self.size = size

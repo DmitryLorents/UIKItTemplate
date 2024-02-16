@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// Screen with detailed information for зкщвгсеы
+/// Screen with detailed information for products
 final class ProductDetailedViewController: UIViewController {
     // MARK: - Constants
 

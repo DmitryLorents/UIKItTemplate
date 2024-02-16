@@ -19,6 +19,7 @@ final class SizeChoosingViewController: UIViewController {
 
         enum Text {
             static let title = "Выберите размер"
+            static let font = UIFont.makeVerdanaBold(16)
         }
 
         enum Image {
@@ -32,7 +33,7 @@ final class SizeChoosingViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.Text.title
         label.textAlignment = .center
-        label.font = UIFont.makeVerdanaBold16()
+        label.font = Constants.Text.font
         label.sizeToFit()
         return label
     }()

@@ -6,7 +6,10 @@ import UIKit
 final class SizeChoosingLabel: UILabel {
     // MARK: - Constants
 
-    private let euroSize = " EU"
+    private enum Constants {
+        static let euroSize = " EU"
+        static let font = UIFont.makeVerdanaRegular(16)
+    }
 
     // MARK: - Private Properties
 
@@ -28,9 +31,9 @@ final class SizeChoosingLabel: UILabel {
     // MARK: - Private Methods
 
     private func setUI() {
-        text = "\(size)\(euroSize)"
+        text = "\(size)\(Constants.euroSize)"
         textAlignment = .left
-        font = UIFont.makeVerdana16()
+        font = Constants.font
         sizeToFit()
     }
 }
