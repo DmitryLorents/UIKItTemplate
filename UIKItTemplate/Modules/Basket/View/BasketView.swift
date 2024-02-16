@@ -18,6 +18,7 @@ final class BasketView: UIView {
             static let cornerRadius: CGFloat = 7
             static let smallButtonSize: CGFloat = 15
             static let bigButtonHeight: CGFloat = 17
+            static let bigButtonWidth: CGFloat = 31
             static let maxProductlQuantity = 9
             static let sizeButtonLeadingInset: CGFloat = 7
             static let interButtonInset: CGFloat = 4
@@ -93,6 +94,7 @@ final class BasketView: UIView {
     private func setUI() {
         sizeButtonsView.backgroundColor = .systemMint
         addSubviews(productDetailedView, viewForCostraints)
+        disableTARMIC()
         viewForCostraints.addSubviews(
             nameLabel,
             quantityLabel,
@@ -105,15 +107,53 @@ final class BasketView: UIView {
             sizeButtonsView
         )
         viewForCostraints.disableTARMIC()
-
-        disableTARMIC()
+        makeSizeButtons()
         setConstraints()
-        setButtonsAction()
+        setStepperButtonsAction()
     }
 
-    private func setButtonsAction() {
+    private func setStepperButtonsAction() {
         plusButton.addTarget(self, action: #selector(changeQuantity(sender:)), for: .touchUpInside)
         minusButton.addTarget(self, action: #selector(changeQuantity(sender:)), for: .touchUpInside)
+    }
+
+    private func makeSizeButtons() {
+        for (index, size) in ProductStorage.sizes.enumerated() {
+            let sizeButton = makelightPinkCapsuledButton(title: "\(size)")
+            sizeButtonsView.addSubviews(sizeButton)
+            sizeButton.addTarget(self, action: #selector(changeProductSize(sender:)), for: .touchUpInside)
+            setSizeButtonCostraints(sizeButton, index: index)
+        }
+        sizeButtonsView.disableTARMIC()
+    }
+
+    private func setSizeButtonCostraints(_ button: UIButton, index: Int) {
+        let itemsperRow = 4
+        let buttonHeight = Constants.Size.bigButtonHeight
+        let buttonWidth = Constants.Size.bigButtonWidth
+        let interItemInset = Constants.Size.interButtonInset
+        let initialLeadingInset = Constants.Size.sizeButtonLeadingInset
+        // set top inset depending on row number
+        let topInset = (index + 1) <= itemsperRow ? 0 : (buttonHeight + interItemInset)
+        // set leading inset depending of index and row
+        let leadingInset = (index + 1) <= itemsperRow ? // ...+1) due to index start from 0
+            initialLeadingInset + (buttonWidth + interItemInset) * CGFloat(index) :
+            initialLeadingInset
+
+        NSLayoutConstraint.activate([
+            button.widthAnchor.constraint(equalToConstant: buttonWidth),
+            button.heightAnchor.constraint(equalToConstant: buttonHeight),
+            button.leadingAnchor.constraint(equalTo: sizeButtonsView.leadingAnchor, constant: leadingInset),
+            button.topAnchor.constraint(equalTo: sizeButtonsView.topAnchor, constant: topInset)
+        ])
+        // case for row #2
+        if topInset > 0 {
+            button.bottomAnchor.constraint(equalTo: sizeButtonsView.bottomAnchor).isActive = true
+        }
+    }
+
+    @objc func changeProductSize(sender: UIButton) {
+        print(#function)
     }
 
     @objc func changeQuantity(sender: UIButton) {
@@ -161,8 +201,6 @@ private extension BasketView {
             priceValueLabel.bottomAnchor.constraint(equalTo: viewForCostraints.bottomAnchor),
 
             sizeLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
-            // TODO: - Set correct constraint
-            sizeLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor, constant: -inset * 3),
 
             quantityLabel.bottomAnchor.constraint(equalTo: sizeLabel.topAnchor, constant: -inset),
             quantityLabel.leadingAnchor.constraint(equalTo: priceLabel.leadingAnchor),
