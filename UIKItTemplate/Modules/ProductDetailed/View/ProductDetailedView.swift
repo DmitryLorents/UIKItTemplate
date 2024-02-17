@@ -73,6 +73,13 @@ final class ProductDetailedView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Public methods
+
+    func updateBasketImageState() {
+        let imageName = product.isAddedToBasket ? Constants.Image.basketTinted : Constants.Image.basketGray
+        basketImageView.image = UIImage(named: imageName)
+    }
+
     // MARK: - Private Methods
 
     private func setUI() {

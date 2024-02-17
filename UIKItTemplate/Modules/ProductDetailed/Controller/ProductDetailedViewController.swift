@@ -26,13 +26,9 @@ final class ProductDetailedViewController: UIViewController {
     private lazy var productView4 = ProductDetailedView(product: storage.products[3], isPreceHidden: false)
     private lazy var productView5 = ProductDetailedView(product: storage.products[4], isPreceHidden: false)
 
-    // MARK: - Public Properties
-
     // MARK: - Private Properties
 
     private let storage = ProductStorage.shared
-
-    // MARK: - Initializers
 
     // MARK: - Life Cycle
 
@@ -40,6 +36,11 @@ final class ProductDetailedViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViewsBasketImageState()
     }
 
     // MARK: - Private Methods
@@ -57,6 +58,16 @@ final class ProductDetailedViewController: UIViewController {
         view.subviews.forEach {
             guard let subView = $0 as? ProductDetailedView else { return }
             subView.delegate = self
+        }
+    }
+
+    private func updateViewsBasketImageState() {
+        print(#function)
+        for subview in view.subviews {
+            if let view = subview as? ProductDetailedView {
+                print("true")
+                view.updateBasketImageState()
+            }
         }
     }
 }
