@@ -62,10 +62,8 @@ final class ProductDetailedViewController: UIViewController {
     }
 
     private func updateViewsBasketImageState() {
-        print(#function)
         for subview in view.subviews {
             if let view = subview as? ProductDetailedView {
-                print("true")
                 view.updateBasketImageState()
             }
         }

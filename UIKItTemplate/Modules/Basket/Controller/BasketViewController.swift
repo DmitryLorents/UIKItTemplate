@@ -32,7 +32,6 @@ final class BasketViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    //    private lazy var productView = ProductDetailedView(product: defaultProduct)
     private lazy var basketView = BasketView(product: defaultProduct)
     private var emptyBasketLabel: UILabel = {
         let label = UILabel()
@@ -63,6 +62,15 @@ final class BasketViewController: UIViewController {
         button.titleLabel?.font = UIFont.makeVerdanaBold(16)
         button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(checkoutButtonAction), for: .touchUpInside)
+        // add shadow
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        button.layer.shadowRadius = 2
+        button.layer.cornerRadius = 12
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.layer.masksToBounds = false
         return button
     }()
 
