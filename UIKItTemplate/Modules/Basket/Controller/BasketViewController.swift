@@ -16,10 +16,17 @@ final class BasketViewController: UIViewController {
 
         enum Text {
             static let title = "Корзина"
+            static let emptyLabel = "Ваша корзина пуста"
+            static let advice = "Перейдие в каталог и добавьте товары в корзину"
         }
 
         enum Font {
             static let verdanaBold16 = UIFont.makeVerdanaBold(16)
+            static let verdana16 = UIFont.makeVerdanaRegular(16)
+        }
+
+        enum Image {
+            static let bagShopping = "bagShopping"
         }
     }
 
@@ -27,11 +34,24 @@ final class BasketViewController: UIViewController {
 
     //    private lazy var productView = ProductDetailedView(product: defaultProduct)
     private lazy var basketView = BasketView(product: defaultProduct)
-    private lazy var emptyBasketLabel: UILabel = {
+    private var emptyBasketLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ваша корзина пуста"
+        label.text = Constants.Text.emptyLabel
         label.textAlignment = .center
         label.font = Constants.Font.verdanaBold16
+
+        return label
+    }()
+
+    private let bagShoppingImageView = UIImageView(image: UIImage(named: Constants.Image.bagShopping))
+    private let adviceLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constants.Text.advice
+        label.textAlignment = .center
+        label.font = Constants.Font.verdana16
+        label.textColor = .gray
+        label.numberOfLines = 0
+        // label.sizeToFit()
         return label
     }()
 
@@ -72,7 +92,7 @@ final class BasketViewController: UIViewController {
 
     private func setUI() {
         title = Constants.Text.title
-        view.addSubviews(emptyBasketLabel, basketView, checkoutButton)
+        view.addSubviews(emptyBasketLabel, basketView, checkoutButton, bagShoppingImageView, adviceLabel)
         view.disableTARMIC()
         setDelegates()
     }
@@ -97,6 +117,8 @@ final class BasketViewController: UIViewController {
         basketView.isHidden = basketIsEmpty
         checkoutButton.isHidden = basketIsEmpty
         emptyBasketLabel.isHidden = !basketIsEmpty
+        bagShoppingImageView.isHidden = !basketIsEmpty
+        adviceLabel.isHidden = !basketIsEmpty
     }
 
     private func setDelegates() {
@@ -129,6 +151,16 @@ private extension BasketViewController {
 
             emptyBasketLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyBasketLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
+            adviceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            adviceLabel.topAnchor.constraint(equalTo: bagShoppingImageView.bottomAnchor, constant: 62),
+            adviceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            adviceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+
+            bagShoppingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bagShoppingImageView.bottomAnchor.constraint(equalTo: emptyBasketLabel.topAnchor, constant: -18),
+            bagShoppingImageView.heightAnchor.constraint(equalToConstant: 70),
+            bagShoppingImageView.widthAnchor.constraint(equalTo: bagShoppingImageView.heightAnchor, multiplier: 1),
 
             checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -34),
             checkoutButton.leadingAnchor.constraint(
