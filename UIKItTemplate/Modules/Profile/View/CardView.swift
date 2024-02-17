@@ -11,6 +11,12 @@ final class CardView: UIView {
         static let logoImage = "logo_card"
         static let infoImage = "info"
         static let qrImage = "qr"
+
+        enum Insets {
+            static let iconWidth = CGFloat(30)
+            static let iconHeight = CGFloat(30)
+            static let labelLeading = CGFloat(14)
+        }
     }
 
     // MARK: - Visual Components
@@ -91,25 +97,37 @@ final class CardView: UIView {
             logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             logoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
 
-            qrImageView.widthAnchor.constraint(equalToConstant: 30),
-            qrImageView.heightAnchor.constraint(equalToConstant: 30),
+            qrImageView.widthAnchor.constraint(
+                equalToConstant: Constants.Insets.iconWidth
+            ),
+            qrImageView.heightAnchor.constraint(
+                equalToConstant: Constants.Insets.iconHeight
+            ),
             qrImageView.topAnchor.constraint(equalTo: topAnchor, constant: 13),
             qrImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 291),
 
-            infoImageView.widthAnchor.constraint(equalToConstant: 30),
-            infoImageView.heightAnchor.constraint(equalToConstant: 30),
+            infoImageView.widthAnchor.constraint(
+                equalToConstant: Constants.Insets.iconWidth
+            ),
+            infoImageView.heightAnchor.constraint(
+                equalToConstant: Constants.Insets.iconHeight
+            ),
             infoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 130),
             infoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 291),
 
             discountLabel.widthAnchor.constraint(equalToConstant: 44),
             discountLabel.heightAnchor.constraint(equalToConstant: 19),
             discountLabel.topAnchor.constraint(equalTo: topAnchor, constant: 116),
-            discountLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
+            discountLabel.leadingAnchor.constraint(
+                equalTo: leadingAnchor, constant: Constants.Insets.labelLeading
+            ),
 
             cardNumberLabel.widthAnchor.constraint(equalToConstant: 118),
             cardNumberLabel.heightAnchor.constraint(equalToConstant: 17),
             cardNumberLabel.topAnchor.constraint(equalTo: topAnchor, constant: 142),
-            cardNumberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
+            cardNumberLabel.leadingAnchor.constraint(
+                equalTo: leadingAnchor, constant: Constants.Insets.labelLeading
+            ),
         ])
 
         backgroundColor = .black

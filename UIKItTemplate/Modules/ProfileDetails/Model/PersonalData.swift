@@ -1,4 +1,4 @@
-// ProfileDetailsModel.swift
+// PersonalData.swift
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
@@ -6,10 +6,10 @@ import Foundation
 /// Структура для хранения личных данных пользователя
 struct PersonalData {
     static var personalInfoMap: [String: String] = [
-        "Имя": "Levon",
+        "Имя": "",
         "Фамилия": "",
         "Номер телефона": "",
-        "Размер ноги": "42",
+        "Размер ноги": "",
         "Дата Рождения": "",
         "Почта": ""
     ]

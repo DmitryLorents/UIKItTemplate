@@ -72,7 +72,6 @@ class ProfileViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupSubviews() {
-        view.backgroundColor = .white
         view.addSubViews(
             profileLabel,
             cardView,
@@ -84,8 +83,9 @@ class ProfileViewController: UIViewController {
             inviteFriendLineView,
             messageLineView
         )
-        setupMyDataButton()
+        view.backgroundColor = .white
         view.disableTARMIC()
+        setupMyDataButton()
     }
 
     private func configureSubviews() {
@@ -149,21 +149,23 @@ class ProfileViewController: UIViewController {
             myDataLineView.topAnchor.constraint(
                 equalTo: view.topAnchor, constant: 403
             ),
-            myDataLineView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor, constant: Constants.Insets.left
+            myDataLineView.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
             ),
+
             inviteFriendLineView.topAnchor.constraint(
                 equalTo: view.topAnchor, constant: 455
             ),
-            inviteFriendLineView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor, constant: Constants.Insets.left
+            inviteFriendLineView.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
             ),
+
             messageLineView.topAnchor.constraint(
                 equalTo: view.topAnchor, constant: 507
             ),
-            messageLineView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor, constant: Constants.Insets.left
-            )
+            messageLineView.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
         ])
     }
 
@@ -190,6 +192,7 @@ class ProfileViewController: UIViewController {
     }
 
     @objc private func didTapMyDataButton(_ sender: UIButton) {
-        // soon logic for navigate to my data View
+        let nextVC = ProfileDetailsViewController()
+        navigationController?.pushViewController(nextVC, animated: true)
     }
 }

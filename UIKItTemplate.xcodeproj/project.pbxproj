@@ -29,7 +29,7 @@
 		0AC878DC2B7CF12600A5AAC3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878D92B7CF12600A5AAC3 /* CardView.swift */; };
 		0AC878E32B7CF16300A5AAC3 /* InfoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878DE2B7CF16300A5AAC3 /* InfoTextField.swift */; };
 		0AC878E42B7CF16300A5AAC3 /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E02B7CF16300A5AAC3 /* ProfileDetailsViewController.swift */; };
-		0AC878E52B7CF16300A5AAC3 /* ProfileDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E22B7CF16300A5AAC3 /* ProfileDetailsModel.swift */; };
+		0AC878E52B7CF16300A5AAC3 /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E22B7CF16300A5AAC3 /* PersonalData.swift */; };
 		0AC878EC2B7CF19A00A5AAC3 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E72B7CF19900A5AAC3 /* BasketViewController.swift */; };
 		0AC878ED2B7CF19A00A5AAC3 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878E92B7CF19900A5AAC3 /* BasketView.swift */; };
 		0AC878EE2B7CF19A00A5AAC3 /* BasketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC878EB2B7CF19A00A5AAC3 /* BasketModel.swift */; };
@@ -61,7 +61,7 @@
 		0AC878D92B7CF12600A5AAC3 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0AC878DE2B7CF16300A5AAC3 /* InfoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTextField.swift; sourceTree = "<group>"; };
 		0AC878E02B7CF16300A5AAC3 /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
-		0AC878E22B7CF16300A5AAC3 /* ProfileDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsModel.swift; sourceTree = "<group>"; };
+		0AC878E22B7CF16300A5AAC3 /* PersonalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
 		0AC878E72B7CF19900A5AAC3 /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		0AC878E92B7CF19900A5AAC3 /* BasketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		0AC878EB2B7CF19A00A5AAC3 /* BasketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketModel.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		0AC878E12B7CF16300A5AAC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0AC878E22B7CF16300A5AAC3 /* ProfileDetailsModel.swift */,
+				0AC878E22B7CF16300A5AAC3 /* PersonalData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 				0AC878C92B7CF00C00A5AAC3 /* ProductDetailedViewController.swift in Sources */,
 				0AC878E32B7CF16300A5AAC3 /* InfoTextField.swift in Sources */,
 				0AC878EC2B7CF19A00A5AAC3 /* BasketViewController.swift in Sources */,
-				0AC878E52B7CF16300A5AAC3 /* ProfileDetailsModel.swift in Sources */,
+				0AC878E52B7CF16300A5AAC3 /* PersonalData.swift in Sources */,
 				0AC878D22B7CF0E800A5AAC3 /* SizeChoosingViewController.swift in Sources */,
 				0AC878C12B7CEFD000A5AAC3 /* CatalogViewController.swift in Sources */,
 				0AC878DC2B7CF12600A5AAC3 /* CardView.swift in Sources */,

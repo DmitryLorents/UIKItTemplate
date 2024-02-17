@@ -8,11 +8,14 @@ class ProfileDetailsViewController: UIViewController {
     // MARK: - Constants
 
     private enum Constants {
+        static let maxNumberCount = 11
         enum Insets {
             static let left = CGFloat(20)
             static let height = CGFloat(44)
         }
     }
+
+    private let sizes = [Int](1 ... 100)
 
     // MARK: - Visual Components
 
@@ -25,12 +28,24 @@ class ProfileDetailsViewController: UIViewController {
         return label
     }()
 
-    private let nameTextField = InfoTextField(placeholderText: "Имя")
-    private let lastNameTextField = InfoTextField(placeholderText: "Фамилия")
-    private let phoneNumberTextField = InfoTextField(placeholderText: "Номер телефона")
-    private let footSizeTextField = InfoTextField(placeholderText: "Размер ноги")
-    private let birthDayTextField = InfoTextField(placeholderText: "Дата Рождения")
-    private let emailTextField = InfoTextField(placeholderText: "Почта")
+    private let nameTextField = InfoTextField(
+        placeholderText: "Имя", typeOfKeyboard: .default
+    )
+    private let lastNameTextField = InfoTextField(
+        placeholderText: "Фамилия", typeOfKeyboard: .default
+    )
+    private let phoneNumberTextField = InfoTextField(
+        placeholderText: "Номер телефона", typeOfKeyboard: .numberPad
+    )
+    private let footSizeTextField = InfoTextField(
+        placeholderText: "Размер ноги", typeOfKeyboard: .numberPad
+    )
+    private let birthDayTextField = InfoTextField(
+        placeholderText: "Дата Рождения", typeOfKeyboard: .default
+    )
+    private let emailTextField = InfoTextField(
+        placeholderText: "Почта", typeOfKeyboard: .emailAddress
+    )
 
     private lazy var saveButton: UIButton = {
         let button = UIButton()
@@ -47,6 +62,10 @@ class ProfileDetailsViewController: UIViewController {
         return button
     }()
 
+    private let pickerView = UIPickerView()
+    private let datePicker = UIDatePicker()
+    private let toolbar = UIToolbar()
+
     // MARK: - Private Properties
 
     private lazy var infoTextFields = [
@@ -58,12 +77,17 @@ class ProfileDetailsViewController: UIViewController {
         emailTextField
     ]
 
+    private var regax: NSRegularExpression?
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDatePicker()
+
         setupSubviews()
         configureSubviews()
+        setupRegax()
         setupTextFieldDelegate(for: infoTextFields)
         updateTextFieldWithData(from: PersonalData.personalInfoMap)
     }
@@ -83,6 +107,7 @@ class ProfileDetailsViewController: UIViewController {
             saveButton
         )
         view.disableTARMIC()
+        setupKeyboardHidingTapGesture()
     }
 
     private func configureSubviews() {
@@ -117,17 +142,41 @@ class ProfileDetailsViewController: UIViewController {
         }
     }
 
-    private func updateTextFieldWithData(from textFieldsMap: [String: String]) {
+    private func updateTextFieldWithData(
+        from textFieldsMap: [String: String]
+    ) {
         for infoTextField in infoTextFields {
             guard let placeholderText = infoTextField.placeholder else { return }
             infoTextField.text = textFieldsMap[placeholderText]
         }
     }
 
-    private func setupTextFieldDelegate(for textFields: [UITextField]) {
+    private func setupTextFieldDelegate(
+        for textFields: [UITextField]
+    ) {
         for textField in textFields {
             textField.delegate = self
         }
+    }
+
+    private func setupRegax() {
+        do {
+            let regex = try NSRegularExpression(
+                pattern: "[\\+\\s-\\(\\)]",
+                options: .caseInsensitive
+            )
+            regax = regex
+        } catch {
+            print("Ошибка при создании NSRegularExpression: \(error)")
+        }
+    }
+
+    private func setupKeyboardHidingTapGesture() {
+        let tapGesture = UITapGestureRecognizer(
+            target: self, action: #selector(hideKeyboard)
+        )
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
 
     @objc private func didTapSaveButton(_ sender: UIButton) {
@@ -137,13 +186,108 @@ class ProfileDetailsViewController: UIViewController {
                   let placeholderText = infoTextField.placeholder
             else { return }
             PersonalData.personalInfoMap[placeholderText] = newText
+            view.endEditing(true)
+            saveButton.isHidden = true
         }
+    }
+
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
 }
 
+// MARK: - Extensions
+
+/// Расширение для форматирования номера телефона
+extension ProfileDetailsViewController {
+    private func format(phoneNumber: String, shouldRemoveLastDigit: Bool) -> String {
+        guard !(shouldRemoveLastDigit && phoneNumber.count <= 2) else {
+            return ""
+        }
+
+        let range = NSString(string: phoneNumber).range(of: phoneNumber)
+        guard let regax = regax else { return "" }
+        var number = regax.stringByReplacingMatches(
+            in: phoneNumber, options: [],
+            range: range, withTemplate: ""
+        )
+
+        if number.count > Constants.maxNumberCount {
+            let maxIndex = number.index(
+                number.startIndex, offsetBy: Constants.maxNumberCount
+            )
+            number = String(number[number.startIndex ..< maxIndex])
+        }
+
+        if shouldRemoveLastDigit {
+            let maxIndex = number.index(
+                number.startIndex, offsetBy: number.count - 1
+            )
+            number = String(number[number.startIndex ..< maxIndex])
+        }
+
+        let maxIndex = number.index(number.startIndex, offsetBy: number.count)
+        let regRange = number.startIndex ..< maxIndex
+
+        if number.count < 7 {
+            let pattern = "(\\d)(\\d{3})(\\d+)"
+            number = number.replacingOccurrences(
+                of: pattern, with: "$1 ($2) $3",
+                options: .regularExpression, range: regRange
+            )
+        } else {
+            let pattern = "(\\d)(\\d{3})(\\d{3})(\\d{2})(\\d+)"
+            number = number.replacingOccurrences(
+                of: pattern, with: "$1 ($2) $3-$4-$5",
+                options: .regularExpression, range: regRange
+            )
+        }
+
+        return "+" + number
+    }
+}
+
+/// Расширение для показа кнопки "Сохронить" при редактировании данных:
 extension ProfileDetailsViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        saveButton.isUserInteractionEnabled = true
         saveButton.isHidden = false
+    }
+
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        if textField == phoneNumberTextField {
+            let fullString = (textField.text ?? "") + string
+            textField.text = format(
+                phoneNumber: fullString,
+                shouldRemoveLastDigit: range.length == 1
+            )
+            return false
+        }
+        return true
+    }
+}
+
+/// Расширение для показа календаря для выбора даты рождения
+
+extension ProfileDetailsViewController {
+    private func setupDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .inline
+        datePicker.backgroundColor = .datePickerBackground
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        birthDayTextField.delegate = self
+        birthDayTextField.inputView = datePicker
+    }
+
+    @objc private func datePickerValueChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        birthDayTextField.text = dateFormatter.string(from: datePicker.date)
+        birthDayTextField.resignFirstResponder()
     }
 }
