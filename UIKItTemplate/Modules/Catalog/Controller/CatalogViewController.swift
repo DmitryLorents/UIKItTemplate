@@ -68,9 +68,37 @@ final class CatalogViewController: UIViewController {
     private lazy var newItemsImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Constants.ImageName.newItemsWoman)
-        imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 12
         return imageView
+    }()
+
+    private let newItemsShadowView: UIView = {
+        let view = UIView()
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 2
+        view.backgroundColor = .systemMint
+        view.layer.cornerRadius = 12
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        view.layer.masksToBounds = false
+        return view
+    }()
+
+    private let saleShadowView: UIView = {
+        let view = UIView()
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 2
+        view.backgroundColor = .systemMint
+        view.layer.cornerRadius = 12
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        view.layer.masksToBounds = false
+        return view
     }()
 
     private lazy var salesImageView: UIImageView = {
@@ -134,6 +162,8 @@ final class CatalogViewController: UIViewController {
         navigationController?.view.tintColor = .black
         view.addSubviews(
             buyerTypeSegmentedControl,
+            newItemsShadowView,
+            saleShadowView,
             newItemsImageView,
             newItemLabel,
             salesImageView,
@@ -215,10 +245,20 @@ private extension CatalogViewController {
                 multiplier: Constants.Size.categoryImageRatio
             ),
 
+            newItemsShadowView.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
+            newItemsShadowView.bottomAnchor.constraint(equalTo: newItemsImageView.bottomAnchor),
+            newItemsShadowView.leadingAnchor.constraint(equalTo: newItemsImageView.leadingAnchor),
+            newItemsShadowView.trailingAnchor.constraint(equalTo: newItemsImageView.trailingAnchor),
+
             salesImageView.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
             salesImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
             salesImageView.leadingAnchor.constraint(equalTo: newItemsImageView.trailingAnchor, constant: inset),
             salesImageView.heightAnchor.constraint(equalTo: newItemsImageView.heightAnchor),
+
+            saleShadowView.topAnchor.constraint(equalTo: salesImageView.topAnchor),
+            saleShadowView.bottomAnchor.constraint(equalTo: salesImageView.bottomAnchor),
+            saleShadowView.leadingAnchor.constraint(equalTo: salesImageView.leadingAnchor),
+            saleShadowView.trailingAnchor.constraint(equalTo: salesImageView.trailingAnchor),
 
             newItemLabel.topAnchor.constraint(equalTo: newItemsImageView.topAnchor),
             newItemLabel.centerXAnchor.constraint(equalTo: newItemsImageView.centerXAnchor),
