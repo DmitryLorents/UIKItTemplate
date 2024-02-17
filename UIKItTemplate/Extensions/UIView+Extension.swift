@@ -1,16 +1,17 @@
-//
-//  UIView+Extension.swift
-//  UIKItTemplate
-//
-//  Created by Dmitry on 14.02.2024.
-//
+// UIView+Extension.swift
+// Copyright © RoadMap. All rights reserved.
 
 import UIKit
+
 /// Adding usefull functions to UIVIew
 public extension UIView {
-    
     // Function to add several subviews separated by comma
     func addSubViews(_ subviews: UIView...) {
         subviews.forEach { self.addSubview($0) }
+    }
+
+    // Disable translatesAutoresizingMaskIntoConstraints for all subviews
+    func disableTARMIC() {
+        subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
 }
