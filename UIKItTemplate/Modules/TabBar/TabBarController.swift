@@ -5,7 +5,6 @@ import UIKit
 
 /// General app's tabBarController
 final class TabBarController: UITabBarController {
-    // MARK: - Types
 
     // MARK: - Constants
 
@@ -23,26 +22,12 @@ final class TabBarController: UITabBarController {
         }
     }
 
-    // MARK: - IBOutlets
-
-    // MARK: - Visual Components
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
-
-    // MARK: - Initializers
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
-
-    // MARK: - Public Methods
-
-    // MARK: - IBAction
 
     // MARK: - Private Methods
 

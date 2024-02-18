@@ -3,6 +3,7 @@
 
 import UIKit
 
+/// Reusable view for SizeChoosingVC
 final class SizeChoosingLabel: UILabel {
     // MARK: - Constants
 

@@ -73,33 +73,9 @@ final class CatalogViewController: UIViewController {
         return imageView
     }()
 
-    private let newItemsShadowView: UIView = {
-        let view = UIView()
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowRadius = 2
-        view.backgroundColor = .systemMint
-        view.layer.cornerRadius = 12
-        view.layer.shouldRasterize = true
-        view.layer.rasterizationScale = UIScreen.main.scale
-        view.layer.masksToBounds = false
-        return view
-    }()
-
-    private let saleShadowView: UIView = {
-        let view = UIView()
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSize(width: 0, height: 4)
-        view.layer.shadowRadius = 2
-        view.backgroundColor = .systemMint
-        view.layer.cornerRadius = 12
-        view.layer.shouldRasterize = true
-        view.layer.rasterizationScale = UIScreen.main.scale
-        view.layer.masksToBounds = false
-        return view
-    }()
+    private lazy var newItemsShadowView = makeShadowView()
+    private lazy var saleShadowView = makeShadowView()
+        
 
     private lazy var salesImageView: UIImageView = {
         let imageView = UIImageView()
@@ -200,6 +176,20 @@ final class CatalogViewController: UIViewController {
 
     private func configureBackButton() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    private func makeShadowView() -> UIView {
+        let view = UIView()
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 2
+        view.backgroundColor = .systemMint
+        view.layer.cornerRadius = 12
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        view.layer.masksToBounds = false
+        return view
     }
 
     @objc private func takePicture() {

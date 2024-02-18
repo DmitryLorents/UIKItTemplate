@@ -50,7 +50,6 @@ final class BasketViewController: UIViewController {
         label.font = Constants.Font.verdana16
         label.textColor = .gray
         label.numberOfLines = 0
-        // label.sizeToFit()
         return label
     }()
 
@@ -70,11 +69,8 @@ final class BasketViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
-        button.layer.masksToBounds = false
         return button
     }()
-
-    // MARK: - Public Properties
 
     // MARK: - Private Properties
 
@@ -185,6 +181,8 @@ private extension BasketViewController {
     }
 }
 
+// MARK: - ProductDetailedViewDelegate
+
 extension BasketViewController: ProductDetailedViewDelegate {
     func didTapBasketButton(product: Product) {
         product.isAddedToBasket = false
@@ -192,6 +190,8 @@ extension BasketViewController: ProductDetailedViewDelegate {
         updateOrderedProducts()
     }
 }
+
+// MARK: - BasketViewDelegate
 
 extension BasketViewController: BasketViewDelegate {
     func didChangeProductAmount(product: Product) {
