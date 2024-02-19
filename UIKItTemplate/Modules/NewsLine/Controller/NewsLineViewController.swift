@@ -22,11 +22,14 @@ final class NewsLineViewController: UIViewController {
         table.dataSource = self
         table.backgroundColor = .yellow
         table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 40
+        table.estimatedRowHeight = 75
+        table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         return table
     }()
 
     // MARK: - Private Properties
+
+    private let storage = DataStorage()
 
     // MARK: - Life Cycle
 
@@ -83,6 +86,13 @@ extension NewsLineViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        .init()
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: StoriesCell.reuseID, for: indexPath) as? StoriesCell
+        else {
+            return .init()
+        }
+        cell.setupWith(storage.stories)
+        print("Cell stories \(cell.stories)")
+        return cell
     }
 }

@@ -73,7 +73,7 @@ final class StoryView: UIView {
     // MARK: - Private Methods
 
     private func setupUI() {
-        backgroundColor = .blue
+//        backgroundColor = .blue
         addSubviews(nameLabel, userImageView, plusButton)
         disableTARMIC()
         setupConstraints()
