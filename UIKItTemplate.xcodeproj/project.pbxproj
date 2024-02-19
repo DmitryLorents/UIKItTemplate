@@ -117,8 +117,6 @@
 				0AC878A62B7CEB8500A5AAC3 /* TabBar */,
 				0AC878AA2B7CEC4E00A5AAC3 /* Catalog */,
 				0AC878B42B7CEDCA00A5AAC3 /* ProductDetailed */,
-				0AEAD00C2B83A559009F0191 /* Profile */,
-				0AEAD0082B83A559009F0191 /* ProfileDetails */,
 				0AC878B52B7CEDE400A5AAC3 /* SizeChoosing */,
 				0AC878B82B7CEE4A00A5AAC3 /* Basket */,
 			);
@@ -258,70 +256,6 @@
 				0AF616342B7D3FA600B44201 /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		0AEAD0082B83A559009F0191 /* ProfileDetails */ = {
-			isa = PBXGroup;
-			children = (
-				0AEAD0092B83A559009F0191 /* Controller */,
-				0AEAD00A2B83A559009F0191 /* Model */,
-				0AEAD00B2B83A559009F0191 /* View */,
-			);
-			name = ProfileDetails;
-			path = ../../../../../../UIKItTemplate/Modules/ProfileDetails;
-			sourceTree = "<group>";
-		};
-		0AEAD0092B83A559009F0191 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0AEAD00A2B83A559009F0191 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0AEAD00B2B83A559009F0191 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0AEAD00C2B83A559009F0191 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				0AEAD00D2B83A559009F0191 /* Controller */,
-				0AEAD00E2B83A559009F0191 /* Model */,
-				0AEAD00F2B83A559009F0191 /* View */,
-			);
-			name = Profile;
-			path = ../../../../../../UIKItTemplate/Modules/Profile;
-			sourceTree = "<group>";
-		};
-		0AEAD00D2B83A559009F0191 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		0AEAD00E2B83A559009F0191 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0AEAD00F2B83A559009F0191 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		0AF616382B7E825300B44201 /* Services */ = {
