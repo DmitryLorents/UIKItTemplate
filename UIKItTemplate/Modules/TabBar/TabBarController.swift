@@ -5,7 +5,6 @@ import UIKit
 
 /// General app's tabBarController
 final class TabBarController: UITabBarController {
-
     // MARK: - Constants
 
     enum Constants {

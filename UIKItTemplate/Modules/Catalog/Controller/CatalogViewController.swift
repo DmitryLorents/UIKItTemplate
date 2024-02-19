@@ -75,7 +75,6 @@ final class CatalogViewController: UIViewController {
 
     private lazy var newItemsShadowView = makeShadowView()
     private lazy var saleShadowView = makeShadowView()
-        
 
     private lazy var salesImageView: UIImageView = {
         let imageView = UIImageView()
@@ -177,7 +176,7 @@ final class CatalogViewController: UIViewController {
     private func configureBackButton() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
-    
+
     private func makeShadowView() -> UIView {
         let view = UIView()
         view.layer.shadowColor = UIColor.black.cgColor
