@@ -4,4 +4,4 @@
 import UIKit
 
 /// Class Controller
-class BasketViewController: UIViewController { }
+class BasketViewController: UIViewController {}

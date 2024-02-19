@@ -11,7 +11,10 @@ class ProfileDetailsViewController: UIViewController {
         static let maxNumberCount = 11
         enum Insets {
             static let left = CGFloat(20)
+            static let right = CGFloat(-20)
             static let height = CGFloat(44)
+            static let textFieldStartY = CGFloat(113)
+            static let textFieldHeight = CGFloat(54)
         }
     }
 
@@ -62,7 +65,6 @@ class ProfileDetailsViewController: UIViewController {
         return button
     }()
 
-    private let pickerView = UIPickerView()
     private let datePicker = UIDatePicker()
     private let toolbar = UIToolbar()
 
@@ -112,12 +114,18 @@ class ProfileDetailsViewController: UIViewController {
 
     private func configureSubviews() {
         NSLayoutConstraint.activate([
-            myDataLabel.widthAnchor.constraint(equalToConstant: 115),
             myDataLabel.heightAnchor.constraint(
                 equalToConstant: Constants.Insets.height
             ),
             myDataLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 53),
-            myDataLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            myDataLabel.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: Constants.Insets.left
+            ),
+            myDataLabel.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: Constants.Insets.right
+            ),
 
             saveButton.widthAnchor.constraint(equalToConstant: 335),
             saveButton.heightAnchor.constraint(
@@ -132,13 +140,27 @@ class ProfileDetailsViewController: UIViewController {
 
     private func configureTextFields() {
         for (index, infoTextField) in infoTextFields.enumerated() {
-            let topInset = CGFloat(113 + (index * 54))
-            infoTextField.topAnchor.constraint(
-                equalTo: view.topAnchor, constant: topInset
-            ).isActive = true
-            infoTextField.centerXAnchor.constraint(
-                equalTo: view.centerXAnchor
-            ).isActive = true
+            let topInset = Constants.Insets.textFieldStartY +
+                CGFloat(index) * Constants.Insets.textFieldHeight
+            NSLayoutConstraint.activate([
+                infoTextField.topAnchor.constraint(
+                    equalTo: view.topAnchor, constant: topInset
+                ),
+                infoTextField.centerXAnchor.constraint(
+                    equalTo: view.centerXAnchor
+                ),
+                infoTextField.heightAnchor.constraint(
+                    equalToConstant: Constants.Insets.height
+                ),
+                infoTextField.leadingAnchor.constraint(
+                    equalTo: view.leadingAnchor,
+                    constant: Constants.Insets.left
+                ),
+                infoTextField.trailingAnchor.constraint(
+                    equalTo: view.trailingAnchor,
+                    constant: Constants.Insets.right
+                )
+            ])
         }
     }
 
@@ -151,12 +173,8 @@ class ProfileDetailsViewController: UIViewController {
         }
     }
 
-    private func setupTextFieldDelegate(
-        for textFields: [UITextField]
-    ) {
-        for textField in textFields {
-            textField.delegate = self
-        }
+    private func setupTextFieldDelegate(for textFields: [UITextField]) {
+        textFields.forEach { $0.delegate = self }
     }
 
     private func setupRegax() {
@@ -180,7 +198,6 @@ class ProfileDetailsViewController: UIViewController {
     }
 
     @objc private func didTapSaveButton(_ sender: UIButton) {
-        print(PersonalData.personalInfoMap)
         for infoTextField in infoTextFields {
             guard let newText = infoTextField.text,
                   let placeholderText = infoTextField.placeholder

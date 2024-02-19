@@ -5,12 +5,24 @@ import UIKit
 
 /// Шаблон переиспользуемой ячейки ( textField ) для ввода личных данных
 final class InfoTextField: UITextField {
-    var placeholderText: String?
-    var typeOfKeyboard: UIKeyboardType?
+    // MARK: - Constants
+
+    private enum Constants {
+        enum Insets {
+            static let leading = CGFloat(20)
+            static let trailing = CGFloat(-20)
+            static let height = CGFloat(44)
+        }
+    }
+
+    // MARK: - Private properties
+
+    private var placeholderText: String = ""
+    private var typeOfKeyboard: UIKeyboardType = .default
 
     // MARK: - Initializers
 
-    init(placeholderText: String?, typeOfKeyboard: UIKeyboardType) {
+    init(placeholderText: String, typeOfKeyboard: UIKeyboardType) {
         super.init(frame: .zero)
         self.placeholderText = placeholderText
         self.typeOfKeyboard = typeOfKeyboard
@@ -27,7 +39,6 @@ final class InfoTextField: UITextField {
     private func commonInit() {
         setupTextField()
         setupPadding()
-        configureTextField()
     }
 
     private func setupTextField() {
@@ -36,7 +47,6 @@ final class InfoTextField: UITextField {
         textColor = UIColor.textFieldForeground
         font = .systemFont(ofSize: 16, weight: .bold)
         layer.cornerRadius = 12
-        guard let typeOfKeyboard = typeOfKeyboard else { return }
         keyboardType = typeOfKeyboard
     }
 
@@ -51,10 +61,5 @@ final class InfoTextField: UITextField {
 
         leftView = paddingView
         leftViewMode = .always
-    }
-
-    private func configureTextField() {
-        widthAnchor.constraint(equalToConstant: 335).isActive = true
-        heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
 }

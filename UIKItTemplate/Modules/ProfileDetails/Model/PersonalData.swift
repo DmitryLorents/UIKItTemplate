@@ -5,7 +5,7 @@ import Foundation
 
 /// Структура для хранения личных данных пользователя
 struct PersonalData {
-    static var personalInfoMap: [String: String] = [
+    static var personalInfoMap = [
         "Имя": "",
         "Фамилия": "",
         "Номер телефона": "",

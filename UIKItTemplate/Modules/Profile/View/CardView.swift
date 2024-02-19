@@ -8,7 +8,7 @@ final class CardView: UIView {
     // MARK: - Constants
 
     private enum Constants {
-        static let logoImage = "logo_card"
+        static let logoImage = "logoCard"
         static let infoImage = "info"
         static let qrImage = "qr"
 

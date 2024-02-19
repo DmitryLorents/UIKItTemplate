@@ -6,14 +6,14 @@ import UIKit
 /// Шаблон переиспользуемой кнопки личных данных
 final class PersonalButton: UIButton {
     var imageName: String?
-    var titleText: String?
+    var title: String?
 
     // MARK: - Initializers
 
-    init(imageName: String, titleText: String) {
+    init(imageName: String, title: String) {
         super.init(frame: .zero)
         self.imageName = imageName
-        self.titleText = titleText
+        self.title = title
         commonInit()
     }
 
@@ -26,13 +26,13 @@ final class PersonalButton: UIButton {
         var config = UIButton.Configuration.plain()
 
         guard let imageName = imageName,
-              let titleText = titleText else { return }
+              let title = title else { return }
 
         config.image = UIImage(named: imageName)
         config.imagePlacement = .leading
         config.imagePadding = 8
 
-        config.title = titleText
+        config.title = title
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.font = .systemFont(ofSize: 16)

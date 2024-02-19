@@ -8,14 +8,24 @@ class ProfileViewController: UIViewController {
     // MARK: - Constants
 
     private enum Constants {
-        static let myDataImage = "my_data"
-        static let inviteFriendsImage = "invite_friend"
-        static let feedBackImage = "message"
+        enum Images {
+            static let myData = "myData"
+            static let inviteFriends = "inviteFriend"
+            static let feedBack = "message"
+        }
 
         enum Insets {
             static let left = CGFloat(20)
             static let buttonWidth = CGFloat(183)
             static let buttonHeight = CGFloat(24)
+        }
+        
+        enum Texts {
+            static let profile = "Профиль"
+            static let personalInfo = "Личные данные"
+            static let myData = "Мои данные"
+            static let inviteFriends = "Приведи друга"
+            static let feedBack = "Обратная связь"
         }
     }
 
@@ -23,8 +33,8 @@ class ProfileViewController: UIViewController {
 
     private let profileLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "textColorBlack")
-        label.text = "Профиль"
+        label.textColor = .textColorBlack
+        label.text = Constants.Texts.profile
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16, weight: .bold)
         return label
@@ -34,29 +44,29 @@ class ProfileViewController: UIViewController {
 
     private let personalInfoLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "textColorBlack")
-        label.text = "Личные данные"
+        label.textColor = .textColorBlack
+        label.text = Constants.Texts.personalInfo
         label.font = .systemFont(ofSize: 16, weight: .bold)
         return label
     }()
 
     private let myDataButton = PersonalButton(
-        imageName: Constants.myDataImage,
-        titleText: "Мои данные"
+        imageName: Constants.Images.myData,
+        title: Constants.Texts.myData
     )
 
     private lazy var myDataLineView = makeLineView()
 
     private let inviteFriendButton = PersonalButton(
-        imageName: Constants.inviteFriendsImage,
-        titleText: "Приведи друга"
+        imageName: Constants.Images.inviteFriends,
+        title: Constants.Texts.inviteFriends
     )
 
     private lazy var inviteFriendLineView = makeLineView()
 
     private let messageButton = PersonalButton(
-        imageName: Constants.feedBackImage,
-        titleText: "Обратная связь"
+        imageName: Constants.Images.feedBack,
+        title: Constants.Texts.feedBack
     )
 
     private lazy var messageLineView = makeLineView()
@@ -95,7 +105,9 @@ class ProfileViewController: UIViewController {
             profileLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 53),
             profileLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            cardView.widthAnchor.constraint(equalToConstant: 335),
+            cardView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - CGFloat(
+                2 * Constants.Insets.left
+            )),
             cardView.heightAnchor.constraint(equalToConstant: 180),
             cardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             cardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
