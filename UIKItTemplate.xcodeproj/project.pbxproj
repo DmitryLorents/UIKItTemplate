@@ -32,6 +32,8 @@
 		0AECD1E82B83B86F00E3D5FC /* SizeChoosingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AECD1D22B83B86F00E3D5FC /* SizeChoosingViewController.swift */; };
 		0AECD1E92B83B86F00E3D5FC /* SizeChoosingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AECD1D42B83B86F00E3D5FC /* SizeChoosingModel.swift */; };
 		0AECD1EA2B83B86F00E3D5FC /* SizeChoosingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AECD1D62B83B86F00E3D5FC /* SizeChoosingView.swift */; };
+		0AECD1EE2B83B95000E3D5FC /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AECD1EC2B83B95000E3D5FC /* UIFont+Extension.swift */; };
+		0AECD1EF2B83B95000E3D5FC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AECD1ED2B83B95000E3D5FC /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		0AECD1D22B83B86F00E3D5FC /* SizeChoosingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeChoosingViewController.swift; sourceTree = "<group>"; };
 		0AECD1D42B83B86F00E3D5FC /* SizeChoosingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeChoosingModel.swift; sourceTree = "<group>"; };
 		0AECD1D62B83B86F00E3D5FC /* SizeChoosingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeChoosingView.swift; sourceTree = "<group>"; };
+		0AECD1EC2B83B95000E3D5FC /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		0AECD1ED2B83B95000E3D5FC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +99,9 @@
 		0A0F7DE12B712B7A009D3A3C /* UIKItTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				0AECD1A62B83B86F00E3D5FC /* Modules */,
 				0A3B2B8A2B7201BC0038208F /* App */,
+				0AECD1EB2B83B95000E3D5FC /* Extensions */,
+				0AECD1A62B83B86F00E3D5FC /* Modules */,
 				0A3B2B8B2B7201E10038208F /* SupportingFiles */,
 			);
 			path = UIKItTemplate;
@@ -372,6 +377,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0AECD1EB2B83B95000E3D5FC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0AECD1EC2B83B95000E3D5FC /* UIFont+Extension.swift */,
+				0AECD1ED2B83B95000E3D5FC /* UIView+Extension.swift */,
+			);
+			name = Extensions;
+			path = UIKItTemplate/Extensions;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,6 +508,7 @@
 				0AECD1DB2B83B86F00E3D5FC /* ProductDetailedModel.swift in Sources */,
 				0AECD1E12B83B86F00E3D5FC /* TabBarController.swift in Sources */,
 				0AECD1D92B83B86F00E3D5FC /* BasketView.swift in Sources */,
+				0AECD1EE2B83B95000E3D5FC /* UIFont+Extension.swift in Sources */,
 				0AECD1D72B83B86F00E3D5FC /* BasketViewController.swift in Sources */,
 				0AECD1E62B83B86F00E3D5FC /* PersonalData.swift in Sources */,
 				0AECD1E32B83B86F00E3D5FC /* CardView.swift in Sources */,
@@ -505,6 +521,7 @@
 				0AECD1DD2B83B86F00E3D5FC /* CatalogViewController.swift in Sources */,
 				0AECD1DF2B83B86F00E3D5FC /* CatalogView.swift in Sources */,
 				0AECD1DA2B83B86F00E3D5FC /* ProductDetailedViewController.swift in Sources */,
+				0AECD1EF2B83B95000E3D5FC /* UIView+Extension.swift in Sources */,
 				0AECD1D82B83B86F00E3D5FC /* BasketModel.swift in Sources */,
 				0AECD1E02B83B86F00E3D5FC /* CatalogView.swift in Sources */,
 				0AECD1DE2B83B86F00E3D5FC /* CatalogModel.swift in Sources */,
