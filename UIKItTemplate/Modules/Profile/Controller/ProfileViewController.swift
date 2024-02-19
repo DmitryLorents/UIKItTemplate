@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        setupUI()
     }
 
     // MARK: - Public Methods
@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
 
     // MARK: - Private Methods
 
-    private func setUI() {
-        title = Constants.Text.title
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
     }
 }

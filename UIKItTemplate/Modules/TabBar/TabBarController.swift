@@ -5,18 +5,19 @@ import UIKit
 
 /// General app's tabBarController
 final class TabBarController: UITabBarController {
+
     // MARK: - Constants
 
     enum Constants {
-        enum Images {
-            static let catalog = "catalog"
-            static let basket = "basket"
-            static let profile = "profile"
-        }
+//        enum Images {
+//            static let catalog = "catalog"
+//            static let basket = "basket"
+//            static let profile = "profile"
+//        }
 
         enum Titles {
-            static let catalog = "Каталог"
-            static let basket = "Корзина"
+            static let newsLine = "Лента"
+            static let notifications = "Уведомления"
             static let profile = "Профиль"
         }
     }
@@ -25,38 +26,38 @@ final class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
+        setupUI()
     }
 
     // MARK: - Private Methods
 
-    private func setUI() {
-        let catalogNavVC = UINavigationController(rootViewController: CatalogViewController())
-        let catalogItem = UITabBarItem(
-            title: Constants.Titles.catalog,
-            image: UIImage(named: Constants.Images.catalog),
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+        let newsLineVC = UINavigationController(rootViewController: NewsLineViewController())
+        let newsLineItem = UITabBarItem(
+            title: Constants.Titles.newsLine,
+            image: .home,
             tag: 0
         )
-        catalogNavVC.tabBarItem = catalogItem
+        newsLineVC.tabBarItem = newsLineItem
 
-        let basketNavVC = UINavigationController(rootViewController: BasketViewController())
-        let basketItem = UITabBarItem(
-            title: Constants.Titles.basket,
-            image: UIImage(named: Constants.Images.basket),
+        let notificationsVC = NotificationsViewController()
+        let notificationsItem = UITabBarItem(
+            title: Constants.Titles.notifications,
+            image: .notification,
             tag: 1
         )
-        basketNavVC.tabBarItem = basketItem
+        notificationsVC.tabBarItem = notificationsItem
 
-        let profileNavVC = UINavigationController(rootViewController: ProfileViewController())
+        let profileNavVC = ProfileViewController()
         let profileItem = UITabBarItem(
             title: Constants.Titles.profile,
-            image: UIImage(named: Constants.Images.profile),
+            image: .profile,
             tag: 2
         )
         profileNavVC.tabBarItem = profileItem
 
-        viewControllers = [catalogNavVC, basketNavVC, profileNavVC]
-        view.backgroundColor = .systemBackground
-        view.tintColor = .magentaApp
+        viewControllers = [newsLineVC, notificationsVC, profileNavVC]
+        
     }
 }
