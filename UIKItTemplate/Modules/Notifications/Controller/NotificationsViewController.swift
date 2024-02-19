@@ -6,26 +6,27 @@ import UIKit
 // Screen with detailed information for зкщвгсеы
 final class NotificationsViewController: UIViewController {
     // MARK: - Types
-    
+
     // MARK: - Constants
-    
+
     // MARK: - IBOutlets
-    
+
     // MARK: - Visual Components
-    
+
     // MARK: - Public Properties
-    
+
     // MARK: - Private Properties
-    
+
     // MARK: - Initializers
-    
+
     // MARK: - Life Cycle
-    
+
     // MARK: - Public Methods
-    
+
     // MARK: - IBAction
-    
+
     // MARK: - Private Methods
+
 //    // MARK: - Constants
 //
 //    private enum Constants {
@@ -100,12 +101,14 @@ final class NotificationsViewController: UIViewController {
 //        storage.products[0]
 //    }
 //
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+
 //        setConstraints()
 //    }
 //
@@ -114,6 +117,7 @@ final class NotificationsViewController: UIViewController {
 //        updateOrderedProducts()
 //    }
 //
+
     // MARK: - Private Methods
 
     private func setupUI() {
@@ -166,10 +170,10 @@ final class NotificationsViewController: UIViewController {
 //    @objc private func checkoutButtonAction() {
 //        didTapBasketButton(product: storage.getOrderedProducts()[0])
 //    }
-//}
+    // }
 //
-//// Set constraints
-//private extension BasketViewController {
+    //// Set constraints
+    // private extension BasketViewController {
 //    func setConstraints() {
 //        let inset = Constants.Inset.generalInset
 //        NSLayoutConstraint.activate([
@@ -203,21 +207,25 @@ final class NotificationsViewController: UIViewController {
 //
 //        ])
 //    }
-//}
+    // }
 //
-//// MARK: - ProductDetailedViewDelegate
+
+    // MARK: - ProductDetailedViewDelegate
+
 //
-//extension BasketViewController: ProductDetailedViewDelegate {
+    // extension BasketViewController: ProductDetailedViewDelegate {
 //    func didTapBasketButton(product: Product) {
 //        product.isAddedToBasket = false
 //        product.amount = 1
 //        updateOrderedProducts()
 //    }
-//}
+    // }
 //
-//// MARK: - BasketViewDelegate
+
+    // MARK: - BasketViewDelegate
+
 //
-//extension BasketViewController: BasketViewDelegate {
+    // extension BasketViewController: BasketViewDelegate {
 //    func didChangeProductAmount(product: Product) {
 //        setCheckoutButtonLabel(for: product)
 //    }

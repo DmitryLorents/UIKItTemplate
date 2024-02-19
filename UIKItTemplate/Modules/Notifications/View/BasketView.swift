@@ -3,9 +3,9 @@
 
 import UIKit
 
-protocol BasketViewDelegate: AnyObject {
-    func didChangeProductAmount(product: Product)
-}
+// protocol BasketViewDelegate: AnyObject {
+//    func didChangeProductAmount(product: Product)
+// }
 
 /// View to show product with price
 final class BasketView: UIView {
@@ -193,11 +193,13 @@ final class BasketView: UIView {
 //        product.amount = productQuantity
 //        delegate?.didChangeProductAmount(product: product)
 //    }
-//}
+    // }
 //
-//// MARK: - Set constraints
+
+    // MARK: - Set constraints
+
 //
-//private extension BasketView {
+    // private extension BasketView {
 //    func setConstraints() {
 //        let inset = Constants.Size.generalInset
 //        let interViewsInset = Constants.Size.interViewsInset
@@ -251,10 +253,10 @@ final class BasketView: UIView {
 //
 //        ])
 //    }
-//}
+    // }
 //
-//// Make capsuled button with lightPinkColor
-//extension BasketView {
+    //// Make capsuled button with lightPinkColor
+    // extension BasketView {
 //    private func makelightPinkCapsuledButton(title: String) -> UIButton {
 //        let button = UIButton()
 //        button.backgroundColor = .lightPinkApp

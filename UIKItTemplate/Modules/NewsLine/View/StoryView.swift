@@ -1,10 +1,10 @@
-// ProductDetailedView.swift
+// StoryView.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// View to show product with price
-final class StoriesView: UIView {
+final class StoryView: UIView {
     // MARK: - Constants
 
     private enum Constants {
@@ -17,7 +17,7 @@ final class StoriesView: UIView {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = isStartView ? Constants.defaultText : name
+        label.text = isStartView ? Constants.defaultText : story.userName
         label.textColor = isStartView ? .gray : .label
         label.textAlignment = .center
         label.font = .makeVerdanaRegular(8)
@@ -25,13 +25,14 @@ final class StoriesView: UIView {
     }()
 
     private lazy var userImageView: UIImageView = {
-        let image = UIImage(named: imageName)
+        let image = UIImage(named: story.imageName)
         let imageView = UIImageView(image: image)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = userImageCornerRadius
         return imageView
     }()
+
     private lazy var plusButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .redApp
@@ -45,22 +46,20 @@ final class StoriesView: UIView {
 
     // MARK: - Private Properties
 
-    private let name: String
-    private let imageName: String
+    private let story: Story
     private let isStartView: Bool
     private var userImageCornerRadius: CGFloat {
         Constants.imageSize / 2
     }
+
     var plusButtonCornerRadius: CGFloat {
         Constants.plusButtonSize / 2
     }
-    
 
     // MARK: - Initializers
 
-    init(name: String, imageName: String, isStartView: Bool = false) {
-        self.name = name
-        self.imageName = imageName
+    init(story: Story, isStartView: Bool = false) {
+        self.story = story
         self.isStartView = isStartView
         super.init(frame: .zero)
         setupUI()
@@ -83,10 +82,9 @@ final class StoriesView: UIView {
 
 // MARK: - Set constraints
 
-private extension StoriesView {
+private extension StoryView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-
             userImageView.topAnchor.constraint(equalTo: topAnchor),
             userImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
@@ -97,13 +95,11 @@ private extension StoriesView {
             nameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 5),
             nameLabel.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
-            
+
             plusButton.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             plusButton.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
             plusButton.heightAnchor.constraint(equalToConstant: Constants.plusButtonSize),
             plusButton.widthAnchor.constraint(equalTo: plusButton.heightAnchor)
-            
-            
 
         ])
     }
