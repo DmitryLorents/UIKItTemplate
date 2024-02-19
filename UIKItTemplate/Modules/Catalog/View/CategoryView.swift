@@ -3,7 +3,7 @@
 
 import UIKit
 
-///Shows product image and category name label
+/// Shows product image and category name label
 final class CategoryView: UIView {
     // MARK: - Constants
 
@@ -67,6 +67,7 @@ final class CategoryView: UIView {
 }
 
 // MARK: - Constraints
+
 private extension CategoryView {
     func setConstraints() {
         NSLayoutConstraint.activate([

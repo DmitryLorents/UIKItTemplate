@@ -20,7 +20,7 @@ public extension UIView {
         let bottomLayer = CALayer()
         let underlineInset: CGFloat = 8
         bottomLayer.frame = CGRect(x: 0, y: frame.height + underlineInset, width: frame.width, height: 1)
-        bottomLayer.backgroundColor = UIColor.separatorApp.cgColor
+        bottomLayer.backgroundColor = UIColor.separator.cgColor
         layer.addSublayer(bottomLayer)
     }
 
