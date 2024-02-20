@@ -92,7 +92,6 @@ extension NewsLineViewController: UITableViewDataSource {
             return .init()
         }
         cell.setupWith(storage.stories)
-        print("Cell stories \(cell.stories)")
         return cell
     }
 }

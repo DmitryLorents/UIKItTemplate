@@ -11,7 +11,17 @@ final class StoriesCell: UITableViewCell {
     private enum Constants {
         static let sideInset: CGFloat = 12
         static let interItemInset: CGFloat = 22
+        static let defaultName = "Ваша история"
+        static let defaultImage = "girl1"
     }
+
+    // MARK: - Visual Components
+
+    private lazy var storiesScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.showsHorizontalScrollIndicator = false
+        return view
+    }()
 
     // MARK: - Public Properties
 
@@ -21,32 +31,20 @@ final class StoriesCell: UITableViewCell {
 
     // MARK: - Private Properties
 
+    private let defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
     var stories: [Story]? {
         didSet {
-            setupUI()
+            stories?.insert(defaultStory, at: 0)
+            makeSubviews()
         }
     }
-
-//    = [
-//        .init(userName: "liver 15", imageName: "girl1"),
-//        .init(userName: "shaverma 33", imageName: "girl2"),
-//        .init(userName: "liver 15", imageName: "girl3"),
-//        .init(userName: "liver 15", imageName: "girl4")
-//    ]
 
     // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("Init")
-        print("Stories: \(stories)")
         setupUI()
     }
-
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setupUI()
-//    }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -56,36 +54,46 @@ final class StoriesCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupUI() {
-        backgroundColor = .cyan
-        makeSubviews()
-        contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 75).isActive = true
+        contentView.addSubview(storiesScrollView)
+        contentView.disableTARMIC()
+        setupConstraints()
     }
 
     private func makeSubviews() {
-        guard let stories else {
-            print("No stories")
-            return
-        }
-        print("Count: \(stories.count)")
+        guard let stories else { return }
+        let viewWidth: CGFloat = 60
         for (index, story) in stories.enumerated() {
             let storyView = StoryView(story: story, isStartView: index == 0)
-            print(story.userName)
             storyView.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(storyView)
+            storiesScrollView.addSubview(storyView)
+
             // setup constraints
-            let leadingInset = Constants.sideInset + (CGFloat(index) * (Constants.interItemInset + 60))
-            storyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingInset)
+            let leadingInset = Constants.sideInset + (CGFloat(index) * (Constants.interItemInset + viewWidth))
+            storyView.leadingAnchor.constraint(equalTo: storiesScrollView.leadingAnchor, constant: leadingInset)
                 .isActive = true
-            storyView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+            storyView.topAnchor.constraint(equalTo: storiesScrollView.topAnchor).isActive = true
             if index == stories.count - 1 {
                 NSLayoutConstraint.activate([
-                    storyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                    storyView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1),
+
+                    storyView.bottomAnchor.constraint(equalTo: storiesScrollView.bottomAnchor),
                     storyView.trailingAnchor.constraint(
-                        equalTo: contentView.trailingAnchor,
+                        greaterThanOrEqualTo: storiesScrollView.trailingAnchor,
                         constant: -Constants.sideInset
                     )
                 ])
             }
         }
+    }
+
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            //            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 75),
+
+            storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            storiesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            storiesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            storiesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+        ])
     }
 }
