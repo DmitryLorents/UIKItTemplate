@@ -39,6 +39,12 @@ final class PostCell: UITableViewCell {
         button.setImage(.more, for: .normal)
         return button
     }()
+    
+    private lazy var postImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .man1
+        return imageView
+    }()
 
     // MARK: - Public Properties
 
@@ -88,11 +94,8 @@ final class PostCell: UITableViewCell {
             moreButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
             moreButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideInset),
             moreButton.leadingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor, constant: Constants.sideInset),
+            
 
-//            storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            storiesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            storiesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            storiesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
 }
