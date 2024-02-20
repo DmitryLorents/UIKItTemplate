@@ -25,6 +25,7 @@ final class NewsLineViewController: UIViewController {
         table.estimatedRowHeight = 120
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
+        table.register(RecomendationCell.self, forCellReuseIdentifier: RecomendationCell.reuseID)
         return table
     }()
 
@@ -78,7 +79,7 @@ extension NewsLineViewController: UITableViewDelegate {}
 
 extension NewsLineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,12 +93,22 @@ extension NewsLineViewController: UITableViewDataSource {
             cell.setupWith(storage.stories)
             return cell
         case 1:
+            return .init()
+//            guard let cell = tableView
+//                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+//            else {
+//                return .init()
+//            }
+//
+//            return cell
+        case 2:
             guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+                .dequeueReusableCell(withIdentifier: RecomendationCell.reuseID, for: indexPath) as? RecomendationCell
             else {
                 return .init()
             }
-
+            let recomendations = storage.recomendations
+            cell.setupWith(recomendations)
             return cell
         default:
             return .init()

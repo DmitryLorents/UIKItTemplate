@@ -110,7 +110,6 @@ final class PostCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupUI() {
-        contentView.backgroundColor = .lightGray
         contentView.addSubviews(
             avatarImageView,
             nickNameLabel,

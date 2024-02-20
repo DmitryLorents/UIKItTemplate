@@ -7,7 +7,7 @@ import UIKit
 final class StoriesCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: StoryView.self)
+    static let reuseID = String(describing: StoriesCell.self)
     private enum Constants {
         static let sideInset: CGFloat = 12
         static let interItemInset: CGFloat = 22
