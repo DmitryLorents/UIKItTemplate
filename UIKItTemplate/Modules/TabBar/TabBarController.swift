@@ -8,12 +8,6 @@ final class TabBarController: UITabBarController {
     // MARK: - Constants
 
     enum Constants {
-//        enum Images {
-//            static let catalog = "catalog"
-//            static let basket = "basket"
-//            static let profile = "profile"
-//        }
-
         enum Titles {
             static let newsLine = "Лента"
             static let notifications = "Уведомления"
@@ -40,7 +34,7 @@ final class TabBarController: UITabBarController {
         )
         newsLineVC.tabBarItem = newsLineItem
 
-        let notificationsVC = NotificationsViewController()
+        let notificationsVC = UINavigationController(rootViewController: NotificationsViewController())
         let notificationsItem = UITabBarItem(
             title: Constants.Titles.notifications,
             image: .notification,

@@ -5,228 +5,111 @@ import UIKit
 
 // Screen with detailed information for зкщвгсеы
 final class NotificationsViewController: UIViewController {
-    // MARK: - Types
-
     // MARK: - Constants
 
-    // MARK: - IBOutlets
+    private enum Constants {
+        enum Inset {
+            static let topInset: CGFloat = 33
+            static let generalInset: CGFloat = 20
+        }
+
+        enum Text {
+            static let subscribeRequest = "Запросы на подписку"
+            static let today = "Сегодня"
+            static let thisWeek = "На этой неделе"
+            static let title = "Уведомления"
+        }
+    }
 
     // MARK: - Visual Components
 
-    // MARK: - Public Properties
+    private lazy var requestSubscriptLabel: UILabel = {
+        let label = UILabel()
+        label.text = Constants.Text.subscribeRequest
+        label.textAlignment = .left
+        label.font = UIFont.makeVerdanaRegular(14)
+        label.textColor = .white
+        label.sizeToFit()
+        label.frame.origin = .zero
+        return label
+    }()
+
+    private lazy var table: UITableView = {
+        let table = UITableView()
+        table.delegate = self
+        table.dataSource = self
+        table.backgroundColor = .yellow
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = 120
+        table.separatorStyle = .none
+        table.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.reuseID)
+        return table
+    }()
 
     // MARK: - Private Properties
 
-    // MARK: - Initializers
-
-    // MARK: - Life Cycle
-
-    // MARK: - Public Methods
-
-    // MARK: - IBAction
-
-    // MARK: - Private Methods
-
-//    // MARK: - Constants
-//
-//    private enum Constants {
-//        enum Inset {
-//            static let topInset: CGFloat = 19
-//            static let generalInset: CGFloat = 20
-//            static let buttonHeight: CGFloat = 44
-//        }
-//
-//        enum Text {
-//            static let title = "Корзина"
-//            static let emptyLabel = "Ваша корзина пуста"
-//            static let advice = "Перейдие в каталог и добавьте товары в корзину"
-//        }
-//
-//        enum Font {
-//            static let verdanaBold16 = UIFont.makeVerdanaBold(16)
-//            static let verdana16 = UIFont.makeVerdanaRegular(16)
-//        }
-//
-//        enum Image {
-//            static let bagShopping = "bagShopping"
-//        }
-//    }
-//
-//    // MARK: - Visual Components
-//
-//    private lazy var basketView = BasketView(product: defaultProduct)
-//    private var emptyBasketLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = Constants.Text.emptyLabel
-//        label.textAlignment = .center
-//        label.font = Constants.Font.verdanaBold16
-//
-//        return label
-//    }()
-//
-//    private let bagShoppingImageView = UIImageView(image: UIImage(named: Constants.Image.bagShopping))
-//    private let adviceLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = Constants.Text.advice
-//        label.textAlignment = .center
-//        label.font = Constants.Font.verdana16
-//        label.textColor = .gray
-//        label.numberOfLines = 0
-//        return label
-//    }()
-//
-//    private lazy var checkoutButton: UIButton = {
-//        let button = UIButton(type: .custom)
-//        button.setTitle("title", for: .normal)
-//        button.backgroundColor = .magentaApp
-//        button.titleLabel?.textColor = .white
-//        button.titleLabel?.font = UIFont.makeVerdanaBold(16)
-//        button.layer.cornerRadius = 12
-//        button.addTarget(self, action: #selector(checkoutButtonAction), for: .touchUpInside)
-//        // add shadow
-//        button.layer.shadowColor = UIColor.black.cgColor
-//        button.layer.shadowOpacity = 0.3
-//        button.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        button.layer.shadowRadius = 2
-//        button.layer.cornerRadius = 12
-//        button.layer.shouldRasterize = true
-//        button.layer.rasterizationScale = UIScreen.main.scale
-//        return button
-//    }()
-//
-//    // MARK: - Private Properties
-//
-//    private let storage = ProductStorage.shared
-//    private var defaultProduct: Product {
-//        storage.products[0]
-//    }
-//
+    private let storage = DataStorage()
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupConstraints()
     }
-
-//        setConstraints()
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        updateOrderedProducts()
-//    }
-//
 
     // MARK: - Private Methods
 
     private func setupUI() {
+        title = Constants.Text.title
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.addSubview(table)
+        view.disableTARMIC()
     }
-//        title = Constants.Text.title
-//        view.addSubviews(emptyBasketLabel, basketView, checkoutButton, bagShoppingImageView, adviceLabel)
-//        view.disableTARMIC()
-//        setDelegates()
-//    }
-//
-//    private func updateOrderedProducts() {
-//        guard let product = storage.getOrderedProducts().first else {
-//            updateUIState(basketIsEmpty: true)
-//            return
-//        }
-//        basketView.removeFromSuperview()
-//        basketView = BasketView(product: product)
-//        basketView.delegate = self
-//        setCheckoutButtonLabel(for: product)
-//        view.addSubview(basketView)
-//        view.disableTARMIC()
-//        setConstraints()
-//        updateUIState(basketIsEmpty: false)
-//        setDelegates()
-//    }
-//
-//    private func updateUIState(basketIsEmpty: Bool) {
-//        basketView.isHidden = basketIsEmpty
-//        checkoutButton.isHidden = basketIsEmpty
-//        emptyBasketLabel.isHidden = !basketIsEmpty
-//        bagShoppingImageView.isHidden = !basketIsEmpty
-//        adviceLabel.isHidden = !basketIsEmpty
-//    }
-//
-//    private func setDelegates() {
-//        for subview in view.subviews {
-//            subview.subviews.forEach {
-//                guard let subView = $0 as? ProductDetailedView else { return }
-//                subView.delegate = self
-//            }
-//        }
-//    }
-//
-//    private func setCheckoutButtonLabel(for product: Product) {
-//        let title = "Оформить заказ - \(product.price * product.amount) ₽"
-//        checkoutButton.setTitle(title, for: .normal)
-//    }
-//
-//    @objc private func checkoutButtonAction() {
-//        didTapBasketButton(product: storage.getOrderedProducts()[0])
-//    }
-    // }
-//
-    //// Set constraints
-    // private extension BasketViewController {
-//    func setConstraints() {
-//        let inset = Constants.Inset.generalInset
-//        NSLayoutConstraint.activate([
-//            basketView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: inset),
-//            basketView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
-//            basketView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
-//
-//            emptyBasketLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            emptyBasketLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//
-//            adviceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            adviceLabel.topAnchor.constraint(equalTo: bagShoppingImageView.bottomAnchor, constant: 62),
-//            adviceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-//            adviceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-//
-//            bagShoppingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            bagShoppingImageView.bottomAnchor.constraint(equalTo: emptyBasketLabel.topAnchor, constant: -18),
-//            bagShoppingImageView.heightAnchor.constraint(equalToConstant: 70),
-//            bagShoppingImageView.widthAnchor.constraint(equalTo: bagShoppingImageView.heightAnchor, multiplier: 1),
-//
-//            checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -34),
-//            checkoutButton.leadingAnchor.constraint(
-//                equalTo: view.leadingAnchor,
-//                constant: Constants.Inset.generalInset
-//            ),
-//            checkoutButton.trailingAnchor.constraint(
-//                equalTo: view.trailingAnchor,
-//                constant: -Constants.Inset.generalInset
-//            ),
-//            checkoutButton.heightAnchor.constraint(equalToConstant: Constants.Inset.buttonHeight)
-//
-//        ])
-//    }
-    // }
-//
+}
 
-    // MARK: - ProductDetailedViewDelegate
+// Set constraints
+private extension NotificationsViewController {
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+}
 
-//
-    // extension BasketViewController: ProductDetailedViewDelegate {
-//    func didTapBasketButton(product: Product) {
-//        product.isAddedToBasket = false
-//        product.amount = 1
-//        updateOrderedProducts()
-//    }
-    // }
-//
+// MARK: - UITableViewDelegate
 
-    // MARK: - BasketViewDelegate
+extension NotificationsViewController: UITableViewDelegate {}
 
-//
-    // extension BasketViewController: BasketViewDelegate {
-//    func didChangeProductAmount(product: Product) {
-//        setCheckoutButtonLabel(for: product)
-//    }
+// MARK: - UITableViewDataSource
+
+extension NotificationsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 2
+        case 1:
+            return 5
+        default:
+            return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: NotificationCell.reuseID, for: indexPath) as? NotificationCell
+        else {
+            return .init()
+        }
+//            cell.setupWith(storage.stories)
+        return cell
+    }
 }
