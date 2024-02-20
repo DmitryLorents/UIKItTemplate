@@ -198,9 +198,8 @@
 		0AE6028B2B83E7320028ECA6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AE6028C2B83E7320028ECA6 /* StoriesCell.swift */,
 				0AE6028D2B83E7320028ECA6 /* StoryView.swift */,
-				0AE602BC2B8492ED0028ECA6 /* PostCell.swift */,
+				0AE602C02B84C31B0028ECA6 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -237,6 +236,15 @@
 				0AE602982B83E7320028ECA6 /* BasketView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0AE602C02B84C31B0028ECA6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0AE6028C2B83E7320028ECA6 /* StoriesCell.swift */,
+				0AE602BC2B8492ED0028ECA6 /* PostCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		0AECD1EB2B83B95000E3D5FC /* Extensions */ = {

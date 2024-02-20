@@ -11,7 +11,7 @@ final class PostCell: UITableViewCell {
     private enum Constants {
         static let sideInset: CGFloat = 12
         static let interItemInset: CGFloat = 22
-        static let defaultName = "Ваша история"
+        static let postImageRation: CGFloat = 239 / 357
         static let defaultImage = "girl1"
         static let avatarSize: CGFloat = 30
     }
@@ -39,12 +39,17 @@ final class PostCell: UITableViewCell {
         button.setImage(.more, for: .normal)
         return button
     }()
-    
+
     private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .man1
+        imageView.image = .nature4
         return imageView
     }()
+
+    private lazy var likeButton = makeSmallButton(image: .like)
+    private lazy var messageButton = makeSmallButton(image: .messageSmall)
+    private lazy var sendButton = makeSmallButton(image: .send)
+    private lazy var bookmarkButton = makeSmallButton(image: .bookmark)
 
     // MARK: - Public Properties
 
@@ -72,14 +77,35 @@ final class PostCell: UITableViewCell {
 
     private func setupUI() {
         contentView.backgroundColor = .lightGray
-        contentView.addSubviews(avatarImageView, nickNameLabel, moreButton)
+        contentView.addSubviews(
+            avatarImageView,
+            nickNameLabel,
+            moreButton,
+            postImageView,
+            likeButton,
+            messageButton,
+            sendButton,
+            bookmarkButton
+        )
         contentView.disableTARMIC()
         setupConstraints()
     }
 
-    private func setupConstraints() {
+    private func makeSmallButton(image: UIImage) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setImage(image, for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        return button
+    }
+}
+
+// MARK: - Constraints
+
+private extension PostCell {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(equalToConstant: 120),
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 500),
 
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
             avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
@@ -94,7 +120,29 @@ final class PostCell: UITableViewCell {
             moreButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
             moreButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideInset),
             moreButton.leadingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor, constant: Constants.sideInset),
-            
+
+            postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            postImageView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
+            postImageView.heightAnchor.constraint(
+                equalTo: postImageView.widthAnchor,
+                multiplier: Constants.postImageRation
+            ),
+
+            likeButton.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 8),
+            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
+
+            messageButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
+            messageButton.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 8),
+
+            sendButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
+            sendButton.leadingAnchor.constraint(equalTo: messageButton.trailingAnchor, constant: 8),
+
+            bookmarkButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
+            bookmarkButton.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -Constants.sideInset
+            ),
 
         ])
     }
