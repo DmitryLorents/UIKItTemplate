@@ -1,13 +1,13 @@
-// StoriesCell.swift
+// PostCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// Cell to show line of stories
-final class StoriesCell: UITableViewCell {
+/// View to show product with price
+final class PostCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: StoryView.self)
+    static let reuseID = String(describing: PostCell.self)
     private enum Constants {
         static let sideInset: CGFloat = 12
         static let interItemInset: CGFloat = 22
@@ -54,7 +54,8 @@ final class StoriesCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupUI() {
-        contentView.addSubview(storiesScrollView)
+        contentView.backgroundColor = .brown
+//        contentView.addSubview(storiesScrollView)
         contentView.disableTARMIC()
         setupConstraints()
     }
@@ -89,10 +90,11 @@ final class StoriesCell: UITableViewCell {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            storiesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            storiesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            storiesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 120)
+//            storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            storiesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            storiesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+//            storiesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
 }

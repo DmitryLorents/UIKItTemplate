@@ -24,6 +24,7 @@ final class NewsLineViewController: UIViewController {
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 75
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
+        table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
         return table
     }()
 
@@ -45,7 +46,6 @@ final class NewsLineViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(table)
-//        view.addSubviews(storiesView)
         view.disableTARMIC()
     }
 
@@ -66,10 +66,6 @@ private extension NewsLineViewController {
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
-//            storiesView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            storiesView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-
         ])
     }
 }
@@ -82,16 +78,29 @@ extension NewsLineViewController: UITableViewDelegate {}
 
 extension NewsLineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+       5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: StoriesCell.reuseID, for: indexPath) as? StoriesCell
-        else {
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: StoriesCell.reuseID, for: indexPath) as? StoriesCell
+            else {
+                return .init()
+            }
+            cell.setupWith(storage.stories)
+            return cell
+        case 1:
+            guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+            else {
+                return .init()
+            }
+
+            return cell
+        default:
             return .init()
         }
-        cell.setupWith(storage.stories)
-        return cell
     }
 }

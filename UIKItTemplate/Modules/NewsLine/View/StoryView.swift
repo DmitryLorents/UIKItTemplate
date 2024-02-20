@@ -3,7 +3,7 @@
 
 import UIKit
 
-/// View to show product with price
+/// View to show story
 final class StoryView: UIView {
     // MARK: - Constants
 
