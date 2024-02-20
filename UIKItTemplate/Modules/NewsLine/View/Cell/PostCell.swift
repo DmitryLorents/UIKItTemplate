@@ -172,7 +172,6 @@ final class PostCell: UITableViewCell {
 private extension PostCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
             avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             avatarImageView.heightAnchor.constraint(equalToConstant: Constants.avatarSize),
@@ -238,4 +237,3 @@ private extension PostCell {
         ])
     }
 }
-

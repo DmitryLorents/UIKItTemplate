@@ -22,7 +22,7 @@ final class NewsLineViewController: UIViewController {
         table.dataSource = self
         table.backgroundColor = .yellow
         table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 75
+        table.estimatedRowHeight = 120
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
         return table

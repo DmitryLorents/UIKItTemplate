@@ -73,7 +73,6 @@ final class StoryView: UIView {
     // MARK: - Private Methods
 
     private func setupUI() {
-//        backgroundColor = .blue
         addSubviews(nameLabel, userImageView, plusButton)
         disableTARMIC()
         setupConstraints()
@@ -85,13 +84,13 @@ final class StoryView: UIView {
 private extension StoryView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            userImageView.topAnchor.constraint(equalTo: topAnchor),
+            userImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             userImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
             userImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             userImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
 
-            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             nameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 5),
             nameLabel.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
