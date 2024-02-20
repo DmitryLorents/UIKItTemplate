@@ -13,31 +13,42 @@ final class PostCell: UITableViewCell {
         static let interItemInset: CGFloat = 22
         static let defaultName = "Ваша история"
         static let defaultImage = "girl1"
+        static let avatarSize: CGFloat = 30
     }
 
     // MARK: - Visual Components
 
-    private lazy var storiesScrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.showsHorizontalScrollIndicator = false
-        return view
+    private lazy var avatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = Constants.avatarSize / 2
+        imageView.clipsToBounds = true
+        imageView.image = .man1
+        return imageView
+    }()
+
+    private lazy var nickNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "tur_v_abudabi"
+        label.textAlignment = .left
+        label.font = UIFont(name: "Verdana-bold", size: 16)
+        return label
+    }()
+
+    private lazy var moreButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(.more, for: .normal)
+        return button
     }()
 
     // MARK: - Public Properties
 
-    func setupWith(_ stories: [Story]) {
-        self.stories = stories
+    func setupWith(_ post: Post) {
+        self.post = post
     }
 
     // MARK: - Private Properties
 
-    private let defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
-    var stories: [Story]? {
-        didSet {
-            stories?.insert(defaultStory, at: 0)
-            makeSubviews()
-        }
-    }
+    private var post: Post?
 
     // MARK: - Initializers
 
@@ -54,43 +65,30 @@ final class PostCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupUI() {
-        contentView.backgroundColor = .brown
-//        contentView.addSubview(storiesScrollView)
+        contentView.backgroundColor = .lightGray
+        contentView.addSubviews(avatarImageView, nickNameLabel, moreButton)
         contentView.disableTARMIC()
         setupConstraints()
     }
 
-    private func makeSubviews() {
-        guard let stories else { return }
-        let viewWidth: CGFloat = 60
-        for (index, story) in stories.enumerated() {
-            let storyView = StoryView(story: story, isStartView: index == 0)
-            storyView.translatesAutoresizingMaskIntoConstraints = false
-            storiesScrollView.addSubview(storyView)
-
-            // setup constraints
-            let leadingInset = Constants.sideInset + (CGFloat(index) * (Constants.interItemInset + viewWidth))
-            storyView.leadingAnchor.constraint(equalTo: storiesScrollView.leadingAnchor, constant: leadingInset)
-                .isActive = true
-            storyView.topAnchor.constraint(equalTo: storiesScrollView.topAnchor).isActive = true
-            if index == stories.count - 1 {
-                NSLayoutConstraint.activate([
-                    // set cell height
-                    storyView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1),
-
-                    storyView.bottomAnchor.constraint(equalTo: storiesScrollView.bottomAnchor),
-                    storyView.trailingAnchor.constraint(
-                        greaterThanOrEqualTo: storiesScrollView.trailingAnchor,
-                        constant: -Constants.sideInset
-                    )
-                ])
-            }
-        }
-    }
-
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(equalToConstant: 120)
+            contentView.heightAnchor.constraint(equalToConstant: 120),
+
+            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            avatarImageView.heightAnchor.constraint(equalToConstant: Constants.avatarSize),
+            avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
+
+            nickNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 6),
+            nickNameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+
+            moreButton.widthAnchor.constraint(equalToConstant: 14),
+            moreButton.heightAnchor.constraint(equalToConstant: 2),
+            moreButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+            moreButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideInset),
+            moreButton.leadingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor, constant: Constants.sideInset),
+
 //            storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
 //            storiesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 //            storiesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

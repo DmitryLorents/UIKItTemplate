@@ -78,7 +78,7 @@ extension NewsLineViewController: UITableViewDelegate {}
 
 extension NewsLineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       5
+        5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
