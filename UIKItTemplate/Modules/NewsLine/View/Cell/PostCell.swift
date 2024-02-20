@@ -50,6 +50,30 @@ final class PostCell: UITableViewCell {
     private lazy var messageButton = makeSmallButton(image: .messageSmall)
     private lazy var sendButton = makeSmallButton(image: .send)
     private lazy var bookmarkButton = makeSmallButton(image: .bookmark)
+    private let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        pageControl.hidesForSinglePage = true
+        pageControl.currentPageIndicatorTintColor = .black
+        return pageControl
+    }()
+
+    private lazy var likesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Нравиться: 201"
+        label.textAlignment = .left
+        label.font = UIFont.makeVerdanaBold(10)
+        return label
+    }()
+
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        setupDescriptionLabelText()
+        return label
+    }()
 
     // MARK: - Public Properties
 
@@ -85,7 +109,10 @@ final class PostCell: UITableViewCell {
             likeButton,
             messageButton,
             sendButton,
-            bookmarkButton
+            bookmarkButton,
+            pageControl,
+            likesLabel,
+            descriptionLabel
         )
         contentView.disableTARMIC()
         setupConstraints()
@@ -97,6 +124,24 @@ final class PostCell: UITableViewCell {
         button.heightAnchor.constraint(equalToConstant: 24).isActive = true
         button.widthAnchor.constraint(equalToConstant: 24).isActive = true
         return button
+    }
+
+    private func setupDescriptionLabelText() {
+        let nicknameString = "tur_v_abudabi"
+        let boldFont = UIFont.makeVerdanaBold(10)
+        let boldAttributes = [NSAttributedString.Key.font: boldFont]
+        let nicknameBold = NSMutableAttributedString(
+            string: nicknameString,
+            attributes: boldAttributes as [NSAttributedString.Key: Any]
+        )
+        let description = "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
+        let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(10)]
+        let descriptionRegular = NSAttributedString(
+            string: description,
+            attributes: regularAttribute as [NSAttributedString.Key: Any]
+        )
+        nicknameBold.append(descriptionRegular)
+        descriptionLabel.attributedText = nicknameBold
     }
 }
 
@@ -143,6 +188,15 @@ private extension PostCell {
                 equalTo: contentView.trailingAnchor,
                 constant: -Constants.sideInset
             ),
+
+            pageControl.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+
+            likesLabel.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
+            likesLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 6),
+
+            descriptionLabel.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 6)
 
         ])
     }
