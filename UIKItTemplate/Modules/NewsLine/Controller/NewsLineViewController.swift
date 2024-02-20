@@ -23,6 +23,7 @@ final class NewsLineViewController: UIViewController {
         table.backgroundColor = .yellow
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
+        table.separatorStyle = .none
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
         table.register(RecomendationCell.self, forCellReuseIdentifier: RecomendationCell.reuseID)
@@ -79,7 +80,7 @@ extension NewsLineViewController: UITableViewDelegate {}
 
 extension NewsLineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,14 +94,13 @@ extension NewsLineViewController: UITableViewDataSource {
             cell.setupWith(storage.stories)
             return cell
         case 1:
-            return .init()
-//            guard let cell = tableView
-//                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
-//            else {
-//                return .init()
-//            }
-//
-//            return cell
+            guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+            else {
+                return .init()
+            }
+
+            return cell
         case 2:
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: RecomendationCell.reuseID, for: indexPath) as? RecomendationCell
@@ -111,7 +111,13 @@ extension NewsLineViewController: UITableViewDataSource {
             cell.setupWith(recomendations)
             return cell
         default:
-            return .init()
+            guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+            else {
+                return .init()
+            }
+
+            return cell
         }
     }
 }

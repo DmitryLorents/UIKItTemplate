@@ -85,17 +85,24 @@ final class RecomendationCell: UITableViewCell {
 
             // setup constraints
             let leadingInset = CGFloat(index) * (Constants.interItemInset + viewWidth)
-            recomendationView.leadingAnchor.constraint(equalTo: recomendationsScrollView.leadingAnchor, constant: leadingInset)
-                .isActive = true
+            recomendationView.leadingAnchor.constraint(
+                equalTo: recomendationsScrollView.leadingAnchor,
+                constant: leadingInset
+            )
+            .isActive = true
             recomendationView.topAnchor.constraint(equalTo: recomendationsScrollView.topAnchor).isActive = true
             if index == recomendations.count - 1 {
                 NSLayoutConstraint.activate([
                     // set cell height
-                    recomendationView.heightAnchor.constraint(equalTo: recomendationsScrollView.heightAnchor, multiplier: 1),
+                    recomendationView.heightAnchor.constraint(
+                        equalTo: recomendationsScrollView.heightAnchor,
+                        multiplier: 1
+                    ),
 
                     recomendationView.bottomAnchor.constraint(equalTo: recomendationsScrollView.bottomAnchor),
                     recomendationView.trailingAnchor.constraint(
-                        greaterThanOrEqualTo: recomendationsScrollView.trailingAnchor)
+                        greaterThanOrEqualTo: recomendationsScrollView.trailingAnchor
+                    )
                 ])
             }
         }
@@ -103,7 +110,6 @@ final class RecomendationCell: UITableViewCell {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-
             recomendationLabel.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
                 constant: Constants.sideInset
