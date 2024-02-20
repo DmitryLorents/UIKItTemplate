@@ -70,10 +70,20 @@ final class PostCell: UITableViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textAlignment = .left
-        setupDescriptionLabelText()
+        label.attributedText = makeDescriptionLabelText()
         return label
     }()
+
+    private lazy var smallAvatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
+        imageView.image = .girl1
+        return imageView
+    }()
+
+    private lazy var commentLabel = makeVerdana10GrayLabel(text: "Комментировать...")
+    private lazy var timeLabel = makeVerdana10GrayLabel(text: "10 минут вперед")
 
     // MARK: - Public Properties
 
@@ -112,7 +122,10 @@ final class PostCell: UITableViewCell {
             bookmarkButton,
             pageControl,
             likesLabel,
-            descriptionLabel
+            descriptionLabel,
+            smallAvatarImageView,
+            commentLabel,
+            timeLabel
         )
         contentView.disableTARMIC()
         setupConstraints()
@@ -126,7 +139,16 @@ final class PostCell: UITableViewCell {
         return button
     }
 
-    private func setupDescriptionLabelText() {
+    private func makeVerdana10GrayLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .left
+        label.font = UIFont.makeVerdanaRegular(10)
+        label.textColor = .gray
+        return label
+    }
+
+    private func makeDescriptionLabelText() -> NSMutableAttributedString {
         let nicknameString = "tur_v_abudabi"
         let boldFont = UIFont.makeVerdanaBold(10)
         let boldAttributes = [NSAttributedString.Key.font: boldFont]
@@ -134,14 +156,14 @@ final class PostCell: UITableViewCell {
             string: nicknameString,
             attributes: boldAttributes as [NSAttributedString.Key: Any]
         )
-        let description = "Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
+        let description = " Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
         let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(10)]
         let descriptionRegular = NSAttributedString(
             string: description,
             attributes: regularAttribute as [NSAttributedString.Key: Any]
         )
         nicknameBold.append(descriptionRegular)
-        descriptionLabel.attributedText = nicknameBold
+        return nicknameBold
     }
 }
 
@@ -150,10 +172,9 @@ final class PostCell: UITableViewCell {
 private extension PostCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 500),
 
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
-            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             avatarImageView.heightAnchor.constraint(equalToConstant: Constants.avatarSize),
             avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
 
@@ -196,8 +217,25 @@ private extension PostCell {
             likesLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 6),
 
             descriptionLabel.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
-            descriptionLabel.topAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 6)
+            descriptionLabel.topAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 6),
+            descriptionLabel.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor,
+                constant: -Constants.sideInset
+            ),
+
+            smallAvatarImageView.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
+            smallAvatarImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
+            smallAvatarImageView.heightAnchor.constraint(equalToConstant: 20),
+            smallAvatarImageView.widthAnchor.constraint(equalTo: smallAvatarImageView.heightAnchor),
+
+            commentLabel.centerYAnchor.constraint(equalTo: smallAvatarImageView.centerYAnchor),
+            commentLabel.leadingAnchor.constraint(equalTo: smallAvatarImageView.trailingAnchor, constant: 4),
+
+            timeLabel.leadingAnchor.constraint(equalTo: likeButton.leadingAnchor),
+            timeLabel.topAnchor.constraint(equalTo: commentLabel.bottomAnchor, constant: 10),
+            timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
 
         ])
     }
 }
+
