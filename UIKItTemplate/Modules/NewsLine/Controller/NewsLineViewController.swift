@@ -33,7 +33,7 @@ final class NewsLineViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private var storageStorage = DataStorage()
+    private var dataStorage = DataStorage()
 
     // MARK: - Life Cycle
 
@@ -77,11 +77,11 @@ private extension NewsLineViewController {
 
 extension NewsLineViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        storageStorage.sections.count
+        dataStorage.sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = storageStorage.sections
+        let sections = dataStorage.sections
         switch sections[section] {
         case .stories, .firstPost, .recomendation:
             return 1
@@ -91,12 +91,12 @@ extension NewsLineViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = storageStorage.sections[indexPath.section]
+        let section = dataStorage.sections[indexPath.section]
         switch section {
         case .stories:
             return makeStoryViewCell(tableView, indexPath)
         case .firstPost:
-            let post = storageStorage.firstPost
+            let post = dataStorage.firstPost
             return makePostViewCell(tableView, indexPath, post)
         case let .remainingPosts(posts):
             let post = posts[indexPath.row]
@@ -112,7 +112,7 @@ extension NewsLineViewController: UITableViewDataSource {
         else {
             return .init()
         }
-        cell.setupWith(storageStorage.stories)
+        cell.setupWith(dataStorage.stories)
         return cell
     }
 
@@ -133,7 +133,7 @@ extension NewsLineViewController: UITableViewDataSource {
         else {
             return .init()
         }
-        let recomendations = storageStorage.recomendations
+        let recomendations = dataStorage.recomendations
         cell.setupWith(recomendations)
         return cell
     }

@@ -44,6 +44,7 @@ final class StoriesViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        print(String(describing: self))
     }
 
     @available(*, unavailable)
