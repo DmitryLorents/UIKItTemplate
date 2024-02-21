@@ -7,9 +7,12 @@ import UIKit
 final class NewsLineViewController: UIViewController {
     // MARK: - Constants
 
+    /// Constants for NewsLineViewController
     private enum Constants {
         enum Inset {
+            /// Standard inset from left or right side
             static let topInset: CGFloat = 33
+            /// Inset per views
             static let generalInset: CGFloat = 20
         }
     }
@@ -22,9 +25,9 @@ final class NewsLineViewController: UIViewController {
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         table.separatorStyle = .none
-        table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
-        table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
-        table.register(RecommendationCell.self, forCellReuseIdentifier: RecommendationCell.reuseID)
+        table.register(StoriesViewCell.self, forCellReuseIdentifier: StoriesViewCell.reuseID)
+        table.register(PostViewCell.self, forCellReuseIdentifier: PostViewCell.reuseID)
+        table.register(RecommendationViewCell.self, forCellReuseIdentifier: RecommendationViewCell.reuseID)
         return table
     }()
 
@@ -81,7 +84,7 @@ extension NewsLineViewController: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: StoriesCell.reuseID, for: indexPath) as? StoriesCell
+                .dequeueReusableCell(withIdentifier: StoriesViewCell.reuseID, for: indexPath) as? StoriesViewCell
             else {
                 return .init()
             }
@@ -89,7 +92,7 @@ extension NewsLineViewController: UITableViewDataSource {
             return cell
         case 1:
             guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+                .dequeueReusableCell(withIdentifier: PostViewCell.reuseID, for: indexPath) as? PostViewCell
             else {
                 return .init()
             }
@@ -97,11 +100,9 @@ extension NewsLineViewController: UITableViewDataSource {
             cell.setupWith(post)
             return cell
         case 2:
-            guard let cell = tableView
-            RecommendationCelleCell(
-                withIdentifier: RecomendRecommendationCell,
-                for: indexPath
-            ) as? RecomendationCell
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: RecommendationViewCell.reuseID, for: indexPath
+            ) as? RecommendationViewCell
             else {
                 return .init()
             }
@@ -109,8 +110,9 @@ extension NewsLineViewController: UITableViewDataSource {
             cell.setupWith(recomendations)
             return cell
         default:
-            guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: PostCell.reuseID, for: indexPath) as? PostCell
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: PostViewCell.reuseID, for: indexPath
+            ) as? PostViewCell
             else {
                 return .init()
             }

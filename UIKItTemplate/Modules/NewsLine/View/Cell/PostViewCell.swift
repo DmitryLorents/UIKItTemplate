@@ -1,21 +1,30 @@
-// PostCell.swift
+// PostViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// View to show product with price
-final class PostCell: UITableViewCell {
+final class PostViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: PostCell.self)
+    static let reuseID = String(describing: PostViewCell.self)
+    /// Constants for PostViewCell
     private enum Constants {
+        /// Standard inset from left or right side
         static let sideInset: CGFloat = 12
+        /// Inset per views
         static let interItemInset: CGFloat = 22
+        /// Image ration for main imageViews in post
         static let postImageRation: CGFloat = 239 / 357
+        /// Width and height for avatarImageView
         static let avatarSize: CGFloat = 30
+        /// Image name for user
         static let defaultImage = "girl1"
+        /// Ttile for likesLabel
         static let likesAmount = "Нравиться: 201"
+        /// Title for comment label
         static let comment = "Комментировать..."
+        /// Title for timeStamp label
         static let timeStamp = "10 минут вперед"
     }
 
@@ -215,7 +224,7 @@ final class PostCell: UITableViewCell {
 
 // MARK: - Constraints
 
-private extension PostCell {
+private extension PostViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
@@ -286,7 +295,7 @@ private extension PostCell {
 
 // MARK: - PostCell: UIScrollViewDelegate
 
-extension PostCell: UIScrollViewDelegate {
+extension PostViewCell: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         pageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
     }

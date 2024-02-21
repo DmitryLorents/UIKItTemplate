@@ -1,17 +1,22 @@
-// StoriesCell.swift
+// StoriesViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Cell to show line of stories
-final class StoriesCell: UITableViewCell {
+final class StoriesViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: StoriesCell.self)
+    static let reuseID = String(describing: StoriesViewCell.self)
+    /// Constants of
     private enum Constants {
+        /// Standard inset from left or right side
         static let sideInset: CGFloat = 12
+        /// Inset per views
         static let interItemInset: CGFloat = 22
+        /// Ttitle for first StoryView
         static let defaultName = "Ваша история"
+        /// Image name for first StoryView
         static let defaultImage = "girl1"
     }
 

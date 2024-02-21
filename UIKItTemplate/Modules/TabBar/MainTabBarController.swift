@@ -1,16 +1,21 @@
-// TabBarController.swift
+// MainTabBarController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// General app's tabBarController
-final class TabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
     // MARK: - Constants
 
+    /// Constants for TabBarController
     enum Constants {
+        /// Title for ViewControllers
         enum Titles {
+            /// NewsLineViewController title
             static let newsLine = "Лента"
+            /// NotificationsViewController title
             static let notifications = "Уведомления"
+            /// NotificationsViewController title
             static let profile = "Профиль"
         }
     }
@@ -26,30 +31,30 @@ final class TabBarController: UITabBarController {
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        let newsLineVC = UINavigationController(rootViewController: NewsLineViewController())
+        let newsLineViewController = UINavigationController(rootViewController: NewsLineViewController())
         let newsLineItem = UITabBarItem(
             title: Constants.Titles.newsLine,
             image: .home,
             tag: 0
         )
-        newsLineVC.tabBarItem = newsLineItem
+        newsLineViewController.tabBarItem = newsLineItem
 
-        let notificationsVC = UINavigationController(rootViewController: NotificationsViewController())
+        let notificationsViewController = UINavigationController(rootViewController: NotificationsViewController())
         let notificationsItem = UITabBarItem(
             title: Constants.Titles.notifications,
             image: .notification,
             tag: 1
         )
-        notificationsVC.tabBarItem = notificationsItem
+        notificationsViewController.tabBarItem = notificationsItem
 
-        let profileNavVC = ProfileViewController()
+        let profileViewController = ProfileViewController()
         let profileItem = UITabBarItem(
             title: Constants.Titles.profile,
             image: .profile,
             tag: 2
         )
-        profileNavVC.tabBarItem = profileItem
+        profileViewController.tabBarItem = profileItem
 
-        viewControllers = [newsLineVC, notificationsVC, profileNavVC]
+        viewControllers = [newsLineViewController, notificationsViewController, profileViewController]
     }
 }

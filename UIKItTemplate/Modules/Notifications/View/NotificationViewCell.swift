@@ -1,17 +1,22 @@
-// NotificationCell.swift
+// NotificationViewCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// View to show product with price
-final class NotificationCell: UITableViewCell {
+final class NotificationViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: NotificationCell.self)
+    static let reuseID = String(describing: NotificationViewCell.self)
+    /// Constants for NotificationViewCell
     private enum Constants {
+        /// Standard inset from left or right side
         static let sideInset: CGFloat = 12
+        /// Inset per views
         static let interItemInset: CGFloat = 7
+        /// Width and height of avatarImageView
         static let imageSize: CGFloat = 40
+        /// Title for subscribe button
         static let buttonTitle = "Подписаться"
     }
 
@@ -163,7 +168,7 @@ final class NotificationCell: UITableViewCell {
 
 // MARK: - Constraints
 
-private extension NotificationCell {
+private extension NotificationViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             contentView.heightAnchor.constraint(equalToConstant: 50),

@@ -5,9 +5,8 @@ import UIKit
 
 /// View to show story
 final class RecomendationView: UIView {
-    
     // MARK: - Constants
-    
+
     /// Constants for RecomendationView
     private enum Constants {
         /// Width and height of imageView
@@ -117,7 +116,7 @@ private extension RecomendationView {
             subscribeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             subscribeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
             subscribeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
-            
+
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 9),
 

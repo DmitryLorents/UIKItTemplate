@@ -7,14 +7,21 @@ import UIKit
 final class NotificationsViewController: UIViewController {
     // MARK: - Constants
 
+    /// Constants for NotificationsViewController
     private enum Constants {
+        /// Standard insets
         enum Inset {
+            /// Top inset value
             static let topInset: CGFloat = 33
+            /// General inset value
             static let generalInset: CGFloat = 20
         }
 
+        /// Titles related to class items
         enum Text {
+            /// Title for requestSubscriptLabel
             static let subscribeRequest = "Запросы на подписку"
+            /// Class title
             static let title = "Уведомления"
         }
     }
@@ -36,7 +43,7 @@ final class NotificationsViewController: UIViewController {
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         table.separatorStyle = .none
-        table.register(NotificationCell.self, forCellReuseIdentifier: NotificationCell.reuseID)
+        table.register(NotificationViewCell.self, forCellReuseIdentifier: NotificationViewCell.reuseID)
         return table
     }()
 
@@ -100,7 +107,7 @@ extension NotificationsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView
-            .dequeueReusableCell(withIdentifier: NotificationCell.reuseID, for: indexPath) as? NotificationCell
+            .dequeueReusableCell(withIdentifier: NotificationViewCell.reuseID, for: indexPath) as? NotificationViewCell
         else {
             return .init()
         }

@@ -5,23 +5,11 @@ import UIKit
 
 /// Class Controller
 class ProfileViewController: UIViewController {
+    /// Constants related to ProfileViewController
     enum Constants {
-        enum Text {
-            static let title = "Профиль"
-        }
+        /// Class title
+        static let title = "Профиль"
     }
-
-    // MARK: - Constants
-
-    // MARK: - IBOutlets
-
-    // MARK: - Visual Components
-
-    // MARK: - Public Properties
-
-    // MARK: - Private Properties
-
-    // MARK: - Initializers
 
     // MARK: - Life Cycle
 
@@ -29,10 +17,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
     }
-
-    // MARK: - Public Methods
-
-    // MARK: - IBAction
 
     // MARK: - Private Methods
 
