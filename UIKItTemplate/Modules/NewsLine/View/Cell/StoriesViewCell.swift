@@ -7,12 +7,11 @@ import UIKit
 final class StoriesViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: StoriesViewCell.self)
-    /// Constants of
+    /// Constants of StoriesViewCell
     private enum Constants {
         /// Standard inset from left or right side
         static let sideInset: CGFloat = 12
-        /// Inset per views
+        /// Standard inset per items
         static let interItemInset: CGFloat = 22
         /// Ttitle for first StoryView
         static let defaultName = "Ваша история"
@@ -20,24 +19,20 @@ final class StoriesViewCell: UITableViewCell {
         static let defaultImage = "girl1"
     }
 
+    static let reuseID = String(describing: StoriesViewCell.self)
+
     // MARK: - Visual Components
 
-    private lazy var storiesScrollView: UIScrollView = {
+    private let storiesScrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
         return view
     }()
 
-    // MARK: - Public Properties
-
-    func setupWith(_ stories: [Story]) {
-        self.stories = stories
-    }
-
     // MARK: - Private Properties
 
     private let defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
-    var stories: [Story]? {
+    private var stories: [Story]? {
         didSet {
             stories?.insert(defaultStory, at: 0)
             makeSubviews()
@@ -54,6 +49,12 @@ final class StoriesViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public methods
+
+    func setupWith(_ stories: [Story]) {
+        self.stories = stories
     }
 
     // MARK: - Private Methods
@@ -91,7 +92,11 @@ final class StoriesViewCell: UITableViewCell {
             }
         }
     }
+}
 
+// MARK: - Constraints
+
+private extension StoriesViewCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),

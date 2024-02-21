@@ -7,7 +7,6 @@ import UIKit
 final class RecommendationViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: RecommendationViewCell.self)
     /// Constants for RecomendationViewCell
     private enum Constants {
         /// Standard inset from left or right side
@@ -19,6 +18,8 @@ final class RecommendationViewCell: UITableViewCell {
         /// Title for showAllLabel
         static let showAllLabelTitle = "Все"
     }
+
+    static let reuseID = String(describing: RecommendationViewCell.self)
 
     // MARK: - Visual Components
 
@@ -39,21 +40,15 @@ final class RecommendationViewCell: UITableViewCell {
         return label
     }()
 
-    private lazy var recomendationsScrollView: UIScrollView = {
+    private let recomendationsScrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
         return view
     }()
 
-    // MARK: - Public Properties
-
-    func setupWith(_ recomendations: [Recomendation]) {
-        self.recomendations = recomendations
-    }
-
     // MARK: - Private Properties
 
-    var recomendations: [Recomendation]? {
+    private var recomendations: [Recomendation]? {
         didSet {
             makeSubviews()
         }
@@ -69,6 +64,12 @@ final class RecommendationViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public Methods
+
+    func setupWith(_ recomendations: [Recomendation]) {
+        self.recomendations = recomendations
     }
 
     // MARK: - Private Methods
@@ -100,8 +101,7 @@ final class RecommendationViewCell: UITableViewCell {
                 NSLayoutConstraint.activate([
                     // set cell height
                     recomendationView.heightAnchor.constraint(
-                        equalTo: recomendationsScrollView.heightAnchor,
-                        multiplier: 1
+                        equalTo: recomendationsScrollView.heightAnchor
                     ),
 
                     recomendationView.bottomAnchor.constraint(equalTo: recomendationsScrollView.bottomAnchor),
@@ -112,8 +112,12 @@ final class RecommendationViewCell: UITableViewCell {
             }
         }
     }
+}
 
-    private func setupConstraints() {
+// MARK: - Constraints
+
+private extension RecommendationViewCell {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             recomendationLabel.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,

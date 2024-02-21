@@ -3,11 +3,10 @@
 
 import UIKit
 
-/// View to show product with price
+/// View to show notification
 final class NotificationViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: NotificationViewCell.self)
     /// Constants for NotificationViewCell
     private enum Constants {
         /// Standard inset from left or right side
@@ -18,11 +17,17 @@ final class NotificationViewCell: UITableViewCell {
         static let imageSize: CGFloat = 40
         /// Title for subscribe button
         static let buttonTitle = "Подписаться"
+        /// Comment text in case of like type of cell
+        static let commentLike = " понравился ваш комментарий: "
+        /// Comment text in case of subscribe type of cell
+        static let commentSubscribe = " появился(-ась) в RMLink. Вы можете быть знакомы"
     }
+
+    static let reuseID = String(describing: NotificationViewCell.self)
 
     // MARK: - Visual Components
 
-    private lazy var avatarImageView: UIImageView = {
+    private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = Constants.imageSize / 2
         imageView.clipsToBounds = true
@@ -30,10 +35,9 @@ final class NotificationViewCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-//        label.attributedText = makeDescriptionLabelText(no)
         return label
     }()
 
@@ -52,12 +56,6 @@ final class NotificationViewCell: UITableViewCell {
         button.layer.cornerRadius = 8
         return button
     }()
-
-    // MARK: - Public Properties
-
-    func setupWith(_ notification: Notice?) {
-        notice = notification
-    }
 
     // MARK: - Private Properties
 
@@ -80,6 +78,12 @@ final class NotificationViewCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public Methods
+
+    func setupWith(_ notification: Notice?) {
+        notice = notification
     }
 
     // MARK: - Private Methods
@@ -142,9 +146,9 @@ final class NotificationViewCell: UITableViewCell {
         let comment: String
         switch notice.type {
         case .like:
-            comment = " понравился ваш комментарий: \"\(notice.description)\" "
+            comment = "\(Constants.commentLike)\(notice.description)\" "
         case .subscribe:
-            comment = " появился(-ась) в RMLink. Вы можете быть знакомы"
+            comment = Constants.commentSubscribe
         }
         let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(12)]
         let descriptionRegular = NSAttributedString(

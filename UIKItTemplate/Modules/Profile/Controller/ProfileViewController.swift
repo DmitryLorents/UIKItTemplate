@@ -5,7 +5,6 @@ import UIKit
 
 /// Class Controller
 final class ProfileViewController: UIViewController {
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

@@ -33,7 +33,7 @@ final class NewsLineViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private var storage = DataStorage()
+    private var storageStorage = DataStorage()
 
     // MARK: - Life Cycle
 
@@ -76,16 +76,12 @@ private extension NewsLineViewController {
 // MARK: - NewsLineViewController: UITableViewDataSource
 
 extension NewsLineViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        String(describing: storage.sections[section])
-//    }
-
     func numberOfSections(in tableView: UITableView) -> Int {
-        storage.sections.count
+        storageStorage.sections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = storage.sections
+        let sections = storageStorage.sections
         switch sections[section] {
         case .stories, .firstPost, .recomendation:
             return 1
@@ -95,12 +91,12 @@ extension NewsLineViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = storage.sections[indexPath.section]
+        let section = storageStorage.sections[indexPath.section]
         switch section {
         case .stories:
             return makeStoryViewCell(tableView, indexPath)
         case .firstPost:
-            let post = storage.firstPost
+            let post = storageStorage.firstPost
             return makePostViewCell(tableView, indexPath, post)
         case let .remainingPosts(posts):
             let post = posts[indexPath.row]
@@ -116,7 +112,7 @@ extension NewsLineViewController: UITableViewDataSource {
         else {
             return .init()
         }
-        cell.setupWith(storage.stories)
+        cell.setupWith(storageStorage.stories)
         return cell
     }
 
@@ -137,7 +133,7 @@ extension NewsLineViewController: UITableViewDataSource {
         else {
             return .init()
         }
-        let recomendations = storage.recomendations
+        let recomendations = storageStorage.recomendations
         cell.setupWith(recomendations)
         return cell
     }

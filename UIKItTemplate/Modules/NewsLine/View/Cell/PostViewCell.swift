@@ -7,7 +7,6 @@ import UIKit
 final class PostViewCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: PostViewCell.self)
     /// Constants for PostViewCell
     private enum Constants {
         /// Standard inset from left or right side
@@ -27,6 +26,8 @@ final class PostViewCell: UITableViewCell {
         /// Title for timeStamp label
         static let timeStamp = "10 минут вперед"
     }
+
+    static let reuseID = String(describing: PostViewCell.self)
 
     // MARK: - Visual Components
 
