@@ -88,16 +88,16 @@ private extension NotificationsViewController {
 
 extension NotificationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        dataStorage.headers[section]
+        dataStorage.headerTitles[section]
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        dataStorage.headers.count
+        dataStorage.headerTitles.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let header = dataStorage.headers[section]
-        return dataStorage.noticeMap[header]?.count ?? 0
+        let headerTitle = dataStorage.headerTitles[section]
+        return dataStorage.noticeMap[headerTitle]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -106,8 +106,8 @@ extension NotificationsViewController: UITableViewDataSource {
         else {
             return .init()
         }
-        let header = dataStorage.headers[indexPath.section]
-        if let notices = dataStorage.noticeMap[header] {
+        let headerTitle = dataStorage.headerTitles[indexPath.section]
+        if let notices = dataStorage.noticeMap[headerTitle] {
             let notice = notices[indexPath.row]
             cell.setupWith(notice)
         }

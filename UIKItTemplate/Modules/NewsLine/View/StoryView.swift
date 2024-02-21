@@ -10,7 +10,7 @@ final class StoryView: UIView {
     /// Constants for StoryView
     private enum Constants {
         /// Width and height dimension if imageView
-        static let imageSize: CGFloat = 60
+        static let userImageViewSize: CGFloat = 60
         /// Width and height dimension of plusButton
         static let plusButtonSize: CGFloat = 20
         /// Ttile for first story in feed
@@ -33,7 +33,7 @@ final class StoryView: UIView {
         let imageView = UIImageView(image: image)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = userImageCornerRadius
+        imageView.layer.cornerRadius = Constants.userImageViewSize / 2
         return imageView
     }()
 
@@ -43,7 +43,7 @@ final class StoryView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .makeVerdanaRegular(12)
         button.setTitle("+", for: .normal)
-        button.layer.cornerRadius = plusButtonCornerRadius
+        button.layer.cornerRadius = Constants.plusButtonSize / 2
         button.isHidden = !isStartView
         return button
     }()
@@ -52,13 +52,6 @@ final class StoryView: UIView {
 
     private let story: Story
     private let isStartView: Bool
-    private var userImageCornerRadius: CGFloat {
-        Constants.imageSize / 2
-    }
-
-    private var plusButtonCornerRadius: CGFloat {
-        Constants.plusButtonSize / 2
-    }
 
     // MARK: - Initializers
 
@@ -89,7 +82,7 @@ private extension StoryView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             userImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            userImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
+            userImageView.heightAnchor.constraint(equalToConstant: Constants.userImageViewSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
             userImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             userImageView.leadingAnchor.constraint(equalTo: leadingAnchor),

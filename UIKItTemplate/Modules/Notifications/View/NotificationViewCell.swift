@@ -136,11 +136,10 @@ final class NotificationViewCell: UITableViewCell {
     }
 
     private func makeDescriptionLabelText(notice: Notice) -> NSMutableAttributedString {
-        let boldFont = UIFont.makeVerdanaBold(12)
-        let boldAttributes = [NSAttributedString.Key.font: boldFont]
+        let boldFont = UIFont.makeVerdanaBold(12) ?? UIFont.boldSystemFont(ofSize: 12)
         let output = NSMutableAttributedString(
             string: notice.userName,
-            attributes: boldAttributes as [NSAttributedString.Key: Any]
+            attributes: [.font: boldFont]
         )
 
         let comment: String
@@ -150,10 +149,10 @@ final class NotificationViewCell: UITableViewCell {
         case .subscribe:
             comment = Constants.commentSubscribe
         }
-        let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(12)]
+        let regularFont = UIFont.makeVerdanaRegular(12) ?? UIFont.systemFont(ofSize: 12)
         let descriptionRegular = NSAttributedString(
             string: comment,
-            attributes: regularAttribute as [NSAttributedString.Key: Any]
+            attributes: [.font: regularFont]
         )
 
         let regularGrayAttribute = [

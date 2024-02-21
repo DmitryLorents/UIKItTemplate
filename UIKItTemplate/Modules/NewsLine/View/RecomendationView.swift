@@ -10,7 +10,7 @@ final class RecomendationView: UIView {
     /// Constants for RecomendationView
     private enum Constants {
         /// Width and height of imageView
-        static let imageSize: CGFloat = 115
+        static let imageViewSize: CGFloat = 115
         /// Height of button
         static let buttonHeight: CGFloat = 30
         /// Height of RecomendationView
@@ -28,7 +28,7 @@ final class RecomendationView: UIView {
         let imageView = UIImageView(image: image)
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = userImageCornerRadius
+        imageView.layer.cornerRadius = Constants.imageViewSize / 2
         return imageView
     }()
 
@@ -59,13 +59,6 @@ final class RecomendationView: UIView {
     // MARK: - Private Properties
 
     private let recomendation: Recomendation
-    private var userImageCornerRadius: CGFloat {
-        Constants.imageSize / 2
-    }
-
-    private var plusButtonCornerRadius: CGFloat {
-        Constants.buttonHeight / 2
-    }
 
     // MARK: - Initializers
 
@@ -95,7 +88,7 @@ final class RecomendationView: UIView {
     }
 }
 
-// MARK: - Set constraints
+// MARK: - Constraints
 
 private extension RecomendationView {
     func setupConstraints() {
@@ -104,7 +97,7 @@ private extension RecomendationView {
             widthAnchor.constraint(equalToConstant: Constants.viewWidth),
 
             userImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            userImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
+            userImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
             userImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
 

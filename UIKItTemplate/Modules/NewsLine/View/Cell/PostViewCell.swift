@@ -178,17 +178,17 @@ final class PostViewCell: UITableViewCell {
     }
 
     private func makeDescriptionLabelText(post: Post) -> NSMutableAttributedString {
-        let boldFont = UIFont.makeVerdanaBold(10)
+        let boldFont = UIFont.makeVerdanaBold(10) ?? UIFont.boldSystemFont(ofSize: 10)
         let boldAttributes = [NSAttributedString.Key.font: boldFont]
         let output = NSMutableAttributedString(
             string: post.nickName,
-            attributes: boldAttributes as [NSAttributedString.Key: Any]
+            attributes: [.font: boldFont]
         )
 
-        let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(10)]
+        let regularFont = UIFont.makeVerdanaRegular(10) ?? UIFont.systemFont(ofSize: 10)
         let titleRegular = NSAttributedString(
             string: " \(post.title)",
-            attributes: regularAttribute as [NSAttributedString.Key: Any]
+            attributes: [.font: regularFont]
         )
         output.append(titleRegular)
         return output

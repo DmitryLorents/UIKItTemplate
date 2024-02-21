@@ -88,7 +88,7 @@ struct DataStorage {
 
     /// All posts except first one
     var postsExceptFirst: [Post] {
-        posts.dropLast()
+        Array(posts.dropFirst())
     }
 
     // MARK: - Recomendations
@@ -106,7 +106,7 @@ struct DataStorage {
     // MARK: - Notifications
 
     /// Headers
-    let headers = ["Сегодня", "На этой неделе"]
+    let headerTitles = ["Сегодня", "На этой неделе"]
 
     /// Notices for today
     private let todayNotices: [Notice] = [
@@ -180,6 +180,6 @@ struct DataStorage {
     ]
     /// Dictionary. Key: header title, Value: notices related to exact header
     var noticeMap: [String: [Notice]] {
-        .init(uniqueKeysWithValues: zip(headers, [todayNotices, weakNotices]))
+        .init(uniqueKeysWithValues: zip(headerTitles, [todayNotices, weakNotices]))
     }
 }

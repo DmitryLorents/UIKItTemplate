@@ -3,6 +3,14 @@
 
 /// Container for notification parameters
 struct Notice {
+    /// Notice types
+    enum NoticeType {
+        /// Notice that somebody likes your post
+        case like
+        /// Notice to subscribe on somebody
+        case subscribe
+    }
+
     /// Name of user
     let userName: String
     /// Name of user's image
@@ -15,12 +23,4 @@ struct Notice {
     let postImage: String
     /// type of notice
     let type: NoticeType
-
-    /// Notice types
-    enum NoticeType {
-        /// Notice that somebody likes your post
-        case like
-        /// Notice to subscribe on somebody
-        case subscribe
-    }
 }
