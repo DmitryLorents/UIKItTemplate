@@ -5,13 +5,20 @@ import UIKit
 
 /// View to show story
 final class RecomendationView: UIView {
+    
     // MARK: - Constants
-
+    
+    /// Constants for RecomendationView
     private enum Constants {
+        /// Width and height of imageView
         static let imageSize: CGFloat = 115
+        /// Height of button
         static let buttonHeight: CGFloat = 30
+        /// Height of RecomendationView
         static let viewHeight: CGFloat = 200
+        /// Width of RecomendationView
         static let viewWidth: CGFloat = 185
+        /// Title for subscribeButton
         static let buttonTitle = "Подписаться"
     }
 
@@ -110,7 +117,7 @@ private extension RecomendationView {
             subscribeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             subscribeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
             subscribeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
-
+            
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 9),
 

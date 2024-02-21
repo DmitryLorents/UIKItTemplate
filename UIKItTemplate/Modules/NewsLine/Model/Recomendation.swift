@@ -1,16 +1,12 @@
 // Recomendation.swift
 // Copyright © RoadMap. All rights reserved.
 
-//
-//  Recomendation.swift
-//  UIKItTemplate
-//
-//  Created by Dmitry on 20.02.2024.
-//
 import Foundation
 
 /// Container for recpmendation
 struct Recomendation {
+    /// Name of user
     let userName: String
+    /// Name of user's image
     let imageName: String
 }

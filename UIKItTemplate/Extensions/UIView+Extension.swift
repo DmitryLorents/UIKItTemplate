@@ -5,12 +5,13 @@ import UIKit
 
 /// Adding useful functions to UIVIew
 extension UIView {
-    // Function to add several subviews separated by comma
+    /// Function to add several subviews separated by comma
+    ///  - Parameter subviews: all the subviews added to general view
     func addSubviews(_ subviews: UIView...) {
         subviews.forEach { self.addSubview($0) }
     }
 
-    // Disable translatesAutoresizingMaskIntoConstraints for all subviews
+    /// Disable translatesAutoresizingMaskIntoConstraints for all subviews
     func disableTARMIC() {
         subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }

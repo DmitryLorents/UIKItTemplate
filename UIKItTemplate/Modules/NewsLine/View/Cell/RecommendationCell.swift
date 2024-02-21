@@ -1,23 +1,23 @@
-// RecomendationCell.swift
+// RecommendationCell.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
-/// Cell to show line of recomendations
-final class RecomendationCell: UITableViewCell {
+/// Cell to show line of recommendations
+final class RecommendationCell: UITableViewCell {
     // MARK: - Constants
 
-    static let reuseID = String(describing: RecomendationCell.self)
+    static let reuseID = String(describing: RecommendationCell.self)
     private enum Constants {
         static let sideInset: CGFloat = 17
         static let interItemInset: CGFloat = 20
         static let recomendation = "Рекомендуем вам"
-        static let all = "Все"
+        static let showAllLabelTitle = "Все"
     }
 
     // MARK: - Visual Components
 
-    private lazy var recomendationLabel: UILabel = {
+    private let recomendationLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.recomendation
         label.textAlignment = .left
@@ -25,9 +25,9 @@ final class RecomendationCell: UITableViewCell {
         return label
     }()
 
-    private lazy var showAllLabel: UILabel = {
+    private let showAllLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.all
+        label.text = Constants.showAllLabelTitle
         label.textAlignment = .right
         label.textColor = .blueApp
         label.font = UIFont.makeVerdanaBold(10)

@@ -12,8 +12,11 @@ final class PostCell: UITableViewCell {
         static let sideInset: CGFloat = 12
         static let interItemInset: CGFloat = 22
         static let postImageRation: CGFloat = 239 / 357
-        static let defaultImage = "girl1"
         static let avatarSize: CGFloat = 30
+        static let defaultImage = "girl1"
+        static let likesAmount = "Нравиться: 201"
+        static let comment = "Комментировать..."
+        static let timeStamp = "10 минут вперед"
     }
 
     // MARK: - Visual Components
@@ -28,9 +31,8 @@ final class PostCell: UITableViewCell {
 
     private lazy var nickNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "tur_v_abudabi"
         label.textAlignment = .left
-        label.font = UIFont(name: "Verdana-bold", size: 16)
+        label.font = UIFont.makeVerdanaBold(16)
         return label
     }()
 
@@ -68,7 +70,7 @@ final class PostCell: UITableViewCell {
 
     private lazy var likesLabel: UILabel = {
         let label = UILabel()
-        label.text = "Нравиться: 201"
+        label.text = Constants.likesAmount
         label.textAlignment = .left
         label.font = UIFont.makeVerdanaBold(10)
         return label
@@ -88,14 +90,8 @@ final class PostCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var commentLabel = makeVerdana10GrayLabel(text: "Комментировать...")
-    private lazy var timeLabel = makeVerdana10GrayLabel(text: "10 минут вперед")
-
-    // MARK: - Public Properties
-
-    func setupWith(_ post: Post?) {
-        self.post = post
-    }
+    private lazy var commentLabel = makeVerdana10GrayLabel(text: Constants.comment)
+    private lazy var timeLabel = makeVerdana10GrayLabel(text: Constants.timeStamp)
 
     // MARK: - Private Properties
 
@@ -116,6 +112,12 @@ final class PostCell: UITableViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Public methods
+
+    func setupWith(_ post: Post?) {
+        self.post = post
     }
 
     // MARK: - Private Methods
@@ -282,7 +284,7 @@ private extension PostCell {
     }
 }
 
-// MARK: - UIScrollViewDelegate
+// MARK: - PostCell: UIScrollViewDelegate
 
 extension PostCell: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -7,9 +7,13 @@ import UIKit
 final class StoryView: UIView {
     // MARK: - Constants
 
+    /// Constants for StoryView
     private enum Constants {
+        /// Width and height dimension if imageView
         static let imageSize: CGFloat = 60
+        /// Width and height dimension of plusButton
         static let plusButtonSize: CGFloat = 20
+        /// Ttile for first story in feed
         static let defaultText = "Ваша история"
     }
 

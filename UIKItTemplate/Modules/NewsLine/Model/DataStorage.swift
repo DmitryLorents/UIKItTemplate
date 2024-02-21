@@ -7,6 +7,7 @@ import Foundation
 struct DataStorage {
     // MARK: - Stories
 
+    /// Stories
     let stories: [Story] = [
         .init(userName: "liver 15", imageName: "girl3"),
         .init(userName: "shaverma 33", imageName: "girl2"),
@@ -20,6 +21,7 @@ struct DataStorage {
 
     // MARK: - Posts
 
+    /// Posts
     let posts: [Post] = [
         .init(
             avatarImageName: "man1",
@@ -67,6 +69,7 @@ struct DataStorage {
 
     // MARK: - Recomendations
 
+    /// Recomendations
     let recomendations: [Recomendation] = [
         .init(userName: "hromoy-405", imageName: "girl2"),
         .init(userName: "hromoy-405", imageName: "man3"),
@@ -78,8 +81,10 @@ struct DataStorage {
 
     // MARK: - Notifications
 
+    /// Headers
     let headers = ["Сегодня", "На этой неделе"]
 
+    /// Notices for today
     private let todayNotices: [Notice] = [
         .init(
             userName: "bob_marley",
@@ -106,6 +111,7 @@ struct DataStorage {
             type: .like
         ),
     ]
+    /// Notices for last week
     private let weakNotices: [Notice] = [
         .init(
             userName: "miha",
@@ -148,7 +154,7 @@ struct DataStorage {
             type: .subscribe
         ),
     ]
-
+    /// Dictionary. Key: header title, Value: notices related to exact header
     var noticeMap: [String: [Notice]] {
         .init(uniqueKeysWithValues: zip(headers, [todayNotices, weakNotices]))
     }

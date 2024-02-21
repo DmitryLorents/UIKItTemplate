@@ -18,14 +18,13 @@ final class NewsLineViewController: UIViewController {
 
     private lazy var table: UITableView = {
         let table = UITableView()
-        table.delegate = self
         table.dataSource = self
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         table.separatorStyle = .none
         table.register(StoriesCell.self, forCellReuseIdentifier: StoriesCell.reuseID)
         table.register(PostCell.self, forCellReuseIdentifier: PostCell.reuseID)
-        table.register(RecomendationCell.self, forCellReuseIdentifier: RecomendationCell.reuseID)
+        table.register(RecommendationCell.self, forCellReuseIdentifier: RecommendationCell.reuseID)
         return table
     }()
 
@@ -51,8 +50,8 @@ final class NewsLineViewController: UIViewController {
     }
 
     private func setNavigationBarItems() {
-        let logoItem = UIBarButtonItem(image: .logo, style: .plain, target: nil, action: nil)
-        let messageItem = UIBarButtonItem(image: .message, style: .plain, target: nil, action: nil)
+        let logoItem = UIBarButtonItem(title: nil, image: .logo)
+        let messageItem = UIBarButtonItem(title: nil, image: .message)
         navigationItem.rightBarButtonItem = messageItem
         navigationItem.leftBarButtonItem = logoItem
         navigationController?.navigationBar.tintColor = .black
@@ -71,11 +70,7 @@ private extension NewsLineViewController {
     }
 }
 
-// MARK: - UITableViewDelegate
-
-extension NewsLineViewController: UITableViewDelegate {}
-
-// MARK: - UITableViewDataSource
+// MARK: - NewsLineViewController: UITableViewDataSource
 
 extension NewsLineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,7 +98,10 @@ extension NewsLineViewController: UITableViewDataSource {
             return cell
         case 2:
             guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: RecomendationCell.reuseID, for: indexPath) as? RecomendationCell
+            RecommendationCelleCell(
+                withIdentifier: RecomendRecommendationCell,
+                for: indexPath
+            ) as? RecomendationCell
             else {
                 return .init()
             }
