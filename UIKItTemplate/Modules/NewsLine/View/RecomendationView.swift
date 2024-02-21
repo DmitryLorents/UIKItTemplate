@@ -40,7 +40,7 @@ final class RecomendationView: UIView {
         return label
     }()
 
-    private lazy var subscribeButton: UIButton = {
+    private let subscribeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .blueApp
         button.setTitleColor(.white, for: .normal)
@@ -50,7 +50,7 @@ final class RecomendationView: UIView {
         return button
     }()
 
-    private lazy var closeButton: UIButton = {
+    private let closeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(.close, for: .normal)
         return button
@@ -63,7 +63,7 @@ final class RecomendationView: UIView {
         Constants.imageSize / 2
     }
 
-    var plusButtonCornerRadius: CGFloat {
+    private var plusButtonCornerRadius: CGFloat {
         Constants.buttonHeight / 2
     }
 

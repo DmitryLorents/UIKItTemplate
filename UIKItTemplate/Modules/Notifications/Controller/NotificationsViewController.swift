@@ -3,7 +3,7 @@
 
 import UIKit
 
-// Screen with detailed information for зкщвгсеы
+// Screen with detailed information for products
 final class NotificationsViewController: UIViewController {
     // MARK: - Constants
 
@@ -38,7 +38,6 @@ final class NotificationsViewController: UIViewController {
 
     private lazy var table: UITableView = {
         let table = UITableView()
-        table.delegate = self
         table.dataSource = self
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
@@ -85,11 +84,7 @@ private extension NotificationsViewController {
     }
 }
 
-// MARK: - UITableViewDelegate
-
-extension NotificationsViewController: UITableViewDelegate {}
-
-// MARK: - UITableViewDataSource
+// MARK: - NotificationsViewController: UITableViewDataSource
 
 extension NotificationsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

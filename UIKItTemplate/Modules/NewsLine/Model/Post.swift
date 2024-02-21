@@ -1,8 +1,6 @@
 // Post.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Container for post data
 struct Post {
     /// Name of image related to user

@@ -19,7 +19,7 @@ final class NewsLineViewController: UIViewController {
 
     // MARK: - Visual Components
 
-    private lazy var table: UITableView = {
+    private lazy var postTableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
         table.rowHeight = UITableView.automaticDimension
@@ -48,7 +48,7 @@ final class NewsLineViewController: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        view.addSubview(table)
+        view.addSubview(postTableView)
         view.disableTARMIC()
     }
 
@@ -65,10 +65,10 @@ final class NewsLineViewController: UIViewController {
 private extension NewsLineViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            postTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            postTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            postTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            postTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }

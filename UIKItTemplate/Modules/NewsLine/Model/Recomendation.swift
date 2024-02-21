@@ -1,8 +1,6 @@
 // Recomendation.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// Container for recpmendation
 struct Recomendation {
     /// Name of user

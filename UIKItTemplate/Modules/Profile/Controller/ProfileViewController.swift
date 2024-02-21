@@ -4,7 +4,7 @@
 import UIKit
 
 /// Class Controller
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     /// Constants related to ProfileViewController
     enum Constants {
         /// Class title

@@ -1,8 +1,6 @@
 // DataStorage.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
 /// All data for content showing
 struct DataStorage {
     // MARK: - Stories

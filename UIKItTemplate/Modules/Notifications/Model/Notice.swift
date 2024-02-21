@@ -1,9 +1,7 @@
 // Notice.swift
 // Copyright © RoadMap. All rights reserved.
 
-import Foundation
-
-/// Container for notification
+/// Container for notification parameters
 struct Notice {
     /// Name of user
     let userName: String

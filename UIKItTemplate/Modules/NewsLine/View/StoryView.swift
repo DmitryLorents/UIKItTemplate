@@ -56,7 +56,7 @@ final class StoryView: UIView {
         Constants.imageSize / 2
     }
 
-    var plusButtonCornerRadius: CGFloat {
+    private var plusButtonCornerRadius: CGFloat {
         Constants.plusButtonSize / 2
     }
 
