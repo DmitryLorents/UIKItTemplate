@@ -217,7 +217,7 @@ private extension PostViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
-            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             avatarImageView.heightAnchor.constraint(equalToConstant: Constants.avatarSize),
             avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
 

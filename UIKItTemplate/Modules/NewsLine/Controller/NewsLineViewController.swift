@@ -33,7 +33,7 @@ final class NewsLineViewController: UIViewController {
 
     // MARK: - Private Properties
 
-    private let storage = DataStorage()
+    private var storage = DataStorage()
 
     // MARK: - Life Cycle
 
@@ -76,49 +76,69 @@ private extension NewsLineViewController {
 // MARK: - NewsLineViewController: UITableViewDataSource
 
 extension NewsLineViewController: UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        String(describing: storage.sections[section])
+//    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        storage.sections.count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        let sections = storage.sections
+        switch sections[section] {
+        case .stories, .firstPost, .recomendation:
+            return 1
+        case let .remainingPosts(posts):
+            return posts.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: StoriesViewCell.reuseID, for: indexPath) as? StoriesViewCell
-            else {
-                return .init()
-            }
-            cell.setupWith(storage.stories)
-            return cell
-        case 1:
-            guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: PostViewCell.reuseID, for: indexPath) as? PostViewCell
-            else {
-                return .init()
-            }
-            let post = storage.posts.randomElement()
-            cell.setupWith(post)
-            return cell
-        case 2:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: RecommendationViewCell.reuseID, for: indexPath
-            ) as? RecommendationViewCell
-            else {
-                return .init()
-            }
-            let recomendations = storage.recomendations
-            cell.setupWith(recomendations)
-            return cell
-        default:
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: PostViewCell.reuseID, for: indexPath
-            ) as? PostViewCell
-            else {
-                return .init()
-            }
-            let post = storage.posts.randomElement()
-            cell.setupWith(post)
-            return cell
+        let section = storage.sections[indexPath.section]
+        switch section {
+        case .stories:
+            return makeStoryViewCell(tableView, indexPath)
+        case .firstPost:
+            let post = storage.firstPost
+            return makePostViewCell(tableView, indexPath, post)
+        case let .remainingPosts(posts):
+            let post = posts[indexPath.row]
+            return makePostViewCell(tableView, indexPath, post)
+        case .recomendation:
+            return makeRecomendationViewCell(tableView, indexPath)
         }
+    }
+
+    private func makeStoryViewCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: StoriesViewCell.reuseID, for: indexPath) as? StoriesViewCell
+        else {
+            return .init()
+        }
+        cell.setupWith(storage.stories)
+        return cell
+    }
+
+    private func makePostViewCell(_ tableView: UITableView, _ indexPath: IndexPath, _ post: Post) -> UITableViewCell {
+        guard let cell = tableView
+            .dequeueReusableCell(withIdentifier: PostViewCell.reuseID, for: indexPath) as? PostViewCell
+        else {
+            return .init()
+        }
+        cell.setupWith(post)
+        return cell
+    }
+
+    private func makeRecomendationViewCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: RecommendationViewCell.reuseID, for: indexPath
+        ) as? RecommendationViewCell
+        else {
+            return .init()
+        }
+        let recomendations = storage.recomendations
+        cell.setupWith(recomendations)
+        return cell
     }
 }

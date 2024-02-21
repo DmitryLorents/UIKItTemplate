@@ -3,6 +3,23 @@
 
 /// All data for content showing
 struct DataStorage {
+    // MARK: - Sections
+
+    /// Types of section in tableView
+    enum SectionType {
+        /// Stories content
+        case stories
+        /// First post from all posts
+        case firstPost
+        /// All pasts except first
+        case remainingPosts([Post])
+        /// Recomendation content
+        case recomendation
+    }
+
+    /// All section in desired order
+    lazy var sections: [SectionType] = [.stories, .firstPost, .recomendation, .remainingPosts(postsExceptFirst)]
+
     // MARK: - Stories
 
     /// Stories
@@ -20,7 +37,7 @@ struct DataStorage {
     // MARK: - Posts
 
     /// Posts
-    let posts: [Post] = [
+    private let posts: [Post] = [
         .init(
             avatarImageName: "man1",
             nickName: "go to Brazil",
@@ -64,6 +81,15 @@ struct DataStorage {
             timeStamp: "13 минут вперед"
         )
     ]
+    /// First post in post sequence
+    var firstPost: Post {
+        posts[0]
+    }
+
+    /// All posts except first one
+    var postsExceptFirst: [Post] {
+        posts.dropLast()
+    }
 
     // MARK: - Recomendations
 
