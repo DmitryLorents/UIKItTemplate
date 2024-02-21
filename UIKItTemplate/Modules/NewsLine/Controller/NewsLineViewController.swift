@@ -20,7 +20,6 @@ final class NewsLineViewController: UIViewController {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.backgroundColor = .yellow
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         table.separatorStyle = .none
@@ -99,7 +98,8 @@ extension NewsLineViewController: UITableViewDataSource {
             else {
                 return .init()
             }
-
+            let post = storage.posts.randomElement()
+            cell.setupWith(post)
             return cell
         case 2:
             guard let cell = tableView
@@ -116,7 +116,8 @@ extension NewsLineViewController: UITableViewDataSource {
             else {
                 return .init()
             }
-
+            let post = storage.posts.randomElement()
+            cell.setupWith(post)
             return cell
         }
     }

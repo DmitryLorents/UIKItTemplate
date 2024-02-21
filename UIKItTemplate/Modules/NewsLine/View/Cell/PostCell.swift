@@ -40,6 +40,14 @@ final class PostCell: UITableViewCell {
         return button
     }()
 
+    private lazy var imagesScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.showsHorizontalScrollIndicator = false
+        view.isPagingEnabled = true
+        view.delegate = self
+        return view
+    }()
+
     private lazy var postImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .nature4
@@ -52,10 +60,9 @@ final class PostCell: UITableViewCell {
     private lazy var bookmarkButton = makeSmallButton(image: .bookmark)
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 3
-        pageControl.currentPage = 0
         pageControl.hidesForSinglePage = true
         pageControl.currentPageIndicatorTintColor = .black
+        pageControl.pageIndicatorTintColor = .lightGray
         return pageControl
     }()
 
@@ -70,7 +77,6 @@ final class PostCell: UITableViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.attributedText = makeDescriptionLabelText()
         return label
     }()
 
@@ -87,19 +93,24 @@ final class PostCell: UITableViewCell {
 
     // MARK: - Public Properties
 
-    func setupWith(_ post: Post) {
+    func setupWith(_ post: Post?) {
         self.post = post
     }
 
     // MARK: - Private Properties
 
-    private var post: Post?
+    private var post: Post? {
+        didSet {
+            if let post {
+                setupUI(post: post)
+            }
+        }
+    }
 
     // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
     }
 
     @available(*, unavailable)
@@ -109,12 +120,12 @@ final class PostCell: UITableViewCell {
 
     // MARK: - Private Methods
 
-    private func setupUI() {
+    private func setupUI(post: Post) {
         contentView.addSubviews(
             avatarImageView,
             nickNameLabel,
             moreButton,
-            postImageView,
+            imagesScrollView,
             likeButton,
             messageButton,
             sendButton,
@@ -126,8 +137,60 @@ final class PostCell: UITableViewCell {
             commentLabel,
             timeLabel
         )
+        setupUIData(post: post)
         contentView.disableTARMIC()
+
         setupConstraints()
+    }
+
+    private func setupUIData(post: Post) {
+        avatarImageView.image = UIImage(named: post.avatarImageName)
+        nickNameLabel.text = post.nickName
+        makeSubviews(post: post)
+        pageControl.numberOfPages = post.imageNames.count
+        descriptionLabel.attributedText = makeDescriptionLabelText(post: post)
+        timeLabel.text = post.timeStamp
+    }
+
+    private func makeSubviews(post: Post) {
+        let screenWidth = UIScreen.main.bounds.width
+        for (index, image) in post.imageNames.enumerated() {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: image)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imagesScrollView.addSubview(imageView)
+
+            // setup constraints
+            let leadingInset = CGFloat(index) * screenWidth
+            imageView.leadingAnchor.constraint(equalTo: imagesScrollView.leadingAnchor, constant: leadingInset)
+                .isActive = true
+            imageView.topAnchor.constraint(equalTo: imagesScrollView.topAnchor).isActive = true
+            imageView.bottomAnchor.constraint(equalTo: imagesScrollView.bottomAnchor).isActive = true
+            imageView.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: Constants.postImageRation)
+                .isActive = true
+            if index == post.imageNames.count - 1 {
+                imageView.trailingAnchor.constraint(greaterThanOrEqualTo: imagesScrollView.trailingAnchor)
+                    .isActive = true
+            }
+        }
+    }
+
+    private func makeDescriptionLabelText(post: Post) -> NSMutableAttributedString {
+        let boldFont = UIFont.makeVerdanaBold(10)
+        let boldAttributes = [NSAttributedString.Key.font: boldFont]
+        let output = NSMutableAttributedString(
+            string: post.nickName,
+            attributes: boldAttributes as [NSAttributedString.Key: Any]
+        )
+
+        let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(10)]
+        let titleRegular = NSAttributedString(
+            string: " \(post.title)",
+            attributes: regularAttribute as [NSAttributedString.Key: Any]
+        )
+        output.append(titleRegular)
+        return output
     }
 
     private func makeSmallButton(image: UIImage) -> UIButton {
@@ -145,24 +208,6 @@ final class PostCell: UITableViewCell {
         label.font = UIFont.makeVerdanaRegular(10)
         label.textColor = .gray
         return label
-    }
-
-    private func makeDescriptionLabelText() -> NSMutableAttributedString {
-        let nicknameString = "tur_v_abudabi"
-        let boldFont = UIFont.makeVerdanaBold(10)
-        let boldAttributes = [NSAttributedString.Key.font: boldFont]
-        let nicknameBold = NSMutableAttributedString(
-            string: nicknameString,
-            attributes: boldAttributes as [NSAttributedString.Key: Any]
-        )
-        let description = " Насладитесь красотой природы. Забронировать тур в Дагестан можно уже сейчас!"
-        let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(10)]
-        let descriptionRegular = NSAttributedString(
-            string: description,
-            attributes: regularAttribute as [NSAttributedString.Key: Any]
-        )
-        nicknameBold.append(descriptionRegular)
-        return nicknameBold
     }
 }
 
@@ -185,15 +230,15 @@ private extension PostCell {
             moreButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideInset),
             moreButton.leadingAnchor.constraint(equalTo: nickNameLabel.trailingAnchor, constant: Constants.sideInset),
 
-            postImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            postImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            postImageView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
-            postImageView.heightAnchor.constraint(
-                equalTo: postImageView.widthAnchor,
+            imagesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imagesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imagesScrollView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
+            imagesScrollView.heightAnchor.constraint(
+                equalTo: imagesScrollView.widthAnchor,
                 multiplier: Constants.postImageRation
             ),
 
-            likeButton.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 8),
+            likeButton.topAnchor.constraint(equalTo: imagesScrollView.bottomAnchor, constant: 8),
             likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
 
             messageButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
@@ -234,5 +279,13 @@ private extension PostCell {
             timeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
 
         ])
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension PostCell: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
     }
 }
