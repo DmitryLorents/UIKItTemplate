@@ -15,8 +15,6 @@ final class NotificationsViewController: UIViewController {
 
         enum Text {
             static let subscribeRequest = "Запросы на подписку"
-            static let today = "Сегодня"
-            static let thisWeek = "На этой неделе"
             static let title = "Уведомления"
         }
     }
@@ -27,10 +25,7 @@ final class NotificationsViewController: UIViewController {
         let label = UILabel()
         label.text = Constants.Text.subscribeRequest
         label.textAlignment = .left
-        label.font = UIFont.makeVerdanaRegular(14)
-        label.textColor = .white
-        label.sizeToFit()
-        label.frame.origin = .zero
+        label.font = UIFont.makeVerdanaRegular(16)
         return label
     }()
 
@@ -38,7 +33,6 @@ final class NotificationsViewController: UIViewController {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
-        table.backgroundColor = .yellow
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         table.separatorStyle = .none
@@ -64,7 +58,7 @@ final class NotificationsViewController: UIViewController {
         title = Constants.Text.title
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        view.addSubview(table)
+        view.addSubviews(table, requestSubscriptLabel)
         view.disableTARMIC()
     }
 }
@@ -73,9 +67,12 @@ final class NotificationsViewController: UIViewController {
 private extension NotificationsViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            requestSubscriptLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            requestSubscriptLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            table.topAnchor.constraint(equalTo: requestSubscriptLabel.bottomAnchor),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
@@ -89,18 +86,12 @@ extension NotificationsViewController: UITableViewDelegate {}
 
 extension NotificationsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        storage.headers.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 2
-        case 1:
-            return 5
-        default:
-            return 0
-        }
+        let header = storage.headers[section]
+        return storage.noticeMap[header]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,7 +100,11 @@ extension NotificationsViewController: UITableViewDataSource {
         else {
             return .init()
         }
-//            cell.setupWith(storage.stories)
+        let header = storage.headers[indexPath.section]
+        if let notices = storage.noticeMap[header] {
+            let notice = notices[indexPath.row]
+            cell.setupWith(notice)
+        }
         return cell
     }
 }

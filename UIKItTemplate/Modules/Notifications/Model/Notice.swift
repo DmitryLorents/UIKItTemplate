@@ -1,18 +1,18 @@
-// Notification.swift
+// Notice.swift
 // Copyright © RoadMap. All rights reserved.
 
 import Foundation
 
 /// Container for notification
-struct Notification {
+struct Notice {
     let userName: String
     let avatarName: String
     let description: String
     let timePast: String
     let postImage: String
-    let type: NotificationType
+    let type: NoticeType
 
-    enum NotificationType {
+    enum NoticeType {
         case like
         case subscribe
     }

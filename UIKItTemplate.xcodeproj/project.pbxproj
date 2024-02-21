@@ -21,7 +21,7 @@
 		0AE602A22B83E7320028ECA6 /* StoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6028C2B83E7320028ECA6 /* StoriesCell.swift */; };
 		0AE602A32B83E7320028ECA6 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE6028D2B83E7320028ECA6 /* StoryView.swift */; };
 		0AE602A42B83E7320028ECA6 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE602942B83E7320028ECA6 /* NotificationsViewController.swift */; };
-		0AE602A52B83E7320028ECA6 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE602962B83E7320028ECA6 /* Notification.swift */; };
+		0AE602A52B83E7320028ECA6 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE602962B83E7320028ECA6 /* Notice.swift */; };
 		0AE602BB2B83F2E00028ECA6 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE602BA2B83F2E00028ECA6 /* DataStorage.swift */; };
 		0AE602BD2B8492ED0028ECA6 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE602BC2B8492ED0028ECA6 /* PostCell.swift */; };
 		0AE602BF2B8498700028ECA6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE602BE2B8498700028ECA6 /* Post.swift */; };
@@ -50,7 +50,7 @@
 		0AE6028C2B83E7320028ECA6 /* StoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesCell.swift; sourceTree = "<group>"; };
 		0AE6028D2B83E7320028ECA6 /* StoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		0AE602942B83E7320028ECA6 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		0AE602962B83E7320028ECA6 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		0AE602962B83E7320028ECA6 /* Notice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		0AE602BA2B83F2E00028ECA6 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataStorage.swift; path = ../../../../../../../../UIKItTemplate/Modules/NewsLine/View/DataStorage.swift; sourceTree = "<group>"; };
 		0AE602BC2B8492ED0028ECA6 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		0AE602BE2B8498700028ECA6 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 		0AE602952B83E7320028ECA6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0AE602962B83E7320028ECA6 /* Notification.swift */,
+				0AE602962B83E7320028ECA6 /* Notice.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -393,7 +393,7 @@
 				0AE602A02B83E7320028ECA6 /* NewsLineViewController.swift in Sources */,
 				0A0F7DE32B712B7A009D3A3C /* AppDelegate.swift in Sources */,
 				0A0F7DE52B712B7A009D3A3C /* SceneDelegate.swift in Sources */,
-				0AE602A52B83E7320028ECA6 /* Notification.swift in Sources */,
+				0AE602A52B83E7320028ECA6 /* Notice.swift in Sources */,
 				0AE602BB2B83F2E00028ECA6 /* DataStorage.swift in Sources */,
 				0AEB023F2B853F7200A9562C /* NotificationCell.swift in Sources */,
 				0AE602A32B83E7320028ECA6 /* StoryView.swift in Sources */,

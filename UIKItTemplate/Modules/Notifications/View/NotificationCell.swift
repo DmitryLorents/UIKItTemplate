@@ -40,7 +40,7 @@ final class NotificationCell: UITableViewCell {
 
     private lazy var subscribeButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.backgroundColor = .lightBlueApp
+        button.backgroundColor = .blueApp
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.makeVerdanaBold(10)
         button.setTitle(Constants.buttonTitle, for: .normal)
@@ -50,15 +50,18 @@ final class NotificationCell: UITableViewCell {
 
     // MARK: - Public Properties
 
-    func setupWith(_ notification: Notification) {
+    func setupWith(_ notification: Notice?) {
         self.notification = notification
     }
 
     // MARK: - Private Properties
 
-    private var notification: Notification? {
+    private var type: Notice.NoticeType?
+    private var notification: Notice? {
         didSet {
-            updateUI()
+            if notification != nil {
+                updateUI()
+            }
         }
     }
 
@@ -77,24 +80,7 @@ final class NotificationCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupUI() {
-        contentView.addSubviews(
-            avatarImageView,
-//            nickNameLabel,
-//            moreButton,
-//            postImageView,
-//            likeButton,
-//            messageButton,
-//            sendButton,
-//            bookmarkButton,
-//            pageControl,
-//            likesLabel,
-            descriptionLabel,
-            postImageView,
-            subscribeButton
-//            smallAvatarImageView,
-//            commentLabel,
-//            timeLabel
-        )
+        contentView.addSubviews(avatarImageView, descriptionLabel)
         contentView.disableTARMIC()
         setupConstraints()
     }
@@ -103,8 +89,34 @@ final class NotificationCell: UITableViewCell {
         switch notification?.type {
         case .like:
             contentView.addSubview(postImageView)
+            NSLayoutConstraint.activate([
+                postImageView.trailingAnchor.constraint(
+                    equalTo: contentView.trailingAnchor,
+                    constant: -Constants.sideInset
+                ),
+                postImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+                postImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
+                postImageView.widthAnchor.constraint(equalTo: postImageView.heightAnchor),
+                postImageView.leadingAnchor.constraint(
+                    equalTo: descriptionLabel.trailingAnchor,
+                    constant: Constants.interItemInset
+                )
+            ])
         case .subscribe:
             contentView.addSubview(subscribeButton)
+            NSLayoutConstraint.activate([
+                subscribeButton.trailingAnchor.constraint(
+                    equalTo: contentView.trailingAnchor,
+                    constant: -Constants.sideInset
+                ),
+                subscribeButton.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+                subscribeButton.heightAnchor.constraint(equalToConstant: 30),
+                subscribeButton.widthAnchor.constraint(equalToConstant: 140),
+                subscribeButton.leadingAnchor.constraint(
+                    equalTo: descriptionLabel.trailingAnchor,
+                    constant: Constants.interItemInset
+                )
+            ])
         case .none:
             return
         }
@@ -152,23 +164,9 @@ private extension NotificationCell {
             avatarImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
             avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
 
-            postImageView.trailingAnchor.constraint(
-                equalTo: contentView.trailingAnchor,
-                constant: -Constants.sideInset
-            ),
-            postImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            postImageView.heightAnchor.constraint(equalToConstant: Constants.imageSize),
-            postImageView.widthAnchor.constraint(equalTo: postImageView.heightAnchor),
-
             descriptionLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 7),
             descriptionLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 0),
-            descriptionLabel.trailingAnchor.constraint(
-                equalTo: postImageView.leadingAnchor,
-                constant: -Constants.sideInset
-            ),
             descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 0),
-
-//            subscribeButton.
 
         ])
     }
