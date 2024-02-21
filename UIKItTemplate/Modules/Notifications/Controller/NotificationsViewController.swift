@@ -85,6 +85,10 @@ extension NotificationsViewController: UITableViewDelegate {}
 // MARK: - UITableViewDataSource
 
 extension NotificationsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        storage.headers[section]
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         storage.headers.count
     }

@@ -21,14 +21,14 @@ final class NotificationCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = Constants.imageSize / 2
         imageView.clipsToBounds = true
-        imageView.image = .girl2
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.attributedText = makeDescriptionLabelText()
+//        label.attributedText = makeDescriptionLabelText(no)
         return label
     }()
 
@@ -51,16 +51,16 @@ final class NotificationCell: UITableViewCell {
     // MARK: - Public Properties
 
     func setupWith(_ notification: Notice?) {
-        self.notification = notification
+        notice = notification
     }
 
     // MARK: - Private Properties
 
     private var type: Notice.NoticeType?
-    private var notification: Notice? {
+    private var notice: Notice? {
         didSet {
-            if notification != nil {
-                updateUI()
+            if let notice {
+                updateUI(notice: notice)
             }
         }
     }
@@ -85,10 +85,14 @@ final class NotificationCell: UITableViewCell {
         setupConstraints()
     }
 
-    private func updateUI() {
-        switch notification?.type {
+    private func updateUI(notice: Notice) {
+        avatarImageView.image = UIImage(named: notice.avatarImage)
+        descriptionLabel.attributedText = makeDescriptionLabelText(notice: notice)
+        switch notice.type {
         case .like:
             contentView.addSubview(postImageView)
+            postImageView.image = UIImage(named: notice.postImage)
+            // constraints
             NSLayoutConstraint.activate([
                 postImageView.trailingAnchor.constraint(
                     equalTo: contentView.trailingAnchor,
@@ -104,6 +108,7 @@ final class NotificationCell: UITableViewCell {
             ])
         case .subscribe:
             contentView.addSubview(subscribeButton)
+            // constraints
             NSLayoutConstraint.activate([
                 subscribeButton.trailingAnchor.constraint(
                     equalTo: contentView.trailingAnchor,
@@ -117,38 +122,42 @@ final class NotificationCell: UITableViewCell {
                     constant: Constants.interItemInset
                 )
             ])
-        case .none:
-            return
         }
         contentView.disableTARMIC()
     }
 
-    private func makeDescriptionLabelText() -> NSMutableAttributedString {
-        let nicknameString = "lavande_123"
+    private func makeDescriptionLabelText(notice: Notice) -> NSMutableAttributedString {
         let boldFont = UIFont.makeVerdanaBold(12)
         let boldAttributes = [NSAttributedString.Key.font: boldFont]
-        let nicknameBold = NSMutableAttributedString(
-            string: nicknameString,
+        let output = NSMutableAttributedString(
+            string: notice.userName,
             attributes: boldAttributes as [NSAttributedString.Key: Any]
         )
-        let description = " понравился ваш комментарий: \"Очень красиво!\" "
+
+        let comment: String
+        switch notice.type {
+        case .like:
+            comment = " понравился ваш комментарий: \"\(notice.description)\" "
+        case .subscribe:
+            comment = " появился(-ась) в RMLink. Вы можете быть знакомы"
+        }
         let regularAttribute = [NSAttributedString.Key.font: UIFont.makeVerdanaRegular(12)]
         let descriptionRegular = NSAttributedString(
-            string: description,
+            string: comment,
             attributes: regularAttribute as [NSAttributedString.Key: Any]
         )
-        let timaPast = "12ч"
+
         let regularGrayAttribute = [
             NSAttributedString.Key.font: UIFont.makeVerdanaRegular(12),
-            NSAttributedString.Key.strokeColor: UIColor.gray
+            NSAttributedString.Key.foregroundColor: UIColor.gray
         ]
-        let timePastRegular = NSAttributedString(
-            string: timaPast,
+        let timePastRegularGray = NSAttributedString(
+            string: notice.timePast,
             attributes: regularGrayAttribute as [NSAttributedString.Key: Any]
         )
-        nicknameBold.append(descriptionRegular)
-        nicknameBold.append(timePastRegular)
-        return nicknameBold
+        output.append(descriptionRegular)
+        output.append(timePastRegularGray)
+        return output
     }
 }
 

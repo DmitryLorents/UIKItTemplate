@@ -6,7 +6,7 @@ import Foundation
 /// Container for notification
 struct Notice {
     let userName: String
-    let avatarName: String
+    let avatarImage: String
     let description: String
     let timePast: String
     let postImage: String
