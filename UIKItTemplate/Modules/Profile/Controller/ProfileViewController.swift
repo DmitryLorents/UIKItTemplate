@@ -5,11 +5,6 @@ import UIKit
 
 /// Class Controller
 final class ProfileViewController: UIViewController {
-    /// Constants related to ProfileViewController
-    enum Constants {
-        /// Class title
-        static let title = "Профиль"
-    }
 
     // MARK: - Life Cycle
 

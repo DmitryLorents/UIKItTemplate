@@ -7,17 +7,14 @@ import UIKit
 final class MainTabBarController: UITabBarController {
     // MARK: - Constants
 
-    /// Constants for TabBarController
-    enum Constants {
-        /// Title for ViewControllers
-        enum Titles {
-            /// NewsLineViewController title
-            static let newsLine = "Лента"
-            /// NotificationsViewController title
-            static let notifications = "Уведомления"
-            /// NotificationsViewController title
-            static let profile = "Профиль"
-        }
+    /// Titles for TabBarController
+    enum Titles {
+        /// NewsLineViewController title
+        static let newsLine = "Лента"
+        /// NotificationsViewController title
+        static let notifications = "Уведомления"
+        /// NotificationsViewController title
+        static let profile = "Профиль"
     }
 
     // MARK: - Life Cycle
@@ -33,7 +30,7 @@ final class MainTabBarController: UITabBarController {
         view.backgroundColor = .systemBackground
         let newsLineViewController = UINavigationController(rootViewController: NewsLineViewController())
         let newsLineItem = UITabBarItem(
-            title: Constants.Titles.newsLine,
+            title: Titles.newsLine,
             image: .home,
             tag: 0
         )
@@ -41,7 +38,7 @@ final class MainTabBarController: UITabBarController {
 
         let notificationsViewController = UINavigationController(rootViewController: NotificationsViewController())
         let notificationsItem = UITabBarItem(
-            title: Constants.Titles.notifications,
+            title: Titles.notifications,
             image: .notification,
             tag: 1
         )
@@ -49,7 +46,7 @@ final class MainTabBarController: UITabBarController {
 
         let profileViewController = ProfileViewController()
         let profileItem = UITabBarItem(
-            title: Constants.Titles.profile,
+            title: Titles.profile,
             image: .profile,
             tag: 2
         )
