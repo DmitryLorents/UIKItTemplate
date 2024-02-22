@@ -97,7 +97,6 @@ private extension WebViewController {
             webToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webToolBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             webToolBar.topAnchor.constraint(equalTo: webView.bottomAnchor),
-
         ])
     }
 }

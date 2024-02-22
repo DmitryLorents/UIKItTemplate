@@ -132,6 +132,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		0A0635E32B87DE5100799870 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0AEB02402B86341900A9562C /* DataStorage.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0A0F7DD62B712B7A009D3A3C = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +162,7 @@
 			children = (
 				0A3B2B8A2B7201BC0038208F /* App */,
 				0AE602792B83E7320028ECA6 /* Modules */,
-				0A0635DF2B87CE3F00799870 /* WebBrowser */,
+				0A0635E32B87DE5100799870 /* Services */,
 				0A3B2B8B2B7201E10038208F /* SupportingFiles */,
 				0AECD1EB2B83B95000E3D5FC /* Extensions */,
 			);
@@ -187,6 +195,7 @@
 				0AE602862B83E7320028ECA6 /* NewsLine */,
 				0AE602922B83E7320028ECA6 /* Notifications */,
 				0AE6027F2B83E7320028ECA6 /* Profile */,
+				0A0635DF2B87CE3F00799870 /* WebBrowser */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -240,7 +249,6 @@
 			children = (
 				0AE6028A2B83E7320028ECA6 /* Story.swift */,
 				0AEB023C2B852F2C00A9562C /* Recomendation.swift */,
-				0AEB02402B86341900A9562C /* DataStorage.swift */,
 				0AE602BE2B8498700028ECA6 /* Post.swift */,
 			);
 			path = Model;

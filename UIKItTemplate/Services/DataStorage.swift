@@ -15,9 +15,13 @@ struct DataStorage {
         case remainingPosts([Post])
         /// Recomendation content
         case recomendation
+        /// User's photo gallery
+        case photoGallery
+        /// User's profile data
+        case userProfile
     }
 
-    /// All section in desired order
+    /// All section in desired order for NewsLineViewController
     lazy var sections: [SectionType] = [.stories, .firstPost, .recomendation, .remainingPosts(postsExceptFirst)]
 
     // MARK: - Stories
