@@ -16,13 +16,15 @@ struct DataStorage {
         /// Recomendation content
         case recomendation
         /// User's photo gallery
-        case photoGallery
+        case photoGallery([String])
         /// User's profile data
-        case userProfile
+        case userProfile(User)
     }
 
     /// All section in desired order for NewsLineViewController
-    lazy var sections: [SectionType] = [.stories, .firstPost, .recomendation, .remainingPosts(postsExceptFirst)]
+    lazy var newsLineSections: [SectionType] = [.stories, .firstPost, .recomendation, .remainingPosts(postsExceptFirst)]
+    /// All section in desired order for ProfileViewController
+    lazy var userProfileSections: [SectionType] = [.userProfile(user), .stories, .photoGallery(userPhotos)]
 
     // MARK: - Stories
 
@@ -189,7 +191,7 @@ struct DataStorage {
 
     // MARK: - Profile
 
-    let user = User(
+    private let user = User(
         name: "Jim Morison",
         image: "girl1",
         postAmount: 67,

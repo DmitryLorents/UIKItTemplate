@@ -77,21 +77,23 @@ private extension NewsLineViewController {
 
 extension NewsLineViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        dataStorage.sections.count
+        dataStorage.newsLineSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = dataStorage.sections
+        let sections = dataStorage.newsLineSections
         switch sections[section] {
         case .stories, .firstPost, .recomendation:
             return 1
         case let .remainingPosts(posts):
             return posts.count
+        default:
+            return 0
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = dataStorage.sections[indexPath.section]
+        let section = dataStorage.newsLineSections[indexPath.section]
         switch section {
         case .stories:
             return makeStoryViewCell(tableView, indexPath)
@@ -103,6 +105,8 @@ extension NewsLineViewController: UITableViewDataSource {
             return makePostViewCell(tableView, indexPath, post)
         case .recomendation:
             return makeRecomendationViewCell(tableView, indexPath)
+        default:
+            return .init()
         }
     }
 

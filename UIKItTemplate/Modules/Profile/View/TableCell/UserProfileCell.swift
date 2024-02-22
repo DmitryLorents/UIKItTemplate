@@ -25,13 +25,9 @@ final class UserProfileCell: UITableViewCell {
 
     // MARK: - Private Properties
 
-//    private let defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
-//    private var stories: [Story]? {
-//        didSet {
-//            stories?.insert(defaultStory, at: 0)
-//            makeSubviews()
-//        }
-//    }
+    private var user: User? {
+        didSet {}
+    }
 
     // MARK: - Initializers
 
@@ -47,9 +43,9 @@ final class UserProfileCell: UITableViewCell {
 
     // MARK: - Public methods
 
-//    func setupWith(_ user: User) {
-//        self.user = user
-//    }
+    func setupWith(_ user: User) {
+        self.user = user
+    }
 
     // MARK: - Private Methods
 

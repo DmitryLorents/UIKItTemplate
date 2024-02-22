@@ -6,7 +6,6 @@ import WebKit
 
 /// Screen to show web browser
 final class WebViewController: UIViewController {
-    
     // MARK: - Visual Components
 
     private let webView = WKWebView()
@@ -60,7 +59,7 @@ final class WebViewController: UIViewController {
         let closeButton = UIBarButtonItem(systemItem: .close)
         // Actions
         closeButton.action = #selector(closeViewController)
-        
+
         return [backButton, forwardButton, refreshButton, flexibleSpace, closeButton]
     }
 

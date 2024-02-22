@@ -1,10 +1,10 @@
-// ProfileViewController.swift
+// UserProfileViewController.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// Screen to show user account information
-final class ProfileViewController: UIViewController {
+final class UserProfileViewController: UIViewController {
     // MARK: - Visual Components
 
     private lazy var accountTableView: UITableView = {
@@ -12,16 +12,17 @@ final class ProfileViewController: UIViewController {
         table.dataSource = self
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
-//        table.separatorStyle = .none
+        table.separatorStyle = .none
         table.register(UserProfileCell.self, forCellReuseIdentifier: UserProfileCell.reuseID)
-        table.register(UserStoriesViewCell.self, forCellReuseIdentifier: UserStoriesViewCell.reuseID)
+        table.register(StoriesViewCell.self, forCellReuseIdentifier: StoriesViewCell.reuseID)
         table.register(UserPhotosViewCell.self, forCellReuseIdentifier: UserPhotosViewCell.reuseID)
         return table
     }()
 
     // MARK: - Private Properties
 
-    let dataStorage = DataStorage()
+    private var dataStorage = DataStorage()
+    private var photoNames: [String]?
 
     // MARK: - Life Cycle
 
@@ -52,7 +53,7 @@ final class ProfileViewController: UIViewController {
 
 // MARK: - Constraints
 
-private extension ProfileViewController {
+private extension UserProfileViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             accountTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -65,30 +66,39 @@ private extension ProfileViewController {
 
 // MARK: - ProfileViewController: UITableViewDataSource
 
-extension ProfileViewController: UITableViewDataSource {
+extension UserProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        dataStorage.userProfileSections.count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        let sections = dataStorage.userProfileSections
+        let section = sections[indexPath.section]
+        switch section {
+        case let .userProfile(user):
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: UserProfileCell.reuseID, for: indexPath) as? UserProfileCell
             else { return .init() }
+            cell.setupWith(user)
             return cell
-        case 1:
-            guard let cell = tableView
-                .dequeueReusableCell(
-                    withIdentifier: UserStoriesViewCell.reuseID,
-                    for: indexPath
-                ) as? UserStoriesViewCell
-            else { return .init() }
+        case .stories:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: StoriesViewCell.reuseID,
+                for: indexPath
+            ) as? StoriesViewCell else { return .init() }
+            cell.setupWith(dataStorage.stories)
             return cell
-        case 2:
-            guard let cell = tableView
-                .dequeueReusableCell(withIdentifier: UserPhotosViewCell.reuseID, for: indexPath) as? UserPhotosViewCell
+
+        case let .photoGallery(photoNames):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: UserPhotosViewCell.reuseID, for: indexPath
+            ) as? UserPhotosViewCell
             else { return .init() }
+            self.photoNames = photoNames
             cell.setupDelegates(delegate: self, dataSource: self)
             return cell
         default:
@@ -99,13 +109,13 @@ extension ProfileViewController: UITableViewDataSource {
 
 // MARK: - ProfileViewController: UICollectionViewDelegate
 
-extension ProfileViewController: UICollectionViewDelegate {}
+extension UserProfileViewController: UICollectionViewDelegate {}
 
 // MARK: - ProfileViewController: UICollectionViewDataSource
 
-extension ProfileViewController: UICollectionViewDataSource {
+extension UserProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataStorage.userPhotos.count
+        photoNames?.count ?? 0
     }
 
     func collectionView(
@@ -118,7 +128,8 @@ extension ProfileViewController: UICollectionViewDataSource {
         ) as? PhotoCollectionViewCell else {
             return .init()
         }
-        let imageName = dataStorage.userPhotos[indexPath.item]
+        guard let photoNames else { return .init() }
+        let imageName = photoNames[indexPath.item]
         cell.setupWith(imageName: imageName)
         return cell
     }
