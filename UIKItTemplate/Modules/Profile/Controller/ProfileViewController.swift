@@ -89,9 +89,37 @@ extension ProfileViewController: UITableViewDataSource {
             guard let cell = tableView
                 .dequeueReusableCell(withIdentifier: UserPhotosViewCell.reuseID, for: indexPath) as? UserPhotosViewCell
             else { return .init() }
+            cell.setupDelegates(delegate: self, dataSource: self)
             return cell
         default:
             return .init()
         }
+    }
+}
+
+// MARK: - ProfileViewController: UICollectionViewDelegate
+
+extension ProfileViewController: UICollectionViewDelegate {}
+
+// MARK: - ProfileViewController: UICollectionViewDataSource
+
+extension ProfileViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        dataStorage.userPhotos.count
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: PhotoCollectionViewCell.reuseId,
+            for: indexPath
+        ) as? PhotoCollectionViewCell else {
+            return .init()
+        }
+        let imageName = dataStorage.userPhotos[indexPath.item]
+        cell.setupWith(imageName: imageName)
+        return cell
     }
 }

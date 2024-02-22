@@ -194,4 +194,12 @@ struct DataStorage {
         position: "Fasion designer",
         url: "www.spacex.com"
     )
+
+    let userPhotos = [
+        "nature1", "nature2", "nature3",
+        "nature4", "nature3", "nature4",
+        "nature2", "nature1", "nature1",
+        "nature4", "nature3", "nature4",
+        "nature2", "nature1", "nature1",
+    ]
 }
