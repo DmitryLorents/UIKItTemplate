@@ -44,7 +44,7 @@ final class MainTabBarController: UITabBarController {
         )
         notificationsViewController.tabBarItem = notificationsItem
 
-        let profileViewController = ProfileViewController()
+        let profileViewController = UINavigationController(rootViewController: ProfileViewController())
         let profileItem = UITabBarItem(
             title: Titles.profile,
             image: .profile,
