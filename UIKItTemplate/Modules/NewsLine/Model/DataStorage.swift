@@ -182,4 +182,16 @@ struct DataStorage {
     var noticeMap: [String: [Notice]] {
         .init(uniqueKeysWithValues: zip(headerTitles, [todayNotices, weakNotices]))
     }
+
+    // MARK: - Profile
+
+    let user = User(
+        name: "Jim Morison",
+        image: "girl1",
+        postAmount: 67,
+        subscribersAmount: 458,
+        subsriptionsAmount: 120,
+        position: "Fasion designer",
+        url: "www.spacex.com"
+    )
 }
