@@ -16,7 +16,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let rootViewController = MainTabBarController()
-        let testVC = WebViewController()
+        let testVC = WebViewController(urlString: "https://www.spacex.com/vehicles/starship/")
         window?.rootViewController = testVC
         window?.makeKeyAndVisible()
     }
