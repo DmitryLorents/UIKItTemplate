@@ -26,6 +26,7 @@ final class UserProfileCell: UITableViewCell {
     static let reuseID = String(describing: UserProfileCell.self)
 
     // MARK: - Visual Components
+    
 
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
