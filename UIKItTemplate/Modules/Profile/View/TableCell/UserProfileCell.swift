@@ -10,23 +10,54 @@ final class UserProfileCell: UITableViewCell {
     /// Constants of UserProfileCell
     private enum Constants {
         /// Standard inset from left or right side
-        static let sideInset: CGFloat = 12
+        static let sideInset: CGFloat = 15
         /// Standard inset per items
-        static let interItemInset: CGFloat = 22
-        /// Ttitle for first StoryView
-        static let defaultName = "Ваша история"
-        /// Image name for first StoryView
-        static let defaultImage = "girl1"
+        static let interItemInset: CGFloat = 10
+        /// Width and height of userImageView
+        static let userImageViewSize: CGFloat = 80
+        /// Width and height of plusButtonImageView
+        static let plusButtonSize: CGFloat = 26
+        /// Title for plusButton
+        static let plusButtonTitle = "+"
     }
 
     static let reuseID = String(describing: UserProfileCell.self)
 
     // MARK: - Visual Components
 
+    private let userImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = Constants.userImageViewSize / 2
+        return imageView
+    }()
+
+    private lazy var plusButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .redApp
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .makeVerdanaRegular(12)
+        button.setTitle(Constants.plusButtonTitle, for: .normal)
+        button.layer.cornerRadius = Constants.plusButtonSize / 2
+        return button
+    }()
+
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont.makeVerdanaBold(14)
+        return label
+    }()
+
     // MARK: - Private Properties
 
     private var user: User? {
-        didSet {}
+        didSet {
+            if let user {
+                setupSubviews(user)
+            }
+        }
     }
 
     // MARK: - Initializers
@@ -50,50 +81,37 @@ final class UserProfileCell: UITableViewCell {
     // MARK: - Private Methods
 
     private func setupUI() {
-        backgroundColor = .cyan
-//        contentView.addSubview(storiesScrollView)
-//        contentView.disableTARMIC()
-//        setupConstraints()
+        contentView.addSubviews(userImageView, plusButton, userNameLabel)
+        contentView.disableTARMIC()
+        setupConstraints()
     }
 
-//    private func makeSubviews() {
-//        guard let stories else { return }
-//        let viewWidth: CGFloat = 60
-//        for (index, story) in stories.enumerated() {
-//            let storyView = StoryView(story: story, isStartView: index == 0)
-//            storyView.translatesAutoresizingMaskIntoConstraints = false
-//            storiesScrollView.addSubview(storyView)
-//
-//            // setup constraints
-//            let leadingInset = Constants.sideInset + (CGFloat(index) * (Constants.interItemInset + viewWidth))
-//            storyView.leadingAnchor.constraint(equalTo: storiesScrollView.leadingAnchor, constant: leadingInset)
-//                .isActive = true
-//            storyView.topAnchor.constraint(equalTo: storiesScrollView.topAnchor).isActive = true
-//            if index == stories.count - 1 {
-//                NSLayoutConstraint.activate([
-//                    // set cell height
-//                    storyView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 1),
-//
-//                    storyView.bottomAnchor.constraint(equalTo: storiesScrollView.bottomAnchor),
-//                    storyView.trailingAnchor.constraint(
-//                        greaterThanOrEqualTo: storiesScrollView.trailingAnchor,
-//                        constant: -Constants.sideInset
-//                    )
-//                ])
-//            }
-//        }
-//    }
+    private func setupSubviews(_ user: User) {
+        userImageView.image = UIImage(named: user.image)
+        userNameLabel.text = user.name
+    }
 }
 
 // MARK: - Constraints
 
-private extension StoriesViewCell {
-//    private func setupConstraints() {
-//        NSLayoutConstraint.activate([
-//            storiesScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            storiesScrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            storiesScrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            storiesScrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//        ])
-//    }
+private extension UserProfileCell {
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            contentView.heightAnchor.constraint(equalToConstant: 230),
+
+            userImageView.heightAnchor.constraint(equalToConstant: Constants.userImageViewSize),
+            userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor),
+            userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
+            userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+
+            plusButton.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
+            plusButton.heightAnchor.constraint(equalToConstant: Constants.plusButtonSize),
+            plusButton.widthAnchor.constraint(equalTo: plusButton.heightAnchor),
+
+            userNameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: Constants.interItemInset),
+            userNameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
+
+        ])
+    }
 }

@@ -73,7 +73,7 @@ final class StoriesViewCell: UITableViewCell {
         guard let stories else { return }
         let viewWidth: CGFloat = 60
         for (index, story) in stories.enumerated() {
-            let storyView = StoryView(story: story, isStartView: (index == 0 && hasDefaultStory))
+            let storyView = StoryView(story: story, isStartView: index == 0 && hasDefaultStory)
             storyView.translatesAutoresizingMaskIntoConstraints = false
             storiesScrollView.addSubview(storyView)
 

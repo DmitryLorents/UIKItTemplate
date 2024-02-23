@@ -35,7 +35,6 @@ final class UserProfileViewController: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        accountTableView.backgroundColor = .yellow
         view.addSubview(accountTableView)
         view.disableTARMIC()
         setupConstraints()
