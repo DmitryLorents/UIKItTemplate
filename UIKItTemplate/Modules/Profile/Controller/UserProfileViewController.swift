@@ -42,10 +42,8 @@ final class UserProfileViewController: UIViewController {
     }
 
     private func setNavigationBarItems() {
-        let logoItem = UIBarButtonItem(title: nil, image: .logo)
-        let messageItem = UIBarButtonItem(title: nil, image: .message)
-        navigationItem.rightBarButtonItem = messageItem
-        navigationItem.leftBarButtonItem = logoItem
+        let myTitleView = TitleView()
+        navigationItem.setLeftBarButton(UIBarButtonItem(customView: myTitleView), animated: false)
         navigationController?.navigationBar.tintColor = .black
     }
 }

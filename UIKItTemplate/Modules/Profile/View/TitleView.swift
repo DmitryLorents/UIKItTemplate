@@ -1,11 +1,10 @@
-// TtileView.swift
+// TitleView.swift
 // Copyright © RoadMap. All rights reserved.
 
 import UIKit
 
 /// View to show title text and buttons in UserProfileViewController
-final class TtileView: UIView {
-
+final class TitleView: UIView {
     // MARK: - Constants
 
     private enum Constants {
@@ -14,7 +13,7 @@ final class TtileView: UIView {
         static let moreImage = "plusSquare"
         static let title = "mary_rmLink"
     }
-    
+
     // MARK: - Visual Components
 
     private let lockImageView: UIImageView = {
@@ -36,7 +35,7 @@ final class TtileView: UIView {
         button.setImage(image, for: .normal)
         return button
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.title
@@ -46,48 +45,52 @@ final class TtileView: UIView {
     }()
 
     // MARK: - Initializers
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Private Methods
-    
+
     private func setupUI() {
-        addSubviews(lockImageView, titleLabel,plusButton, moreButton)
+        addSubviews(lockImageView, titleLabel, plusButton, moreButton)
+        disableTARMIC()
         setupConstraints()
     }
 }
 
 // MARK: - Constraints
 
-private extension TtileView {
+private extension TitleView {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-        lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-        lockImageView.heightAnchor.constraint(equalToConstant: 24),
-        lockImageView.widthAnchor.constraint(equalTo: lockImageView.heightAnchor),
-        lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 18),
-        lockImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
-        
-        titleLabel.leadingAnchor.constraint(equalTo: lockImageView.leadingAnchor, constant: 6),
-        titleLabel.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
-        
-        moreButton.heightAnchor.constraint(equalTo: lockImageView.heightAnchor),
-        moreButton.widthAnchor.constraint(equalTo: lockImageView.widthAnchor),
-        moreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-        moreButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
-        
-        plusButton.heightAnchor.constraint(equalTo: lockImageView.heightAnchor),
-        plusButton.widthAnchor.constraint(equalTo: lockImageView.widthAnchor),
-        plusButton.trailingAnchor.constraint(equalTo: moreButton.trailingAnchor, constant: -3),
-        plusButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
-        
+            lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            lockImageView.heightAnchor.constraint(equalToConstant: 24),
+            lockImageView.widthAnchor.constraint(equalTo: lockImageView.heightAnchor),
+            lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 18),
+            lockImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            titleLabel.leadingAnchor.constraint(equalTo: lockImageView.trailingAnchor, constant: 6),
+            titleLabel.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
+
+            moreButton.heightAnchor.constraint(equalTo: lockImageView.heightAnchor),
+            moreButton.widthAnchor.constraint(equalTo: lockImageView.widthAnchor),
+            moreButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            moreButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
+
+            plusButton.heightAnchor.constraint(equalTo: lockImageView.heightAnchor),
+            plusButton.widthAnchor.constraint(equalTo: lockImageView.widthAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: moreButton.leadingAnchor, constant: -3),
+            plusButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
+
+            widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+
         ])
     }
-    
 }
