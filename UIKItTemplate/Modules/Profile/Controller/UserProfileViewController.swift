@@ -90,7 +90,7 @@ extension UserProfileViewController: UITableViewDataSource {
                 withIdentifier: StoriesViewCell.reuseID,
                 for: indexPath
             ) as? StoriesViewCell else { return .init() }
-            cell.setupWith(dataStorage.stories)
+            cell.setupWith(dataStorage.stories, hasDefaultStory: false)
             return cell
 
         case let .photoGallery(photoNames):
