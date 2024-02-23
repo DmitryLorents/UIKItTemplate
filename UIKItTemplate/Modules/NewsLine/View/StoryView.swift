@@ -11,6 +11,7 @@ final class StoryView: UIView {
     private enum Constants {
         /// Width and height dimension if imageView
         static let userImageViewSize: CGFloat = 60
+        static let borderViewSize = userImageViewSize + 2
         /// Width and height dimension of plusButton
         static let plusButtonSize: CGFloat = 20
         /// Ttile for first story in feed
@@ -46,6 +47,12 @@ final class StoryView: UIView {
         button.layer.cornerRadius = Constants.plusButtonSize / 2
         button.isHidden = !isStartView
         return button
+    }()
+    
+    private let borderView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .lightGrayApp
+        return view
     }()
 
     // MARK: - Private Properties
