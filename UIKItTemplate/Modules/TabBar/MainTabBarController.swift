@@ -53,6 +53,5 @@ final class MainTabBarController: UITabBarController {
         profileViewController.tabBarItem = profileItem
 
         viewControllers = [newsLineViewController, notificationsViewController, profileViewController]
-        selectedIndex = 2
     }
 }
