@@ -83,6 +83,11 @@ extension UserProfileViewController: UITableViewDataSource {
                 .dequeueReusableCell(withIdentifier: UserProfileCell.reuseID, for: indexPath) as? UserProfileCell
             else { return .init() }
             cell.setupWith(user)
+            cell.handler = { [weak self] urlString in
+                let webViewController = WebViewController(urlString: urlString)
+                webViewController.modalPresentationStyle = .fullScreen
+                self?.present(webViewController, animated: true)
+            }
             return cell
         case .stories:
             guard let cell = tableView.dequeueReusableCell(

@@ -198,7 +198,7 @@ struct DataStorage {
         subscribersAmount: 458,
         subsriptionsAmount: 120,
         position: "Fasion designer",
-        url: "www.spacex.com"
+        url: "https://www.spacex.com/vehicles/starship/"
     )
 
     private let userPhotos = [
