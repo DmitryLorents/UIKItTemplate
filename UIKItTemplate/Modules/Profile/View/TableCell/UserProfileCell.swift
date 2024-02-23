@@ -18,6 +18,9 @@ final class UserProfileCell: UITableViewCell {
         static let shareProfileButtonTitle = "Поделиться профилем"
         static let buttonCornerRadius: CGFloat = 8
         static let addUserImageName = "addUser"
+        static let postLabelTitle = "публикации"
+        static let subscribersLabelTitle = "подписчики"
+        static let subscriptionsLabelTitle = "подписки"
     }
 
     static let reuseID = String(describing: UserProfileCell.self)
@@ -73,6 +76,13 @@ final class UserProfileCell: UITableViewCell {
         return button
     }()
 
+    private lazy var postAmountLabel = makeVerdanaBold14Label()
+    private lazy var subscribersAmountLabel = makeVerdanaBold14Label()
+    private lazy var subscriptionAmountLabel = makeVerdanaBold14Label()
+    private lazy var postsLabel = makeVerdanaRegular10Label(title: Constants.postLabelTitle)
+    private lazy var subscribersLabel = makeVerdanaRegular10Label(title: Constants.subscribersLabelTitle)
+    private lazy var subscriptionsLabel = makeVerdanaRegular10Label(title: Constants.subscriptionsLabelTitle)
+
     // MARK: - Publuc Properties
 
     var handler: ((String) -> Void)?
@@ -116,7 +126,13 @@ final class UserProfileCell: UITableViewCell {
             urlButton,
             changeButton,
             shareProfileButton,
-            addUserButton
+            addUserButton,
+            postAmountLabel,
+            subscribersAmountLabel,
+            subscriptionAmountLabel,
+            postsLabel,
+            subscribersLabel,
+            subscriptionsLabel
         )
         contentView.disableTARMIC()
         setupConstraints()
@@ -126,6 +142,9 @@ final class UserProfileCell: UITableViewCell {
         userImageView.image = UIImage(named: user.image)
         userNameLabel.text = user.name
         userPositionLabel.text = user.position
+        postAmountLabel.text = "\(user.postAmount)"
+        subscribersAmountLabel.text = "\(user.subscribersAmount)"
+        subscriptionAmountLabel.text = "\(user.subsriptionsAmount)"
     }
 
     private func makeRoundedGrayButton(title: String) -> UIButton {
@@ -137,6 +156,21 @@ final class UserProfileCell: UITableViewCell {
         button.layer.cornerRadius = Constants.buttonCornerRadius
         button.heightAnchor.constraint(equalToConstant: 28).isActive = true
         return button
+    }
+
+    private func makeVerdanaBold14Label() -> UILabel {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont.makeVerdanaBold(14)
+        return label
+    }
+
+    private func makeVerdanaRegular10Label(title: String) -> UILabel {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = title
+        label.font = UIFont.makeVerdanaRegular(10)
+        return label
     }
 
     @objc private func urlButtonDidTapped() {
@@ -151,8 +185,6 @@ final class UserProfileCell: UITableViewCell {
 private extension UserProfileCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(equalToConstant: 230),
-
             userImageView.heightAnchor.constraint(equalToConstant: Constants.userImageViewSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor),
             userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
@@ -177,6 +209,7 @@ private extension UserProfileCell {
 
             changeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             changeButton.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
+            changeButton.topAnchor.constraint(equalTo: urlButton.bottomAnchor, constant: 16),
 
             shareProfileButton.bottomAnchor.constraint(equalTo: changeButton.bottomAnchor),
             shareProfileButton.leadingAnchor.constraint(equalTo: changeButton.trailingAnchor, constant: 5),
@@ -189,6 +222,24 @@ private extension UserProfileCell {
                 constant: -Constants.sideInset
             ),
             addUserButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 25),
+
+            subscriptionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
+            subscriptionsLabel.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor),
+
+            subscribersLabel.trailingAnchor.constraint(equalTo: subscriptionsLabel.leadingAnchor, constant: -5),
+            subscribersLabel.centerYAnchor.constraint(equalTo: subscriptionsLabel.centerYAnchor),
+
+            postsLabel.trailingAnchor.constraint(equalTo: subscribersLabel.leadingAnchor, constant: -5),
+            postsLabel.centerYAnchor.constraint(equalTo: subscriptionsLabel.centerYAnchor),
+
+            postAmountLabel.bottomAnchor.constraint(equalTo: postsLabel.topAnchor, constant: -5),
+            postAmountLabel.centerXAnchor.constraint(equalTo: postsLabel.centerXAnchor),
+
+            subscribersAmountLabel.bottomAnchor.constraint(equalTo: subscribersLabel.topAnchor, constant: -5),
+            subscribersAmountLabel.centerXAnchor.constraint(equalTo: subscribersLabel.centerXAnchor),
+
+            subscriptionAmountLabel.bottomAnchor.constraint(equalTo: subscriptionsLabel.topAnchor, constant: -5),
+            subscriptionAmountLabel.centerXAnchor.constraint(equalTo: subscriptionsLabel.centerXAnchor),
 
         ])
     }
