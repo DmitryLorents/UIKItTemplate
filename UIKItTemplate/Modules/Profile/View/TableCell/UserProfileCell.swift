@@ -13,7 +13,7 @@ final class UserProfileCell: UITableViewCell {
         static let userImageViewSize: CGFloat = 80
         static let plusButtonSize: CGFloat = 26
         static let plusButtonTitle = "+"
-        static let urlButtonTitle = "wwww.space.com"
+        static let urlButtonTitle = "📎wwww.space.com"
         static let changeButtonTitle = "Изменить"
         static let shareProfileButtonTitle = "Поделиться профилем"
         static let buttonCornerRadius: CGFloat = 8
