@@ -190,6 +190,7 @@ struct DataStorage {
     }
 
     // MARK: - Profile
+
     /// Users profile data
     private let user = User(
         name: "Jim Morison",
@@ -200,7 +201,7 @@ struct DataStorage {
         position: "Fasion designer",
         url: "https://www.spacex.com/vehicles/starship/"
     )
-    
+
     /// Users photo names for image gallery
     private let userPhotos = [
         "nature1", "nature2", "nature3",

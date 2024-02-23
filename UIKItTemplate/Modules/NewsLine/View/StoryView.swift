@@ -48,9 +48,9 @@ final class StoryView: UIView {
         button.isHidden = !isStartView
         return button
     }()
-    
+
     private let borderView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .lightGrayApp
         return view
     }()

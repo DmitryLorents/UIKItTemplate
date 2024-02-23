@@ -6,6 +6,7 @@ import WebKit
 
 /// Screen to show web browser
 final class WebViewController: UIViewController {
+    
     // MARK: - Visual Components
 
     private let webView = WKWebView()
@@ -45,6 +46,7 @@ final class WebViewController: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        webView.navigationDelegate = self
         view.addSubviews(webView, webToolBar, closeButton)
         view.disableTARMIC()
         setupToolBar()
@@ -64,17 +66,17 @@ final class WebViewController: UIViewController {
             target: self,
             action: #selector(backAction)
         )
+        backButton.isEnabled = false
         let forwardButton = UIBarButtonItem(
             image: .chevronRightButton,
             style: .plain,
             target: self,
             action: #selector(forwardAction)
         )
+        forwardButton.isEnabled = false
         let refreshButton = UIBarButtonItem(systemItem: .refresh)
         let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
-
         refreshButton.action = #selector(refreshAction)
-
         return [backButton, forwardButton, flexibleSpace, refreshButton]
     }
 
@@ -88,11 +90,21 @@ final class WebViewController: UIViewController {
         dismiss(animated: true)
     }
 
-    @objc private func backAction() {}
+    @objc private func backAction() {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+    }
 
-    @objc private func forwardAction() {}
+    @objc private func forwardAction() {
+        if webView.canGoForward {
+            webView.goForward()
+        }
+    }
 
-    @objc private func refreshAction() {}
+    @objc private func refreshAction() {
+        webView.reload()
+    }
 }
 
 // MARK: - Constraints
@@ -100,7 +112,7 @@ final class WebViewController: UIViewController {
 private extension WebViewController {
     private func setupConstraints() {
         setupWebViewConstraints()
-        setupwebToolBarConstraints()
+        setupWebToolBarConstraints()
         setupCloseButtonConstraints()
     }
 
@@ -112,7 +124,7 @@ private extension WebViewController {
         ])
     }
 
-    private func setupwebToolBarConstraints() {
+    private func setupWebToolBarConstraints() {
         NSLayoutConstraint.activate([
             webToolBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webToolBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -128,5 +140,19 @@ private extension WebViewController {
             closeButton.heightAnchor.constraint(equalToConstant: 24),
             closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
         ])
+    }
+}
+
+// MARK: - WebViewController: WKNavigationDelegate
+
+extension WebViewController: WKNavigationDelegate {
+    // Enable/disable navigation buttons
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        if let itemsCount = webToolBar.items?.count, itemsCount > 0, let backButton = webToolBar.items?[0] {
+            backButton.isEnabled = webView.canGoBack
+        }
+        if let itemsCount = webToolBar.items?.count, itemsCount > 0, let forwardButton = webToolBar.items?[1] {
+            forwardButton.isEnabled = webView.canGoForward
+        }
     }
 }

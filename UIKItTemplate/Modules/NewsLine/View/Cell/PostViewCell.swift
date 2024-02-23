@@ -179,7 +179,6 @@ final class PostViewCell: UITableViewCell {
 
     private func makeDescriptionLabelText(post: Post) -> NSMutableAttributedString {
         let boldFont = UIFont.makeVerdanaBold(10) ?? UIFont.boldSystemFont(ofSize: 10)
-        let boldAttributes = [NSAttributedString.Key.font: boldFont]
         let output = NSMutableAttributedString(
             string: post.nickName,
             attributes: [.font: boldFont]
