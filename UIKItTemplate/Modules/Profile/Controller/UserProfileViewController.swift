@@ -13,10 +13,17 @@ final class UserProfileViewController: UIViewController {
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         table.separatorStyle = .none
+        table.refreshControl = refreshControl
         table.register(UserProfileCell.self, forCellReuseIdentifier: UserProfileCell.reuseID)
         table.register(StoriesViewCell.self, forCellReuseIdentifier: StoriesViewCell.reuseID)
         table.register(UserPhotosViewCell.self, forCellReuseIdentifier: UserPhotosViewCell.reuseID)
         return table
+    }()
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTebleView), for: .valueChanged)
+        return refreshControl
     }()
 
     // MARK: - Private Properties
@@ -45,6 +52,10 @@ final class UserProfileViewController: UIViewController {
         let myTitleView = TitleView()
         navigationItem.setLeftBarButton(UIBarButtonItem(customView: myTitleView), animated: false)
         navigationController?.navigationBar.tintColor = .black
+    }
+
+    @objc private func refreshTebleView() {
+        refreshControl.endRefreshing()
     }
 }
 
