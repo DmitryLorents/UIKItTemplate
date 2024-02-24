@@ -35,7 +35,7 @@ final class UserProfileCell: UITableViewCell {
         return imageView
     }()
 
-    private lazy var plusButton: UIButton = {
+    private let plusButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .redApp
         button.setTitleColor(.white, for: .normal)
@@ -106,7 +106,8 @@ final class UserProfileCell: UITableViewCell {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupUI()
     }
 
     // MARK: - Public methods
@@ -184,37 +185,82 @@ final class UserProfileCell: UITableViewCell {
 
 private extension UserProfileCell {
     func setupConstraints() {
+        setupUserImageViewConstraints()
+        setupPlusButtonViewConstraints()
+        setupUserNameLabelConstraints()
+        setupUserPositionLabelConstraints()
+        setupURLButtonConstraints()
+        setupChangeButtonConstraints()
+        setupShareProfileButtonConstraints()
+        setupAddUserButtonConstraints()
+        setupSubscriptionsLabelConstraints()
+        setupPostsLabelConstraints()
+        setupPostAmountLabelConstraints()
+        setupSubscribersAmountLabelConstraints()
+        setupSubscriptionAmountLabelConstraints()
+    }
+
+    func setupUserImageViewConstraints() {
         NSLayoutConstraint.activate([
             userImageView.heightAnchor.constraint(equalToConstant: Constants.userImageViewSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor),
             userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideInset),
             userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+        ])
+    }
 
+    func setupPlusButtonViewConstraints() {
+        NSLayoutConstraint.activate([
             plusButton.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
             plusButton.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             plusButton.heightAnchor.constraint(equalToConstant: Constants.plusButtonSize),
             plusButton.widthAnchor.constraint(equalTo: plusButton.heightAnchor),
+        ])
+    }
 
+    func setupUserNameLabelConstraints() {
+        NSLayoutConstraint.activate([
             userNameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: Constants.interItemInset),
             userNameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
+        ])
+    }
 
+    func setupUserPositionLabelConstraints() {
+        NSLayoutConstraint.activate([
             userPositionLabel.topAnchor.constraint(
                 equalTo: userNameLabel.bottomAnchor,
                 constant: Constants.interItemInset
             ),
             userPositionLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
+        ])
+    }
 
+    func setupURLButtonConstraints() {
+        NSLayoutConstraint.activate([
             urlButton.topAnchor.constraint(equalTo: userPositionLabel.bottomAnchor, constant: 6),
             urlButton.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor, constant: 19),
 
+        ])
+    }
+
+    func setupChangeButtonConstraints() {
+        NSLayoutConstraint.activate([
             changeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             changeButton.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
             changeButton.topAnchor.constraint(equalTo: urlButton.bottomAnchor, constant: 16),
+        ])
+    }
 
+    func setupShareProfileButtonConstraints() {
+        NSLayoutConstraint.activate([
             shareProfileButton.bottomAnchor.constraint(equalTo: changeButton.bottomAnchor),
             shareProfileButton.leadingAnchor.constraint(equalTo: changeButton.trailingAnchor, constant: 5),
             shareProfileButton.widthAnchor.constraint(equalTo: changeButton.widthAnchor),
+        ])
+    }
 
+    func setupAddUserButtonConstraints() {
+        NSLayoutConstraint.activate([
             addUserButton.bottomAnchor.constraint(equalTo: changeButton.bottomAnchor),
             addUserButton.leadingAnchor.constraint(equalTo: shareProfileButton.trailingAnchor, constant: 5),
             addUserButton.trailingAnchor.constraint(
@@ -222,22 +268,44 @@ private extension UserProfileCell {
                 constant: -Constants.sideInset
             ),
             addUserButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 25),
+        ])
+    }
 
+    func setupSubscriptionsLabelConstraints() {
+        NSLayoutConstraint.activate([
             subscriptionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -23),
             subscriptionsLabel.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor),
 
             subscribersLabel.trailingAnchor.constraint(equalTo: subscriptionsLabel.leadingAnchor, constant: -5),
             subscribersLabel.centerYAnchor.constraint(equalTo: subscriptionsLabel.centerYAnchor),
+        ])
+    }
 
+    func setupPostsLabelConstraints() {
+        NSLayoutConstraint.activate([
             postsLabel.trailingAnchor.constraint(equalTo: subscribersLabel.leadingAnchor, constant: -5),
             postsLabel.centerYAnchor.constraint(equalTo: subscriptionsLabel.centerYAnchor),
+        ])
+    }
 
+    func setupPostAmountLabelConstraints() {
+        NSLayoutConstraint.activate([
             postAmountLabel.bottomAnchor.constraint(equalTo: postsLabel.topAnchor, constant: -5),
             postAmountLabel.centerXAnchor.constraint(equalTo: postsLabel.centerXAnchor),
 
+        ])
+    }
+
+    func setupSubscribersAmountLabelConstraints() {
+        NSLayoutConstraint.activate([
             subscribersAmountLabel.bottomAnchor.constraint(equalTo: subscribersLabel.topAnchor, constant: -5),
             subscribersAmountLabel.centerXAnchor.constraint(equalTo: subscribersLabel.centerXAnchor),
 
+        ])
+    }
+
+    func setupSubscriptionAmountLabelConstraints() {
+        NSLayoutConstraint.activate([
             subscriptionAmountLabel.bottomAnchor.constraint(equalTo: subscriptionsLabel.topAnchor, constant: -5),
             subscriptionAmountLabel.centerXAnchor.constraint(equalTo: subscriptionsLabel.centerXAnchor),
 

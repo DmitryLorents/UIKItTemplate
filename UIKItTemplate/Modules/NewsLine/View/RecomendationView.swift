@@ -6,7 +6,7 @@ import UIKit
 /// View to show story
 final class RecomendationView: UIView {
     // MARK: - Constants
-    
+
     /// Constants for RecomendationView
     private enum Constants {
         /// Width and height of imageView
@@ -20,9 +20,9 @@ final class RecomendationView: UIView {
         /// Title for subscribeButton
         static let buttonTitle = "Подписаться"
     }
-    
+
     // MARK: - Visual Components
-    
+
     private lazy var userImageView: UIImageView = {
         let image = UIImage(named: recomendation.imageName)
         let imageView = UIImageView(image: image)
@@ -31,7 +31,7 @@ final class RecomendationView: UIView {
         imageView.layer.cornerRadius = Constants.imageViewSize / 2
         return imageView
     }()
-    
+
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = recomendation.userName
@@ -39,7 +39,7 @@ final class RecomendationView: UIView {
         label.font = .makeVerdanaRegular(10)
         return label
     }()
-    
+
     private let subscribeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .blueApp
@@ -49,32 +49,32 @@ final class RecomendationView: UIView {
         button.layer.cornerRadius = 8
         return button
     }()
-    
+
     private let closeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(.close, for: .normal)
         return button
     }()
-    
+
     // MARK: - Private Properties
-    
+
     private let recomendation: Recomendation
-    
+
     // MARK: - Initializers
-    
+
     init(recomendation: Recomendation) {
         self.recomendation = recomendation
         super.init(frame: .zero)
         setupUI()
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Private Methods
-    
+
     private func setupUI() {
         backgroundColor = .white
         addSubviews(
@@ -101,26 +101,26 @@ private extension RecomendationView {
         setupSubscribeButtonConstraints()
         setupCloseButtonConstraints()
     }
-    
+
     private func setupUserImageViewConstraints() {
         NSLayoutConstraint.activate([
             userImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
             userImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
             userImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
+
         ])
     }
-    
+
     private func setupNameLabelConstraints() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 5),
             nameLabel.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
-            
+
         ])
     }
-    
+
     private func setupSubscribeButtonConstraints() {
         NSLayoutConstraint.activate([
             subscribeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -129,7 +129,7 @@ private extension RecomendationView {
             subscribeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
         ])
     }
-    
+
     private func setupCloseButtonConstraints() {
         NSLayoutConstraint.activate([
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
