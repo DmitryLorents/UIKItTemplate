@@ -161,6 +161,7 @@
                                         <rect key="frame" x="25" y="285" width="127" height="127"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" secondItem="R2M-f3-M2r" secondAttribute="height" id="S0v-DM-S5g"/>
                                             <constraint firstAttribute="width" secondItem="R2M-f3-M2r" secondAttribute="height" id="wbm-IV-D3Z"/>
                                         </constraints>
                                     </view>
@@ -169,6 +170,7 @@
                                         <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2Zl-ap-pYC" secondAttribute="height" id="d8y-pN-F9r"/>
+                                            <constraint firstAttribute="width" secondItem="2Zl-ap-pYC" secondAttribute="height" id="eZH-4z-DBY"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -180,9 +182,7 @@
                                     <constraint firstItem="R2M-f3-M2r" firstAttribute="width" secondItem="BwI-Dh-Qcz" secondAttribute="height" multiplier="1:1" id="EJC-2g-mgr"/>
                                     <constraint firstItem="2Zl-ap-pYC" firstAttribute="centerX" secondItem="tOe-tb-UgH" secondAttribute="centerX" id="HfG-lE-VDE"/>
                                     <constraint firstItem="2Zl-ap-pYC" firstAttribute="width" secondItem="BwI-Dh-Qcz" secondAttribute="height" multiplier="127:126" id="PFb-lh-mNK"/>
-                                    <constraint firstItem="R2M-f3-M2r" firstAttribute="width" secondItem="R2M-f3-M2r" secondAttribute="height" id="S0v-DM-S5g"/>
                                     <constraint firstItem="R2M-f3-M2r" firstAttribute="top" secondItem="BwI-Dh-Qcz" secondAttribute="bottom" constant="8" id="bPY-ad-RgS"/>
-                                    <constraint firstItem="2Zl-ap-pYC" firstAttribute="width" secondItem="2Zl-ap-pYC" secondAttribute="height" id="eZH-4z-DBY"/>
                                     <constraint firstAttribute="height" priority="250" constant="1000" id="esc-PO-HoY"/>
                                     <constraint firstAttribute="bottom" secondItem="R2M-f3-M2r" secondAttribute="bottom" constant="15" id="guk-Ov-rCd"/>
                                     <constraint firstItem="BwI-Dh-Qcz" firstAttribute="centerX" secondItem="tOe-tb-UgH" secondAttribute="centerX" id="ktn-lI-DCK"/>
@@ -203,6 +203,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Storyboard" id="mFR-Mh-M6L"/>
+                    <connections>
+                        <outlet property="greenView" destination="R2M-f3-M2r" id="Xbb-0n-dqg"/>
+                        <outlet property="redView" destination="2Zl-ap-pYC" id="Vcw-Jc-WyT"/>
+                        <outlet property="yellowView" destination="BwI-Dh-Qcz" id="WU4-fq-5Op"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzF-YO-OUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
