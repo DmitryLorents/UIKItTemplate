@@ -147,11 +147,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOe-tb-UgH">
-                                <rect key="frame" x="108" y="133" width="177" height="586"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOe-tb-UgH" userLabel="BlackView">
+                                <rect key="frame" x="108" y="212.66666666666663" width="177" height="427"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BwI-Dh-Qcz" userLabel="YellowView">
+                                        <rect key="frame" x="25" y="150.00000000000003" width="127" height="126.99999999999997"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="BwI-Dh-Qcz" secondAttribute="height" id="1rC-TE-k4C"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2M-f3-M2r" userLabel="GreenView">
+                                        <rect key="frame" x="25" y="285" width="127" height="127"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="R2M-f3-M2r" secondAttribute="height" id="wbm-IV-D3Z"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Zl-ap-pYC" userLabel="RedView">
+                                        <rect key="frame" x="24.333333333333343" y="13.666666666666686" width="128.33333333333334" height="128.33333333333334"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="2Zl-ap-pYC" secondAttribute="height" id="d8y-pN-F9r"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="BwI-Dh-Qcz" firstAttribute="centerY" secondItem="tOe-tb-UgH" secondAttribute="centerY" id="3Kf-xj-GGM"/>
+                                    <constraint firstItem="BwI-Dh-Qcz" firstAttribute="top" secondItem="2Zl-ap-pYC" secondAttribute="bottom" constant="8.0000000000000284" id="3Mh-1m-44b"/>
+                                    <constraint firstAttribute="trailing" secondItem="BwI-Dh-Qcz" secondAttribute="trailing" constant="25" id="4aS-Pm-9Qz"/>
+                                    <constraint firstItem="R2M-f3-M2r" firstAttribute="width" secondItem="BwI-Dh-Qcz" secondAttribute="height" multiplier="1:1" id="EJC-2g-mgr"/>
+                                    <constraint firstItem="2Zl-ap-pYC" firstAttribute="centerX" secondItem="tOe-tb-UgH" secondAttribute="centerX" id="HfG-lE-VDE"/>
+                                    <constraint firstItem="2Zl-ap-pYC" firstAttribute="width" secondItem="BwI-Dh-Qcz" secondAttribute="height" multiplier="127:126" id="PFb-lh-mNK"/>
+                                    <constraint firstItem="R2M-f3-M2r" firstAttribute="width" secondItem="R2M-f3-M2r" secondAttribute="height" id="S0v-DM-S5g"/>
+                                    <constraint firstItem="R2M-f3-M2r" firstAttribute="top" secondItem="BwI-Dh-Qcz" secondAttribute="bottom" constant="8" id="bPY-ad-RgS"/>
+                                    <constraint firstItem="2Zl-ap-pYC" firstAttribute="width" secondItem="2Zl-ap-pYC" secondAttribute="height" id="eZH-4z-DBY"/>
                                     <constraint firstAttribute="height" priority="250" constant="1000" id="esc-PO-HoY"/>
+                                    <constraint firstAttribute="bottom" secondItem="R2M-f3-M2r" secondAttribute="bottom" constant="15" id="guk-Ov-rCd"/>
+                                    <constraint firstItem="BwI-Dh-Qcz" firstAttribute="centerX" secondItem="tOe-tb-UgH" secondAttribute="centerX" id="ktn-lI-DCK"/>
+                                    <constraint firstItem="R2M-f3-M2r" firstAttribute="centerX" secondItem="tOe-tb-UgH" secondAttribute="centerX" id="w0G-uD-NpF"/>
                                     <constraint firstAttribute="width" priority="250" constant="1000" id="zXl-cB-6Fd"/>
                                 </constraints>
                             </view>
@@ -230,6 +265,12 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
