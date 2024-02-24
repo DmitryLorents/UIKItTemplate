@@ -5,6 +5,7 @@ import UIKit
 
 /// Screen to show user account information
 final class UserProfileViewController: UIViewController {
+    
     // MARK: - Visual Components
 
     private lazy var accountTableView: UITableView = {
@@ -19,7 +20,7 @@ final class UserProfileViewController: UIViewController {
         table.register(UserPhotosViewCell.self, forCellReuseIdentifier: UserPhotosViewCell.reuseID)
         return table
     }()
-
+    
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshTebleView), for: .valueChanged)
@@ -53,7 +54,7 @@ final class UserProfileViewController: UIViewController {
         navigationItem.setLeftBarButton(UIBarButtonItem(customView: myTitleView), animated: false)
         navigationController?.navigationBar.tintColor = .black
     }
-
+    
     @objc private func refreshTebleView() {
         refreshControl.endRefreshing()
     }

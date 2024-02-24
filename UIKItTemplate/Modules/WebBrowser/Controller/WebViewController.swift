@@ -6,6 +6,7 @@ import WebKit
 
 /// Screen to show web browser
 final class WebViewController: UIViewController {
+    
     // MARK: - Visual Components
 
     private let webView = WKWebView()

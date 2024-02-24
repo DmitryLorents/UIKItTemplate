@@ -22,7 +22,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupUI()
     }
 
     // MARK: - Public Methods
@@ -45,7 +46,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 private extension PhotoCollectionViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            // TODO: - Add constants to constraint values
             photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
             photoImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3 - 1),
 
