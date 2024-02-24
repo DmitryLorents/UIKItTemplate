@@ -53,7 +53,8 @@ final class TitleView: UIView {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupUI()
     }
 
     // MARK: - Private Methods
@@ -69,28 +70,45 @@ final class TitleView: UIView {
 
 private extension TitleView {
     func setupConstraints() {
+        setupLockImageViewConstraints()
+        setupTitleLabelConstraints()
+        setupMoreButtonConstraints()
+        setupPlusButtonConstraints()
+        widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
+    }
+
+    func setupLockImageViewConstraints() {
         NSLayoutConstraint.activate([
             lockImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             lockImageView.heightAnchor.constraint(equalToConstant: 24),
             lockImageView.widthAnchor.constraint(equalTo: lockImageView.heightAnchor),
             lockImageView.topAnchor.constraint(equalTo: topAnchor, constant: 18),
-            lockImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            lockImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
 
+    func setupTitleLabelConstraints() {
+        NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: lockImageView.trailingAnchor, constant: 6),
-            titleLabel.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor)
+        ])
+    }
 
+    func setupMoreButtonConstraints() {
+        NSLayoutConstraint.activate([
             moreButton.heightAnchor.constraint(equalTo: lockImageView.heightAnchor),
             moreButton.widthAnchor.constraint(equalTo: lockImageView.widthAnchor),
             moreButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            moreButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
+            moreButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor)
+        ])
+    }
 
+    func setupPlusButtonConstraints() {
+        NSLayoutConstraint.activate([
             plusButton.heightAnchor.constraint(equalTo: lockImageView.heightAnchor),
             plusButton.widthAnchor.constraint(equalTo: lockImageView.widthAnchor),
             plusButton.trailingAnchor.constraint(equalTo: moreButton.leadingAnchor, constant: -3),
-            plusButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor),
-
-            widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
-
+            plusButton.bottomAnchor.constraint(equalTo: lockImageView.bottomAnchor)
         ])
     }
 }

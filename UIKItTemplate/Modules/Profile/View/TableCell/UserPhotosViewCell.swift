@@ -7,18 +7,6 @@ import UIKit
 final class UserPhotosViewCell: UITableViewCell {
     // MARK: - Constants
 
-    /// Constants of UserProfileCell
-    private enum Constants {
-        /// Standard inset from left or right side
-        static let sideInset: CGFloat = 12
-        /// Standard inset per items
-        static let interItemInset: CGFloat = 22
-        /// Ttitle for first StoryView
-        static let defaultName = "Ваша история"
-        /// Image name for first StoryView
-        static let defaultImage = "girl1"
-    }
-
     static let reuseID = String(describing: UserPhotosViewCell.self)
 
     // MARK: - Visual Components
@@ -31,16 +19,6 @@ final class UserPhotosViewCell: UITableViewCell {
         return view
     }()
 
-    // MARK: - Private Properties
-
-//    private let defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
-//    private var stories: [Story]? {
-//        didSet {
-//            stories?.insert(defaultStory, at: 0)
-//            makeSubviews()
-//        }
-//    }
-
     // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -50,7 +28,8 @@ final class UserPhotosViewCell: UITableViewCell {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupUI()
     }
 
     // MARK: - Public methods
