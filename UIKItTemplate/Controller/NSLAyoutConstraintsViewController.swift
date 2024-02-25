@@ -56,9 +56,9 @@ class NSLAyoutConstraintsViewController: UIViewController {
     }
 
     private func roundSubViews() {
-//        redView.layer.cornerRadius = redView.frame.width / 2
-//        yellowView.layer.cornerRadius = yellowView.frame.width / 2
-//        greenView.layer.cornerRadius = greenView.frame.width / 2
+        redView.layer.cornerRadius = redView.frame.width / 2
+        yellowView.layer.cornerRadius = yellowView.frame.width / 2
+        greenView.layer.cornerRadius = greenView.frame.width / 2
     }
 }
 
@@ -66,8 +66,8 @@ private extension NSLAyoutConstraintsViewController {
     func setupConstraints() {
         setupBlackViewConstraints()
         setupYellowViewConstraints()
-//        setupRedViewConstraints()
-//        setupGreenViewConstraints()
+        setupRedViewConstraints()
+        setupGreenViewConstraints()
     }
 
     func setupBlackViewConstraints() {
@@ -156,29 +156,137 @@ private extension NSLAyoutConstraintsViewController {
 
     func setupYellowViewConstraints() {
         NSLayoutConstraint.activate([
-            yellowView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            yellowView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            yellowView.heightAnchor.constraint(equalTo: yellowView.widthAnchor),
-            yellowView.leadingAnchor.constraint(equalTo: blackView.leadingAnchor, constant: Inset.subViewHorizintal),
+            NSLayoutConstraint(
+                item: yellowView,
+                attribute: .centerX,
+                relatedBy: .equal,
+                toItem: view,
+                attribute: .centerX,
+                multiplier: 1,
+                constant: 0
+            ),
+
+            NSLayoutConstraint(
+                item: yellowView,
+                attribute: .centerY,
+                relatedBy: .equal,
+                toItem: view,
+                attribute: .centerY,
+                multiplier: 1,
+                constant: 0
+            ),
+            NSLayoutConstraint(
+                item: yellowView,
+                attribute: .height,
+                relatedBy: .equal,
+                toItem: yellowView,
+                attribute: .width,
+                multiplier: 1,
+                constant: 0
+            ),
+
+            NSLayoutConstraint(
+                item: yellowView,
+                attribute: .leading,
+                relatedBy: .equal,
+                toItem: blackView,
+                attribute: .leading,
+                multiplier: 1,
+                constant: Inset.subViewHorizintal
+            ),
         ])
     }
 
     func setupRedViewConstraints() {
         NSLayoutConstraint.activate([
-            redView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            redView.heightAnchor.constraint(equalTo: yellowView.heightAnchor),
-            redView.heightAnchor.constraint(equalTo: redView.widthAnchor),
-            redView.topAnchor.constraint(equalTo: blackView.topAnchor, constant: Inset.subViewVertical),
-            redView.bottomAnchor.constraint(equalTo: yellowView.topAnchor, constant: -Inset.subViewInterItem)
+            NSLayoutConstraint(
+                item: redView,
+                attribute: .centerX,
+                relatedBy: .equal,
+                toItem: view,
+                attribute: .centerX,
+                multiplier: 1,
+                constant: 0
+            ),
+
+            NSLayoutConstraint(
+                item: redView,
+                attribute: .height,
+                relatedBy: .equal,
+                toItem: yellowView,
+                attribute: .height,
+                multiplier: 1,
+                constant: 0
+            ),
+
+            NSLayoutConstraint(
+                item: redView,
+                attribute: .height,
+                relatedBy: .equal,
+                toItem: redView,
+                attribute: .width,
+                multiplier: 1,
+                constant: 0
+            ),
+            NSLayoutConstraint(
+                item: redView,
+                attribute: .top,
+                relatedBy: .equal,
+                toItem: blackView,
+                attribute: .top,
+                multiplier: 1,
+                constant: Inset.subViewVertical
+            ),
+            NSLayoutConstraint(
+                item: redView,
+                attribute: .bottom,
+                relatedBy: .equal,
+                toItem: yellowView,
+                attribute: .top,
+                multiplier: 1,
+                constant: -Inset.subViewVertical
+            ),
         ])
     }
 
     func setupGreenViewConstraints() {
         NSLayoutConstraint.activate([
-            greenView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            greenView.heightAnchor.constraint(equalTo: yellowView.heightAnchor),
-            greenView.heightAnchor.constraint(equalTo: greenView.widthAnchor),
-            greenView.topAnchor.constraint(equalTo: yellowView.bottomAnchor, constant: Inset.subViewInterItem),
+            NSLayoutConstraint(
+                item: greenView,
+                attribute: .centerX,
+                relatedBy: .equal,
+                toItem: view,
+                attribute: .centerX,
+                multiplier: 1,
+                constant: 0
+            ),
+            NSLayoutConstraint(
+                item: greenView,
+                attribute: .height,
+                relatedBy: .equal,
+                toItem: yellowView,
+                attribute: .height,
+                multiplier: 1,
+                constant: 0
+            ),
+            NSLayoutConstraint(
+                item: greenView,
+                attribute: .height,
+                relatedBy: .equal,
+                toItem: greenView,
+                attribute: .width,
+                multiplier: 1,
+                constant: 0
+            ),
+            NSLayoutConstraint(
+                item: greenView,
+                attribute: .top,
+                relatedBy: .equal,
+                toItem: yellowView,
+                attribute: .bottom,
+                multiplier: 1,
+                constant: Inset.subViewVertical
+            ),
         ])
     }
 }

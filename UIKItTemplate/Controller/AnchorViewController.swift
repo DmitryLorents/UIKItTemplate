@@ -56,9 +56,6 @@ class AnchorViewController: UIViewController {
     }
 
     private func roundSubViews() {
-        print(#function)
-        print(redView.frame.width)
-        print(redView.layer.cornerRadius)
         redView.layer.cornerRadius = redView.frame.width / 2
         yellowView.layer.cornerRadius = yellowView.frame.width / 2
         greenView.layer.cornerRadius = greenView.frame.width / 2
