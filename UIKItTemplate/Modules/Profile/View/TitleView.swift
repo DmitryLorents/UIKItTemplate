@@ -7,32 +7,25 @@ import UIKit
 final class TitleView: UIView {
     // MARK: - Constants
 
-    private enum Constants {
-        static let lockImage = "lock"
-        static let plusImage = "moreLines"
-        static let moreImage = "plusSquare"
         static let title = "mary_rmLink"
-    }
 
     // MARK: - Visual Components
 
     private let lockImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: Constants.lockImage)
+        imageView.image = .lock
         return imageView
     }()
 
     private let plusButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(named: Constants.plusImage)
-        button.setImage(image, for: .normal)
+        button.setImage(.plusSquare, for: .normal)
         return button
     }()
 
     private let moreButton: UIButton = {
         let button = UIButton()
-        let image = UIImage(named: Constants.moreImage)
-        button.setImage(image, for: .normal)
+        button.setImage(.moreLines, for: .normal)
         return button
     }()
 

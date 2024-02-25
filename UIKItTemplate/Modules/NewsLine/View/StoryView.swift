@@ -16,11 +16,11 @@ final class StoryView: UIView {
     }
 
     private enum Constants {
-        static let whiteBorderWidth: CGFloat = 2
-        static let coloredBorderWidth: CGFloat = 2
-        static let userImageViewSize: CGFloat = 60 + 2 * whiteBorderWidth
+        static let whiteBorderWidth = 2.0
+        static let coloredBorderWidth = 2.0
+        static let userImageViewSize = 60.0 + 2 * whiteBorderWidth
         static let borderViewSize = userImageViewSize + 2 * coloredBorderWidth
-        static let plusButtonSize: CGFloat = 20
+        static let plusButtonSize = 20.0
         static let defaultText = "Ваша история"
     }
 
@@ -67,7 +67,7 @@ final class StoryView: UIView {
 
     // MARK: - Public Properties
 
-    var handler: (() -> ())?
+    var showStoryhandler: (() -> ())?
 
     // MARK: - Private Properties
 
@@ -80,7 +80,7 @@ final class StoryView: UIView {
         self.story = story
         self.isStartView = isStartView
         super.init(frame: .zero)
-        setupUI()
+        setupView()
     }
 
     @available(*, unavailable)
@@ -88,15 +88,9 @@ final class StoryView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Public Methods
-
-    func setBorderColor(_ borderType: BorderType) {
-        borderView.backgroundColor = borderType == .gray ? .lightGray : .orange
-    }
-
     // MARK: - Private Methods
 
-    private func setupUI() {
+    private func setupView() {
         setupViewTapAction()
         addSubviews(nameLabel, borderView, userImageView, plusButton)
         disableTARMIC()
@@ -109,12 +103,12 @@ final class StoryView: UIView {
         addGestureRecognizer(tapGesture)
     }
 
-    @objc func viewIsTapped() {
+    @objc private func viewIsTapped() {
         if !isStartView {
             borderView.backgroundColor = .lightGray
         }
-        if let handler {
-            handler()
+        if let showStoryhandler {
+            showStoryhandler()
         }
     }
 }

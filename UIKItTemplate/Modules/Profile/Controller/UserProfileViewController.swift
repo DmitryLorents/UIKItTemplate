@@ -22,7 +22,7 @@ final class UserProfileViewController: UIViewController {
 
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshTebleView), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         return refreshControl
     }()
 
@@ -54,7 +54,7 @@ final class UserProfileViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
     }
 
-    @objc private func refreshTebleView() {
+    @objc private func refreshTableView() {
         refreshControl.endRefreshing()
     }
 }
@@ -72,7 +72,7 @@ private extension UserProfileViewController {
     }
 }
 
-// MARK: - ProfileViewController: UITableViewDataSource
+// MARK: - ProfileViewController + UITableViewDataSource
 
 extension UserProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,7 +92,7 @@ extension UserProfileViewController: UITableViewDataSource {
                 .dequeueReusableCell(withIdentifier: UserProfileCell.reuseID, for: indexPath) as? UserProfileCell
             else { return .init() }
             cell.setupWith(user)
-            cell.handler = { [weak self] urlString in
+            cell.openLinkHandler = { [weak self] urlString in
                 let webViewController = WebViewController(urlString: urlString)
                 webViewController.modalPresentationStyle = .fullScreen
                 self?.present(webViewController, animated: true)
@@ -112,17 +112,13 @@ extension UserProfileViewController: UITableViewDataSource {
             ) as? UserPhotosViewCell
             else { return .init() }
             self.photoNames = photoNames
-            cell.setupDelegates(delegate: self, dataSource: self)
+            cell.setupDelegates(dataSource: self)
             return cell
         default:
             return .init()
         }
     }
 }
-
-// MARK: - ProfileViewController: UICollectionViewDelegate
-
-extension UserProfileViewController: UICollectionViewDelegate {}
 
 // MARK: - ProfileViewController: UICollectionViewDataSource
 

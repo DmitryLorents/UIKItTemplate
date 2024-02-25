@@ -30,7 +30,9 @@ final class WebViewController: UIViewController {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.urlString = ""
+        super.init(coder: coder)
+        
     }
 
     // MARK: - Life Cycle
@@ -142,7 +144,7 @@ private extension WebViewController {
     }
 }
 
-// MARK: - WebViewController: WKNavigationDelegate
+// MARK: - WebViewController + WKNavigationDelegate
 
 extension WebViewController: WKNavigationDelegate {
     // Enable/disable navigation buttons
@@ -150,7 +152,7 @@ extension WebViewController: WKNavigationDelegate {
         if let itemsCount = webToolBar.items?.count, itemsCount > 0, let backButton = webToolBar.items?[0] {
             backButton.isEnabled = webView.canGoBack
         }
-        if let itemsCount = webToolBar.items?.count, itemsCount > 0, let forwardButton = webToolBar.items?[1] {
+        if let itemsCount = webToolBar.items?.count, itemsCount > 1, let forwardButton = webToolBar.items?[1] {
             forwardButton.isEnabled = webView.canGoForward
         }
     }

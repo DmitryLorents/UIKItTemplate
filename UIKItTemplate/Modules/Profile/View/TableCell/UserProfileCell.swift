@@ -8,15 +8,15 @@ final class UserProfileCell: UITableViewCell {
     // MARK: - Constants
 
     private enum Constants {
-        static let sideInset: CGFloat = 15
-        static let interItemInset: CGFloat = 10
-        static let userImageViewSize: CGFloat = 80
-        static let plusButtonSize: CGFloat = 26
+        static let sideInset = 15.0
+        static let interItemInset = 10.0
+        static let userImageViewSize = 80.0
+        static let plusButtonSize = 26.0
         static let plusButtonTitle = "+"
         static let urlButtonTitle = "📎wwww.space.com"
         static let changeButtonTitle = "Изменить"
         static let shareProfileButtonTitle = "Поделиться профилем"
-        static let buttonCornerRadius: CGFloat = 8
+        static let buttonCornerRadius = 8.0
         static let addUserImageName = "addUser"
         static let postLabelTitle = "публикации"
         static let subscribersLabelTitle = "подписчики"
@@ -48,22 +48,22 @@ final class UserProfileCell: UITableViewCell {
     private let userNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.makeVerdanaBold(14)
+        label.font = .makeVerdanaBold(14)
         return label
     }()
 
     private let userPositionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.makeVerdanaRegular(14)
+        label.font = .makeVerdanaRegular(14)
         return label
     }()
 
     private lazy var urlButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(Constants.urlButtonTitle, for: .normal)
-        button.titleLabel?.font = UIFont.makeVerdanaRegular(14)
-        button.addTarget(self, action: #selector(urlButtonDidTapped), for: .touchUpInside)
+        button.titleLabel?.font = .makeVerdanaRegular(14)
+        button.addTarget(self, action: #selector(urlButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -85,7 +85,7 @@ final class UserProfileCell: UITableViewCell {
 
     // MARK: - Publuc Properties
 
-    var handler: ((String) -> Void)?
+    var openLinkHandler: ((String) -> Void)?
 
     // MARK: - Private Properties
 
@@ -151,7 +151,7 @@ final class UserProfileCell: UITableViewCell {
     private func makeRoundedGrayButton(title: String) -> UIButton {
         let button = UIButton()
         button.backgroundColor = .lightGrayApp
-        button.titleLabel?.font = UIFont.makeVerdanaBold(10)
+        button.titleLabel?.font = .makeVerdanaBold(10)
         button.setTitleColor(.black, for: .normal)
         button.setTitle(title, for: .normal)
         button.layer.cornerRadius = Constants.buttonCornerRadius
@@ -162,7 +162,7 @@ final class UserProfileCell: UITableViewCell {
     private func makeVerdanaBold14Label() -> UILabel {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.makeVerdanaBold(14)
+        label.font = .makeVerdanaBold(14)
         return label
     }
 
@@ -170,13 +170,13 @@ final class UserProfileCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.text = title
-        label.font = UIFont.makeVerdanaRegular(10)
+        label.font = .makeVerdanaRegular(10)
         return label
     }
 
-    @objc private func urlButtonDidTapped() {
-        if let handler, let user {
-            handler(user.url)
+    @objc private func urlButtonTapped() {
+        if let openLinkHandler, let user {
+            openLinkHandler(user.url)
         }
     }
 }

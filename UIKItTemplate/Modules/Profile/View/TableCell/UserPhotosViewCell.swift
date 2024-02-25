@@ -34,8 +34,7 @@ final class UserPhotosViewCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func setupDelegates(delegate: UICollectionViewDelegate, dataSource: UICollectionViewDataSource) {
-        photosCollectionView.delegate = delegate
+    func setupDelegates(dataSource: UICollectionViewDataSource) {
         photosCollectionView.dataSource = dataSource
     }
 
