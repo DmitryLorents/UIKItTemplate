@@ -95,24 +95,45 @@ private extension RecomendationView {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: Constants.viewHeight),
             widthAnchor.constraint(equalToConstant: Constants.viewWidth),
+        ])
+        setupUserImageViewConstraints()
+        setupNameLabelConstraints()
+        setupSubscribeButtonConstraints()
+        setupCloseButtonConstraints()
+    }
 
+    private func setupUserImageViewConstraints() {
+        NSLayoutConstraint.activate([
             userImageView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
             userImageView.heightAnchor.constraint(equalToConstant: Constants.imageViewSize),
             userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
             userImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
 
+        ])
+    }
+
+    private func setupNameLabelConstraints() {
+        NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 5),
             nameLabel.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
 
+        ])
+    }
+
+    private func setupSubscribeButtonConstraints() {
+        NSLayoutConstraint.activate([
             subscribeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             subscribeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             subscribeButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14),
             subscribeButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+        ])
+    }
 
+    private func setupCloseButtonConstraints() {
+        NSLayoutConstraint.activate([
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9),
             closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 9),
-
         ])
     }
 }

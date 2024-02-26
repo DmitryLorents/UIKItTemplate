@@ -31,10 +31,13 @@ final class StoriesViewCell: UITableViewCell {
 
     // MARK: - Private Properties
 
-    private let defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
+    private lazy var defaultStory = Story(userName: Constants.defaultName, imageName: Constants.defaultImage)
+    private var hasDefaultStory: Bool = true
     private var stories: [Story]? {
         didSet {
-            stories?.insert(defaultStory, at: 0)
+            if hasDefaultStory {
+                stories?.insert(defaultStory, at: 0)
+            }
             makeSubviews()
         }
     }
@@ -53,7 +56,8 @@ final class StoriesViewCell: UITableViewCell {
 
     // MARK: - Public methods
 
-    func setupWith(_ stories: [Story]) {
+    func setupWith(_ stories: [Story], hasDefaultStory: Bool = true) {
+        self.hasDefaultStory = hasDefaultStory
         self.stories = stories
     }
 
@@ -69,7 +73,7 @@ final class StoriesViewCell: UITableViewCell {
         guard let stories else { return }
         let viewWidth: CGFloat = 60
         for (index, story) in stories.enumerated() {
-            let storyView = StoryView(story: story, isStartView: index == 0)
+            let storyView = StoryView(story: story, isStartView: index == 0 && hasDefaultStory)
             storyView.translatesAutoresizingMaskIntoConstraints = false
             storiesScrollView.addSubview(storyView)
 

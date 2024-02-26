@@ -15,10 +15,16 @@ struct DataStorage {
         case remainingPosts([Post])
         /// Recomendation content
         case recomendation
+        /// User's photo gallery
+        case photoGallery([String])
+        /// User's profile data
+        case userProfile(User)
     }
 
-    /// All section in desired order
-    lazy var sections: [SectionType] = [.stories, .firstPost, .recomendation, .remainingPosts(postsExceptFirst)]
+    /// All section in desired order for NewsLineViewController
+    lazy var newsLineSections: [SectionType] = [.stories, .firstPost, .recomendation, .remainingPosts(postsExceptFirst)]
+    /// All section in desired order for ProfileViewController
+    lazy var userProfileSections: [SectionType] = [.userProfile(user), .stories, .photoGallery(userPhotos)]
 
     // MARK: - Stories
 
@@ -185,13 +191,23 @@ struct DataStorage {
 
     // MARK: - Profile
 
-    let user = User(
+    /// Users profile data
+    private let user = User(
         name: "Jim Morison",
         image: "girl1",
         postAmount: 67,
         subscribersAmount: 458,
         subsriptionsAmount: 120,
         position: "Fasion designer",
-        url: "www.spacex.com"
+        url: "https://www.spacex.com/vehicles/starship/"
     )
+
+    /// Users photo names for image gallery
+    private let userPhotos = [
+        "nature1", "nature2", "nature3",
+        "nature4", "nature3", "nature4",
+        "nature2", "nature1", "nature1",
+        "nature4", "nature3", "nature4",
+        "nature2", "nature1", "nature1",
+    ]
 }

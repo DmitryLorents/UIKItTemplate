@@ -7,13 +7,20 @@ import UIKit
 final class StoryView: UIView {
     // MARK: - Constants
 
-    /// Constants for StoryView
+    /// Type of border color
+    enum BorderType {
+        /// Gray border color
+        case gray
+        /// Gradient border color
+        case colored
+    }
+
     private enum Constants {
-        /// Width and height dimension if imageView
-        static let userImageViewSize: CGFloat = 60
-        /// Width and height dimension of plusButton
-        static let plusButtonSize: CGFloat = 20
-        /// Ttile for first story in feed
+        static let whiteBorderWidth = 2.0
+        static let coloredBorderWidth = 2.0
+        static let userImageViewSize = 60.0 + 2 * whiteBorderWidth
+        static let borderViewSize = userImageViewSize + 2 * coloredBorderWidth
+        static let plusButtonSize = 20.0
         static let defaultText = "Ваша история"
     }
 
@@ -34,7 +41,17 @@ final class StoryView: UIView {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = Constants.userImageViewSize / 2
+        imageView.layer.borderWidth = Constants.whiteBorderWidth
+        imageView.layer.borderColor = UIColor.white.cgColor
         return imageView
+    }()
+
+    private lazy var borderView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = Constants.borderViewSize / 2
+        let borderColor: UIColor = story.isWatched ? .lightGray : .orange
+        view.backgroundColor = isStartView ? .white : borderColor
+        return view
     }()
 
     private lazy var plusButton: UIButton = {
@@ -48,6 +65,10 @@ final class StoryView: UIView {
         return button
     }()
 
+    // MARK: - Public Properties
+
+    var showStoryhandler: (() -> ())?
+
     // MARK: - Private Properties
 
     private let story: Story
@@ -59,7 +80,7 @@ final class StoryView: UIView {
         self.story = story
         self.isStartView = isStartView
         super.init(frame: .zero)
-        setupUI()
+        setupView()
     }
 
     @available(*, unavailable)
@@ -69,34 +90,78 @@ final class StoryView: UIView {
 
     // MARK: - Private Methods
 
-    private func setupUI() {
-        addSubviews(nameLabel, userImageView, plusButton)
+    private func setupView() {
+        setupViewTapAction()
+        addSubviews(nameLabel, borderView, userImageView, plusButton)
         disableTARMIC()
         setupConstraints()
     }
+
+    private func setupViewTapAction() {
+        isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewIsTapped))
+        addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func viewIsTapped() {
+        if !isStartView {
+            borderView.backgroundColor = .lightGray
+        }
+        showStoryhandler?()
+    }
 }
 
-// MARK: - Set constraints
+// MARK: - Constraints
 
 private extension StoryView {
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            userImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            userImageView.heightAnchor.constraint(equalToConstant: Constants.userImageViewSize),
-            userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor, multiplier: 1),
-            userImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            userImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+        setupBorderViewConstraints()
+        setupUserImageViewConstraints()
+        setupNameLabelConstraints()
+        setupPlusButtonConstraints()
+    }
 
+    func setupBorderViewConstraints() {
+        NSLayoutConstraint.activate([
+            borderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            borderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            borderView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            borderView.heightAnchor.constraint(equalToConstant: Constants.borderViewSize),
+            borderView.widthAnchor.constraint(equalTo: borderView.heightAnchor),
+
+        ])
+    }
+
+    func setupUserImageViewConstraints() {
+        NSLayoutConstraint.activate([
+            userImageView.heightAnchor.constraint(equalToConstant: Constants.userImageViewSize),
+            userImageView.widthAnchor.constraint(equalTo: userImageView.heightAnchor),
+            userImageView.centerXAnchor.constraint(equalTo: borderView.centerXAnchor),
+            userImageView.centerYAnchor.constraint(equalTo: borderView.centerYAnchor),
+        ])
+    }
+
+    func setupNameLabelConstraints() {
+        NSLayoutConstraint.activate([
             nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             nameLabel.topAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 5),
             nameLabel.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor),
+        ])
+    }
 
-            plusButton.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor),
-            plusButton.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor),
+    func setupPlusButtonConstraints() {
+        NSLayoutConstraint.activate([
+            plusButton.trailingAnchor.constraint(
+                equalTo: userImageView.trailingAnchor,
+                constant: -Constants.whiteBorderWidth
+            ),
+            plusButton.bottomAnchor.constraint(
+                equalTo: userImageView.bottomAnchor,
+                constant: -Constants.whiteBorderWidth
+            ),
             plusButton.heightAnchor.constraint(equalToConstant: Constants.plusButtonSize),
             plusButton.widthAnchor.constraint(equalTo: plusButton.heightAnchor)
-
         ])
     }
 }
