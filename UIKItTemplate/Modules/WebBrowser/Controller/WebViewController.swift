@@ -30,9 +30,8 @@ final class WebViewController: UIViewController {
 
     @available(*, unavailable)
     required init?(coder: NSCoder) {
-        self.urlString = ""
+        urlString = ""
         super.init(coder: coder)
-        
     }
 
     // MARK: - Life Cycle

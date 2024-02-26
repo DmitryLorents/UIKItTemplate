@@ -175,8 +175,8 @@ final class UserProfileCell: UITableViewCell {
     }
 
     @objc private func urlButtonTapped() {
-        if let openLinkHandler, let user {
-            openLinkHandler(user.url)
+        if let user {
+            openLinkHandler?(user.url)
         }
     }
 }

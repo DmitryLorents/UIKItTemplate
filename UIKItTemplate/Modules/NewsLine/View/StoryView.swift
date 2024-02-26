@@ -107,9 +107,7 @@ final class StoryView: UIView {
         if !isStartView {
             borderView.backgroundColor = .lightGray
         }
-        if let showStoryhandler {
-            showStoryhandler()
-        }
+        showStoryhandler?()
     }
 }
 

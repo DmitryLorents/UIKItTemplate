@@ -7,7 +7,7 @@ import UIKit
 final class TitleView: UIView {
     // MARK: - Constants
 
-        static let title = "mary_rmLink"
+    static let titleText = "mary_rmLink"
 
     // MARK: - Visual Components
 
@@ -31,7 +31,7 @@ final class TitleView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = Constants.title
+        label.text = TitleView.titleText
         label.textAlignment = .left
         label.font = UIFont.makeVerdanaBold(18)
         return label
