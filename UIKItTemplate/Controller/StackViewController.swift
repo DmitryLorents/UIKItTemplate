@@ -4,7 +4,7 @@
 import UIKit
 
 /// Screen to show how stack constraints are working
-class StackViewController: UIViewController {
+final class StackViewController: UIViewController {
     // MARK: - Constants
 
     private enum Inset {

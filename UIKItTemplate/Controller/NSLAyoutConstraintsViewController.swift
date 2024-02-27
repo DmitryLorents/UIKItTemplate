@@ -4,7 +4,7 @@
 import UIKit
 
 /// Screen to show how NSLayoutConstraints constraints are working
-class NSLAyoutConstraintsViewController: UIViewController {
+final class NSLAyoutConstraintsViewController: UIViewController {
     // MARK: - Constants
 
     private enum Inset {

@@ -4,10 +4,4 @@
 import UIKit
 
 /// Screen to show how storyboards constraints are working
-class StoryBoardViewController: UIViewController {
-    // MARK: - IBOutlets
-
-    @IBOutlet var redView: UIView!
-    @IBOutlet var yellowView: UIView!
-    @IBOutlet var greenView: UIView!
-}
+final class StoryBoardViewController: UIViewController {}

@@ -4,7 +4,7 @@
 import UIKit
 
 /// Screen to show how anchor constraints are working
-class AnchorViewController: UIViewController {
+final class AnchorViewController: UIViewController {
     // MARK: - Constants
 
     private enum Inset {

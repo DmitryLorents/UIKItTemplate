@@ -4,4 +4,4 @@
 import UIKit
 
 /// Screen to show how VFL constraints are working
-class VFLViewController: UIViewController {}
+final class VFLViewController: UIViewController {}
